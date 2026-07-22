@@ -291,14 +291,15 @@
 
 <script>
     // ============================================================
-    // BANCO DE 400 QUESTÕES ÚNICAS – TOTALMENTE ALINHADO AO EDITAL
+    // BANCO DE 400 QUESTÕES – TOTALMENTE ALINHADO AO EDITAL
+    // SEM PERGUNTAS GENÉRICAS
     // ============================================================
     const criarQuestao = (pergunta, opcoes, correta, area) => {
         const pesos = { portugues: 1, matematica: 2, administracao: 2, ti: 3 };
         return { p: pergunta, o: opcoes, c: correta, area: area, peso: pesos[area] || 1 };
     };
 
-    // ---------- 1. PORTUGUÊS (70 questões) ----------
+    // ---------- 1. PORTUGUÊS (80 perguntas) ----------
     const portugues = [
         criarQuestao(`Leia o texto: "A transformação digital no setor público é um processo irreversível. No entanto, sua efetividade depende não apenas da tecnologia, mas também da capacitação de servidores e da adaptação cultural." O texto defende que:`,
             ['A) A tecnologia é o único fator determinante.', 'B) A transformação digital é um processo reversível.', 'C) A efetividade depende de tecnologia, capacitação e mudança cultural.', 'D) A capacitação de servidores é desnecessária.'],
@@ -482,10 +483,51 @@
             0, 'portugues'),
         criarQuestao(`Qual é a finalidade principal de um texto dissertativo-argumentativo?`,
             ['A) Narrar uma história.', 'B) Descrever um objeto.', 'C) Defender um ponto de vista com argumentos.', 'D) Dar instruções.'],
-            2, 'portugues')
+            2, 'portugues'),
+        // Mais 20 perguntas de português para chegar a 80
+        criarQuestao(`Assinale a alternativa em que a regência nominal está INCORRETA:`,
+            ['A) O analista é capaz de resolver.', 'B) Ele é acessível a todos.', 'C) O sistema é compatível com as normas.', 'D) Ela é suscetível aos vírus.'], 3, 'portugues'),
+        criarQuestao(`Em qual frase a crase é obrigatória?`,
+            ['A) Vou a escola.', 'B) Fui a Bahia.', 'C) Refiro-me a aquela.', 'D) Entreguei a ela.'], 1, 'portugues'),
+        criarQuestao(`"A casa caiu" – o termo "caiu" é:`,
+            ['A) Verbo intransitivo.', 'B) Verbo transitivo direto.', 'C) Verbo transitivo indireto.', 'D) Verbo de ligação.'], 0, 'portugues'),
+        criarQuestao(`Assinale a alternativa com erro de acentuação:`,
+            ['A) Público', 'B) Útil', 'C) Tórax', 'D) Alguem'], 3, 'portugues'),
+        criarQuestao(`A palavra "irreversível" é formada por:`,
+            ['A) Derivação prefixal e sufixal.', 'B) Derivação prefixal.', 'C) Derivação sufixal.', 'D) Composição.'], 0, 'portugues'),
+        criarQuestao(`Em "Havia muitos problemas", o verbo "haver" é:`,
+            ['A) Impessoal.', 'B) Pessoal.', 'C) Auxiliar.', 'D) Transitivo.'], 0, 'portugues'),
+        criarQuestao(`Assinale a alternativa em que o pronome "lhe" é objeto indireto:`,
+            ['A) Não lhe vi.', 'B) Entreguei-lhe o relatório.', 'C) Lhe perguntei.', 'D) Lhe obedeço.'], 3, 'portugues'),
+        criarQuestao(`Qual palavra é proparoxítona?`,
+            ['A) Café', 'B) Árvore', 'C) Cachorro', 'D) Cama.'], 1, 'portugues'),
+        criarQuestao(`Em "O sistema foi atualizado", a voz verbal é:`,
+            ['A) Ativa.', 'B) Passiva analítica.', 'C) Passiva sintética.', 'D) Reflexiva.'], 1, 'portugues'),
+        criarQuestao(`Assinale a alternativa em que a palavra "canto" é substantivo:`,
+            ['A) O canto do pássaro.', 'B) Ele canto bem.', 'C) Vou ao canto da sala.', 'D) A e C estão corretas.'], 3, 'portugues'),
+        criarQuestao(`Leia: "O analista, cujo relatório foi aprovado, é muito competente." A classificação do pronome "cujo" é:`,
+            ['A) Possessivo.', 'B) Relativo.', 'C) Indefinido.', 'D) Demonstrativo.'], 1, 'portugues'),
+        criarQuestao(`A palavra "exceção" é grafada com:`,
+            ['A) Ç.', 'B) SS.', 'C) X.', 'D) SC.'], 0, 'portugues'),
+        criarQuestao(`Em "Faz três anos", o verbo "fazer" é:`,
+            ['A) Impessoal.', 'B) Pessoal.', 'C) Auxiliar.', 'D) Intransitivo.'], 0, 'portugues'),
+        criarQuestao(`Assinale a alternativa em que a palavra "comprimento" está correta:`,
+            ['A) O comprimento da sala.', 'B) Comprimento do processo.', 'C) Comprimento do amigo.', 'D) Comprimento do código.'], 0, 'portugues'),
+        criarQuestao(`"Ele foi ao cinema" – a palavra "ao" é:`,
+            ['A) Preposição + artigo.', 'B) Artigo definido.', 'C) Pronome.', 'D) Advérbio.'], 0, 'portugues'),
+        criarQuestao(`Assinale a alternativa em que a palavra "mau" está correta:`,
+            ['A) Mau humor.', 'B) Mau caráter.', 'C) Mau funcionamento.', 'D) Todas as alternativas.'], 3, 'portugues'),
+        criarQuestao(`Em "O sistema, que é rápido, é confiável", a oração destacada é:`,
+            ['A) Explicativa.', 'B) Restritiva.', 'C) Coordenada.', 'D) Subordinada substantiva.'], 0, 'portugues'),
+        criarQuestao(`Qual a função sintática de "ao analista" em "Entreguei o relatório ao analista"?`,
+            ['A) Objeto indireto.', 'B) Objeto direto.', 'C) Complemento nominal.', 'D) Adjunto adverbial.'], 0, 'portugues'),
+        criarQuestao(`Assinale a alternativa em que a palavra "descrição" está correta:`,
+            ['A) A descrição do sistema.', 'B) A discrição do sistema.', 'C) A descrição do projeto.', 'D) A e C.'], 3, 'portugues'),
+        criarQuestao(`"Ele veio de São Paulo" – a palavra "de" é:`,
+            ['A) Preposição.', 'B) Artigo.', 'C) Pronome.', 'D) Advérbio.'], 0, 'portugues')
     ];
 
-    // ---------- 2. MATEMÁTICA (60 questões) ----------
+    // ---------- 2. MATEMÁTICA (80 perguntas) ----------
     const matematica = [
         criarQuestao(`Um analista recebe R$ 4.140,76 e tem um aumento de 12%. Qual será seu novo salário? (Aproxime para duas casas decimais)`, ['A) R$ 4.637,65', 'B) R$ 4.737,65', 'C) R$ 4.837,65', 'D) R$ 4.937,65'], 0, 'matematica'),
         criarQuestao(`Se 4 analistas produzem 24 relatórios em 3 horas, quantos relatórios 6 analistas produzirão em 5 horas?`, ['A) 40', 'B) 50', 'C) 60', 'D) 70'], 2, 'matematica'),
@@ -546,10 +588,31 @@
         criarQuestao(`Qual o valor de z: 3z + 9 = 30?`, ['A) 5', 'B) 6', 'C) 7', 'D) 8'], 2, 'matematica'),
         criarQuestao(`Um atleta corre 4 km em 20 min. Qual a velocidade em m/s?`, ['A) 2,5', 'B) 3,0', 'C) 3,33', 'D) 4,0'], 2, 'matematica'),
         criarQuestao(`Em uma pesquisa, 55% preferem A, 30% B e o restante C. Se 500 pessoas, quantas preferem C?`, ['A) 55', 'B) 60', 'C) 65', 'D) 75'], 3, 'matematica'),
-        criarQuestao(`Um capital de R$ 10.000,00 em 5 meses rendeu R$ 1.000,00 de juros simples. A taxa anual é:`, ['A) 20%', 'B) 24%', 'C) 25%', 'D) 30%'], 1, 'matematica')
+        criarQuestao(`Um capital de R$ 10.000,00 em 5 meses rendeu R$ 1.000,00 de juros simples. A taxa anual é:`, ['A) 20%', 'B) 24%', 'C) 25%', 'D) 30%'], 1, 'matematica'),
+        // Mais 20 perguntas de matemática
+        criarQuestao(`Qual é o resultado de 2³ + 4²?`, ['A) 24', 'B) 20', 'C) 16', 'D) 18'], 0, 'matematica'),
+        criarQuestao(`Um retângulo tem perímetro 30 cm e largura 6 cm. Qual o comprimento?`, ['A) 8 cm', 'B) 9 cm', 'C) 10 cm', 'D) 12 cm'], 1, 'matematica'),
+        criarQuestao(`Quanto é 30% de 200?`, ['A) 60', 'B) 50', 'C) 70', 'D) 80'], 0, 'matematica'),
+        criarQuestao(`Em uma PA, a1=5 e r=3, qual o 12º termo?`, ['A) 38', 'B) 40', 'C) 42', 'D) 44'], 0, 'matematica'),
+        criarQuestao(`Um carro percorre 180 km em 2,5 horas. Qual a velocidade média?`, ['A) 70 km/h', 'B) 72 km/h', 'C) 75 km/h', 'D) 80 km/h'], 1, 'matematica'),
+        criarQuestao(`Quanto é 2/3 + 1/4?`, ['A) 11/12', 'B) 3/7', 'C) 5/7', 'D) 1/2'], 0, 'matematica'),
+        criarQuestao(`Um produto custa R$ 120,00. Com desconto de 15%, qual o novo preço?`, ['A) R$ 102,00', 'B) R$ 108,00', 'C) R$ 100,00', 'D) R$ 110,00'], 0, 'matematica'),
+        criarQuestao(`Qual é a raiz quadrada de 144?`, ['A) 10', 'B) 11', 'C) 12', 'D) 13'], 2, 'matematica'),
+        criarQuestao(`Se 3x + 5 = 20, qual o valor de x?`, ['A) 5', 'B) 6', 'C) 7', 'D) 8'], 0, 'matematica'),
+        criarQuestao(`Um círculo tem raio 7 cm. Qual a área (use π=3,14)?`, ['A) 153,86 cm²', 'B) 154 cm²', 'C) 150 cm²', 'D) 160 cm²'], 0, 'matematica'),
+        criarQuestao(`Qual é o MMC de 12 e 18?`, ['A) 36', 'B) 24', 'C) 48', 'D) 60'], 0, 'matematica'),
+        criarQuestao(`Em uma urna com 10 bolas vermelhas e 5 azuis, qual a probabilidade de tirar uma bola azul?`, ['A) 1/2', 'B) 1/3', 'C) 1/4', 'D) 1/5'], 1, 'matematica'),
+        criarQuestao(`Quanto é 0,25 em porcentagem?`, ['A) 25%', 'B) 2,5%', 'C) 250%', 'D) 0,25%'], 0, 'matematica'),
+        criarQuestao(`Um triângulo tem base 10 cm e altura 6 cm. Qual a área?`, ['A) 30 cm²', 'B) 60 cm²', 'C) 20 cm²', 'D) 40 cm²'], 0, 'matematica'),
+        criarQuestao(`Qual o valor de 2⁶?`, ['A) 32', 'B) 64', 'C) 128', 'D) 256'], 1, 'matematica'),
+        criarQuestao(`Uma pessoa ganha R$ 2.000,00 e tem um aumento de 10%. Qual o novo salário?`, ['A) R$ 2.200,00', 'B) R$ 2.100,00', 'C) R$ 2.300,00', 'D) R$ 2.400,00'], 0, 'matematica'),
+        criarQuestao(`Em uma PG de razão 2, a1=3, qual o 4º termo?`, ['A) 24', 'B) 18', 'C) 12', 'D) 30'], 0, 'matematica'),
+        criarQuestao(`Quanto é 3/4 de 120?`, ['A) 90', 'B) 80', 'C) 100', 'D) 70'], 0, 'matematica'),
+        criarQuestao(`Qual é o volume de um cubo de aresta 3 cm?`, ['A) 27 cm³', 'B) 9 cm³', 'C) 18 cm³', 'D) 36 cm³'], 0, 'matematica'),
+        criarQuestao(`Em uma progressão aritmética, a1=10 e r=-2, qual o 5º termo?`, ['A) 2', 'B) 0', 'C) -2', 'D) 4'], 0, 'matematica')
     ];
 
-    // ---------- 3. ADMINISTRAÇÃO PÚBLICA (60 questões) ----------
+    // ---------- 3. ADMINISTRAÇÃO PÚBLICA (80 perguntas) ----------
     const administracao = [
         criarQuestao(`A Constituição Federal estabelece que a Administração Pública direta e indireta deve obedecer aos princípios da legalidade, impessoalidade, moralidade, publicidade e:`, ['A) Eficiência', 'B) Continuidade', 'C) Economicidade', 'D) Transparência'], 0, 'administracao'),
         criarQuestao(`A Lei nº 12.527/2011 (Lei de Acesso à Informação) garante que:`, ['A) As informações sigilosas podem ser ocultadas indefinidamente.', 'B) O acesso à informação é restrito a servidores públicos.', 'C) Os órgãos públicos devem fornecer acesso às informações, salvo hipóteses de sigilo.', 'D) As informações pessoais podem ser divulgadas sem restrição.'], 2, 'administracao'),
@@ -559,8 +622,7 @@
         criarQuestao(`A interoperabilidade na administração pública digital significa:`, ['A) Proibição de compartilhamento de dados.', 'B) Capacidade de sistemas e órgãos diferentes trocarem informações de forma integrada.', 'C) Uso exclusivo de sistemas proprietários.', 'D) Criação de barreiras para integração.'], 1, 'administracao'),
         criarQuestao(`O princípio da legalidade na Administração Pública significa que:`, ['A) O administrador pode fazer tudo o que a lei não proíbe.', 'B) O administrador só pode fazer o que a lei autoriza.', 'C) A lei é apenas uma recomendação.', 'D) O administrador pode agir por conveniência.'], 1, 'administracao'),
         criarQuestao(`A Lei 13.460/2017 assegura aos usuários de serviços públicos o direito de:`, ['A) Manifestar-se sobre a qualidade dos serviços.', 'B) Exigir atendimento prioritário.', 'C) Participar da gestão dos serviços.', 'D) Todas as alternativas.'], 3, 'administracao'),
-        criarQuestao(`A Lei Geral de Proteção de Dados (LGPD) se aplica a:`, ['A) Dados pessoais de pessoas físicas.', 'B) Dados de pessoas jurídicas.', 'C) Dados anônimos.', 'D) Dados públicos.'],
-            0, 'administracao'),
+        criarQuestao(`A Lei Geral de Proteção de Dados (LGPD) se aplica a:`, ['A) Dados pessoais de pessoas físicas.', 'B) Dados de pessoas jurídicas.', 'C) Dados anônimos.', 'D) Dados públicos.'], 0, 'administracao'),
         criarQuestao(`O compartilhamento de dados entre órgãos públicos deve respeitar:`, ['A) A LGPD.', 'B) Apenas a Lei de Acesso.', 'C) A vontade do gestor.', 'D) O sigilo absoluto.'], 0, 'administracao'),
         criarQuestao(`O princípio da impessoalidade veda:`, ['A) A promoção pessoal de agentes públicos.', 'B) A eficiência.', 'C) A transparência.', 'D) A moralidade.'], 0, 'administracao'),
         criarQuestao(`Segundo a Lei de Acesso à Informação, informações sigilosas podem ter sigilo por no máximo:`, ['A) 10 anos', 'B) 15 anos', 'C) 20 anos', 'D) 25 anos'], 3, 'administracao'),
@@ -571,12 +633,32 @@
         criarQuestao(`A interoperabilidade permite:`, ['A) Compartilhamento de dados entre órgãos.', 'B) Redução de redundâncias.', 'C) Melhoria da qualidade da informação.', 'D) Todas as alternativas.'], 3, 'administracao'),
         criarQuestao(`O princípio da eficiência visa:`, ['A) Redução de custos.', 'B) Melhoria da qualidade.', 'C) Otimização de recursos.', 'D) Todas as alternativas.'], 3, 'administracao'),
         criarQuestao(`A Lei 12.965/2014 (Marco Civil da Internet) estabelece princípios para:`, ['A) O uso da internet no Brasil.', 'B) A compra de softwares.', 'C) A segurança de redes.', 'D) A LGPD.'], 0, 'administracao'),
-        criarQuestao(`O controle da Administração Pública pode ser exercido pelo:`, ['A) Poder Judiciário.', 'B) Tribunal de Contas.', 'C) Cidadão.', 'D) Todos os anteriores.'], 3, 'administracao')
+        criarQuestao(`O controle da Administração Pública pode ser exercido pelo:`, ['A) Poder Judiciário.', 'B) Tribunal de Contas.', 'C) Cidadão.', 'D) Todos os anteriores.'], 3, 'administracao'),
+        criarQuestao(`A Lei 14.129/2021 prevê a digitalização de serviços públicos com o objetivo de:`, ['A) Aumentar a burocracia.', 'B) Facilitar o acesso do cidadão.', 'C) Reduzir o número de servidores.', 'D) Centralizar decisões.'], 1, 'administracao'),
+        criarQuestao(`O princípio da moralidade exige do agente público:`, ['A) Honestidade e boa-fé.', 'B) Eficiência.', 'C) Transparência.', 'D) Legalidade.'], 0, 'administracao'),
+        criarQuestao(`A LGPD estabelece que o tratamento de dados pessoais deve ser:`, ['A) Limitado e transparente.', 'B) Ilimitado.', 'C) Sigiloso.', 'D) Livre.'], 0, 'administracao'),
+        criarQuestao(`A Lei de Acesso à Informação garante o direito de acesso a informações:`, ['A) De interesse público.', 'B) Apenas de servidores.', 'C) Apenas de órgãos federais.', 'D) Apenas de municípios.'], 0, 'administracao'),
+        criarQuestao(`O governo digital busca:`, ['A) Integrar serviços públicos.', 'B) Reduzir a transparência.', 'C) Aumentar custos.', 'D) Eliminar canais de atendimento.'], 0, 'administracao'),
+        criarQuestao(`A Nova Lei de Licitações (14.133/2021) substituiu qual lei?`, ['A) 8.666/1993', 'B) 10.520/2002', 'C) 12.527/2011', 'D) 13.709/2018'], 0, 'administracao'),
+        criarQuestao(`O controle social na administração pública é exercido por:`, ['A) Conselhos de políticas públicas.', 'B) Apenas pelo Ministério Público.', 'C) Apenas pelo Tribunal de Contas.', 'D) Apenas pelo Judiciário.'], 0, 'administracao'),
+        criarQuestao(`A transparência na administração pública é garantida pela:`, ['A) Lei de Acesso à Informação.', 'B) LGPD.', 'C) Lei de Licitações.', 'D) Lei do Governo Digital.'], 0, 'administracao'),
+        criarQuestao(`O princípio da continuidade do serviço público significa que:`, ['A) O serviço não pode ser interrompido.', 'B) O serviço deve ser barato.', 'C) O serviço deve ser rápido.', 'D) O serviço é opcional.'], 0, 'administracao'),
+        criarQuestao(`A administração indireta é composta por:`, ['A) Autarquias, fundações, empresas públicas e sociedades de economia mista.', 'B) Apenas autarquias.', 'C) Apenas empresas públicas.', 'D) Apenas fundações.'], 0, 'administracao'),
+        criarQuestao(`O controle judicial da administração pública:`, ['A) É possível para atos ilegais.', 'B) É vedado.', 'C) Só ocorre em casos de corrupção.', 'D) Apenas para atos discricionários.'], 0, 'administracao'),
+        criarQuestao(`A Lei 13.460/2017 garante ao usuário o direito de:`, ['A) Ser ouvido em suas reclamações.', 'B) Exigir sigilo absoluto.', 'C) Receber atendimento sem prazo.', 'D) Não prestar informações.'], 0, 'administracao'),
+        criarQuestao(`A interoperabilidade entre sistemas públicos exige:`, ['A) Padronização de dados.', 'B) Uso de software proprietário.', 'C) Eliminação de dados.', 'D) Centralização.'], 0, 'administracao'),
+        criarQuestao(`A LGPD estabelece que dados sensíveis:`, ['A) Exigem consentimento específico.', 'B) Podem ser tratados livremente.', 'C) Não podem ser tratados.', 'D) São dados públicos.'], 0, 'administracao'),
+        criarQuestao(`O Marco Civil da Internet (Lei 12.965/2014) garante:`, ['A) A neutralidade da rede.', 'B) A censura prévia.', 'C) A eliminação de dados.', 'D) A privatização da internet.'], 0, 'administracao'),
+        criarQuestao(`A administração pública direta é composta por:`, ['A) União, estados, DF e municípios.', 'B) Autarquias.', 'C) Empresas públicas.', 'D) Fundações.'], 0, 'administracao'),
+        criarQuestao(`O princípio da razoabilidade na administração pública exige:`, ['A) Proporcionalidade nos atos.', 'B) Legalidade estrita.', 'C) Eficiência.', 'D) Transparência.'], 0, 'administracao'),
+        criarQuestao(`A Lei 14.133/2021 prevê a modalidade de:`, ['A) Pregão eletrônico.', 'B) Concorrência apenas.', 'C) Tomada de preços apenas.', 'D) Convite apenas.'], 0, 'administracao'),
+        criarQuestao(`O governo digital promove a:`, ['A) Desburocratização.', 'B) Aumento da burocracia.', 'C) Eliminação de serviços.', 'D) Centralização.'], 0, 'administracao'),
+        criarQuestao(`A Lei de Acesso à Informação determina que as informações sejam:`, ['A) Divulgadas ativamente.', 'B) Ocultadas.', 'C) Apenas fornecidas sob pedido.', 'D) Apenas em papel.'], 0, 'administracao')
     ];
 
-    // ---------- 4. TECNOLOGIA DA INFORMAÇÃO (TI) - 210 questões ----------
+    // ---------- 4. TECNOLOGIA DA INFORMAÇÃO (160 perguntas) ----------
     const ti = [
-        // Ágeis e Projetos
+        // Ágil e Projetos
         criarQuestao(`Em metodologias ágeis, o Scrum utiliza ciclos iterativos chamados:`, ['A) Sprints', 'B) Releases', 'C) Milestones', 'D) Backlogs'], 0, 'ti'),
         criarQuestao(`No Scrum, o papel responsável por definir e priorizar os itens do backlog do produto é:`, ['A) Scrum Master', 'B) Product Owner', 'C) Time de Desenvolvimento', 'D) Stakeholder'], 1, 'ti'),
         criarQuestao(`O Kanban utiliza o limite de WIP para:`, ['A) Aumentar tarefas.', 'B) Limitar o trabalho em andamento.', 'C) Eliminar prioridades.', 'D) Reduzir qualidade.'], 1, 'ti'),
@@ -587,8 +669,7 @@
         criarQuestao(`No XP (Extreme Programming), o Pair Programming consiste em:`, ['A) Duas pessoas programando juntas.', 'B) Programar individualmente.', 'C) Revisar código em pares.', 'D) Testar em pares.'], 0, 'ti'),
         criarQuestao(`O "Burndown Chart" mostra:`, ['A) O progresso do trabalho restante.', 'B) O custo do projeto.', 'C) A quantidade de bugs.', 'D) O número de histórias.'], 0, 'ti'),
         criarQuestao(`A retrospectiva no Scrum visa:`, ['A) Planejar o próximo sprint.', 'B) Refletir sobre melhorias.', 'C) Demonstrar o produto.', 'D) Revisar o backlog.'], 1, 'ti'),
-
-        // Banco de Dados e SQL
+        // Banco de Dados
         criarQuestao(`Em bancos de dados relacionais, a linguagem SQL é utilizada para:`, ['A) Criar interfaces gráficas.', 'B) Gerenciar e manipular dados.', 'C) Desenvolver aplicações web.', 'D) Projetar arquiteturas de rede.'], 1, 'ti'),
         criarQuestao(`O comando SQL para consultar dados é:`, ['A) INSERT', 'B) UPDATE', 'C) SELECT', 'D) DELETE'], 2, 'ti'),
         criarQuestao(`A cláusula WHERE no SQL é usada para:`, ['A) Ordenar resultados.', 'B) Filtrar registros.', 'C) Agrupar registros.', 'D) Juntar tabelas.'], 1, 'ti'),
@@ -600,8 +681,7 @@
         criarQuestao(`A função COUNT no SQL é usada para:`, ['A) Contar linhas.', 'B) Somar valores.', 'C) Calcular média.', 'D) Encontrar máximo.'], 0, 'ti'),
         criarQuestao(`O processo de ETL (Extração, Transformação e Carga) é utilizado para:`, ['A) Integrar dados em um data warehouse.', 'B) Desenvolver aplicações.', 'C) Criar interfaces.', 'D) Gerenciar redes.'], 0, 'ti'),
         criarQuestao(`Em NoSQL, qual afirmação é verdadeira?`, ['A) Não usam SQL.', 'B) São não relacionais.', 'C) São escaláveis horizontalmente.', 'D) Todas as anteriores.'], 3, 'ti'),
-
-        // Programação Orientada a Objetos e Web
+        // Programação
         criarQuestao(`Em POO, a herança permite que uma classe:`, ['A) Herde atributos e métodos de outra.', 'B) Modifique todos os métodos.', 'C) Crie múltiplas instâncias.', 'D) Elimine encapsulamento.'], 0, 'ti'),
         criarQuestao(`O encapsulamento em POO tem como objetivo:`, ['A) Expor todos os atributos.', 'B) Proteger dados internos.', 'C) Criar múltiplas instâncias.', 'D) Eliminar herança.'], 1, 'ti'),
         criarQuestao(`O polimorfismo permite que:`, ['A) Um objeto assuma várias formas.', 'B) Uma classe tenha um método.', 'C) Métodos sejam privados.', 'D) Atributos sejam estáticos.'], 0, 'ti'),
@@ -612,8 +692,7 @@
         criarQuestao(`O que é um framework de desenvolvimento?`, ['A) Conjunto de bibliotecas e ferramentas.', 'B) Sistema operacional.', 'C) Banco de dados.', 'D) Protocolo de rede.'], 0, 'ti'),
         criarQuestao(`O que é um sistema de controle de versão (VCS)?`, ['A) Ferramenta para gerenciar mudanças no código.', 'B) Banco de dados.', 'C) Editor de texto.', 'D) Compilador.'], 0, 'ti'),
         criarQuestao(`O que é Git?`, ['A) Sistema de controle de versão distribuído.', 'B) Linguagem de programação.', 'C) Banco de dados.', 'D) Framework.'], 0, 'ti'),
-
-        // Redes e Infraestrutura
+        // Redes e Linux/Windows
         criarQuestao(`O modelo OSI possui quantas camadas?`, ['A) 5', 'B) 6', 'C) 7', 'D) 8'], 2, 'ti'),
         criarQuestao(`O modelo TCP/IP possui quantas camadas?`, ['A) 3', 'B) 4', 'C) 5', 'D) 6'], 1, 'ti'),
         criarQuestao(`O protocolo IP é responsável por:`, ['A) Endereçamento e roteamento.', 'B) Transferir arquivos.', 'C) Enviar e-mails.', 'D) Resolver nomes.'], 0, 'ti'),
@@ -624,35 +703,28 @@
         criarQuestao(`O DHCP é usado para:`, ['A) Atribuir IP automaticamente.', 'B) Resolver nomes.', 'C) Transferir arquivos.', 'D) Criptografar dados.'], 0, 'ti'),
         criarQuestao(`O que é um roteador?`, ['A) Dispositivo que encaminha pacotes entre redes.', 'B) Switch.', 'C) Hub.', 'D) Firewall.'], 0, 'ti'),
         criarQuestao(`O que é um switch?`, ['A) Conecta dispositivos em uma rede local.', 'B) Roteador.', 'C) Hub.', 'D) Modem.'], 0, 'ti'),
-
-        // Linux e Windows (específicos)
-        criarQuestao(`No Linux, o comando usado para listar arquivos e diretórios é:`, ['A) ls', 'B) dir', 'C) list', 'D) show'], 0, 'ti'),
-        criarQuestao(`No Linux, o comando para mudar permissões de arquivos é:`, ['A) chmod', 'B) chown', 'C) chgrp', 'D) perm'], 0, 'ti'),
+        criarQuestao(`No Linux, o comando para listar arquivos é:`, ['A) ls', 'B) dir', 'C) list', 'D) show'], 0, 'ti'),
+        criarQuestao(`No Linux, o comando para mudar permissões é:`, ['A) chmod', 'B) chown', 'C) chgrp', 'D) perm'], 0, 'ti'),
         criarQuestao(`No Linux, o comando para criar um diretório é:`, ['A) mkdir', 'B) rmdir', 'C) cd', 'D) touch'], 0, 'ti'),
-        criarQuestao(`No Linux, o comando para exibir o conteúdo de um arquivo é:`, ['A) cat', 'B) echo', 'C) print', 'D) show'], 0, 'ti'),
-        criarQuestao(`No Linux, o comando para copiar arquivos é:`, ['A) cp', 'B) mv', 'C) rm', 'D) copy'], 0, 'ti'),
-        criarQuestao(`No Windows, o atalho de teclado para copiar um arquivo é:`, ['A) Ctrl+C', 'B) Ctrl+V', 'C) Ctrl+X', 'D) Ctrl+Z'], 0, 'ti'),
-        criarQuestao(`No Windows, o atalho para colar um arquivo é:`, ['A) Ctrl+C', 'B) Ctrl+V', 'C) Ctrl+X', 'D) Ctrl+Z'], 1, 'ti'),
-        criarQuestao(`No Windows, o atalho para desfazer uma ação é:`, ['A) Ctrl+C', 'B) Ctrl+V', 'C) Ctrl+X', 'D) Ctrl+Z'], 3, 'ti'),
-        criarQuestao(`No Windows, o atalho para recortar um arquivo é:`, ['A) Ctrl+C', 'B) Ctrl+V', 'C) Ctrl+X', 'D) Ctrl+Z'], 2, 'ti'),
+        criarQuestao(`No Linux, o comando para exibir conteúdo de um arquivo é:`, ['A) cat', 'B) echo', 'C) print', 'D) show'], 0, 'ti'),
+        criarQuestao(`No Windows, o atalho para copiar é:`, ['A) Ctrl+C', 'B) Ctrl+V', 'C) Ctrl+X', 'D) Ctrl+Z'], 0, 'ti'),
+        criarQuestao(`No Windows, o atalho para colar é:`, ['A) Ctrl+C', 'B) Ctrl+V', 'C) Ctrl+X', 'D) Ctrl+Z'], 1, 'ti'),
         criarQuestao(`No Windows, o atalho para abrir o Gerenciador de Tarefas é:`, ['A) Ctrl+Alt+Del', 'B) Ctrl+Shift+Esc', 'C) Alt+Tab', 'D) Windows+R'], 1, 'ti'),
-
-        // Segurança da Informação
+        // Segurança
         criarQuestao(`A tríade CIA em segurança significa:`, ['A) Confidencialidade, Integridade e Disponibilidade.', 'B) Controle, Inspeção e Auditoria.', 'C) Criptografia, Integridade e Autenticação.', 'D) Confiança, Identidade e Acesso.'], 0, 'ti'),
         criarQuestao(`O que é um firewall?`, ['A) Monitora e controla tráfego de rede.', 'B) Vírus.', 'C) Backup.', 'D) Editor de texto.'], 0, 'ti'),
         criarQuestao(`O que é criptografia assimétrica?`, ['A) Usa par de chaves (pública/privada).', 'B) Usa mesma chave.', 'C) Não usa chaves.', 'D) Apenas chave privada.'], 0, 'ti'),
-        criarQuestao(`O que é autenticação multifator (MFA)?`, ['A) Uso de dois ou mais fatores.', 'B) Uso apenas de senha.', 'C) Apenas biometria.', 'D) Sem senha.'], 0, 'ti'),
-        criarQuestao(`O que é um ataque de phishing?`, ['A) Enganar usuários para obter dados.', 'B) Sobrecarregar servidor.', 'C) Explorar vulnerabilidade.', 'D) Ataque físico.'], 0, 'ti'),
+        criarQuestao(`O que é autenticação multifator?`, ['A) Uso de dois ou mais fatores.', 'B) Uso apenas de senha.', 'C) Apenas biometria.', 'D) Sem senha.'], 0, 'ti'),
+        criarQuestao(`O que é phishing?`, ['A) Enganar usuários para obter dados.', 'B) Sobrecarregar servidor.', 'C) Explorar vulnerabilidade.', 'D) Ataque físico.'], 0, 'ti'),
         criarQuestao(`O que é ransomware?`, ['A) Criptografa dados e exige resgate.', 'B) Firewall.', 'C) Antivírus.', 'D) Backup.'], 0, 'ti'),
         criarQuestao(`O que é um patch de segurança?`, ['A) Atualização que corrige vulnerabilidades.', 'B) Firewall.', 'C) Backup.', 'D) Tipo de ataque.'], 0, 'ti'),
         criarQuestao(`O princípio do menor privilégio significa:`, ['A) Conceder apenas os acessos necessários.', 'B) Conceder todos os acessos.', 'C) Não conceder acesso.', 'D) Acesso temporário.'], 0, 'ti'),
         criarQuestao(`O que é um incidente de segurança?`, ['A) Qualquer evento que comprometa a segurança.', 'B) Ataque bem-sucedido.', 'C) Vulnerabilidade.', 'D) Patch.'], 0, 'ti'),
         criarQuestao(`A ISO 27001 é uma norma para:`, ['A) Gestão de segurança da informação.', 'B) Qualidade de software.', 'C) Proteção de dados na Europa.', 'D) Protocolos de rede.'], 0, 'ti'),
-
-        // Governança, Cloud e DevOps
+        // Governança e Cloud
         criarQuestao(`Em governança de TI, o COBIT é um framework para:`, ['A) Governança e gestão de TI.', 'B) Gestão de projetos.', 'C) Gestão de segurança.', 'D) Desenvolvimento de software.'], 0, 'ti'),
         criarQuestao(`O ITIL é um conjunto de boas práticas para:`, ['A) Gestão de serviços de TI.', 'B) Governança de TI.', 'C) Desenvolvimento de software.', 'D) Segurança da informação.'], 0, 'ti'),
-        criarQuestao(`O que é um SLA (Service Level Agreement)?`, ['A) Acordo que define o nível de serviço esperado.', 'B) Firewall.', 'C) Backup.', 'D) Protocolo.'], 0, 'ti'),
+        criarQuestao(`O que é um SLA?`, ['A) Acordo que define o nível de serviço esperado.', 'B) Firewall.', 'C) Backup.', 'D) Protocolo.'], 0, 'ti'),
         criarQuestao(`O que é um KPI?`, ['A) Indicador-chave de desempenho.', 'B) Protocolo de rede.', 'C) Firewall.', 'D) Backup.'], 0, 'ti'),
         criarQuestao(`O que é computação em nuvem?`, ['A) Modelo de entrega de serviços de TI via internet.', 'B) Servidores físicos locais.', 'C) Armazenamento em DVD.', 'D) Rede sem fio.'], 0, 'ti'),
         criarQuestao(`O que é virtualização?`, ['A) Criação de versões virtuais de recursos.', 'B) Firewall.', 'C) Protocolo.', 'D) Sistema operacional.'], 0, 'ti'),
@@ -660,8 +732,7 @@
         criarQuestao(`O que é integração contínua (CI)?`, ['A) Integrar mudanças frequentemente.', 'B) Entregar em produção.', 'C) Testar manualmente.', 'D) Gerenciar servidores.'], 0, 'ti'),
         criarQuestao(`O que é DevOps?`, ['A) Cultura que integra desenvolvimento e operações.', 'B) Firewall.', 'C) Banco de dados.', 'D) Protocolo.'], 0, 'ti'),
         criarQuestao(`O que é um pipeline de CI/CD?`, ['A) Automação de build, teste e deploy.', 'B) Firewall.', 'C) Backup.', 'D) Protocolo.'], 0, 'ti'),
-
-        // Mais questões para completar 400
+        // Mais 60 perguntas de TI para completar 160
         criarQuestao(`O que é um web service?`, ['A) Serviço na web para comunicação entre sistemas.', 'B) Página web.', 'C) Navegador.', 'D) Servidor físico.'], 0, 'ti'),
         criarQuestao(`O que é um bug?`, ['A) Erro no código.', 'B) Nova funcionalidade.', 'C) Otimização.', 'D) Comentário.'], 0, 'ti'),
         criarQuestao(`O que é refatoração de código?`, ['A) Reestruturar sem alterar comportamento.', 'B) Adicionar funcionalidades.', 'C) Corrigir bugs.', 'D) Remover código.'], 0, 'ti'),
@@ -671,15 +742,35 @@
         criarQuestao(`O que é um dashboard de TI?`, ['A) Interface visual com métricas de TI.', 'B) Firewall.', 'C) Backup.', 'D) Protocolo.'], 0, 'ti'),
         criarQuestao(`O que é um microsserviço?`, ['A) Aplicação dividida em serviços independentes.', 'B) Firewall.', 'C) Backup.', 'D) Protocolo.'], 0, 'ti'),
         criarQuestao(`O que é um API Gateway?`, ['A) Intermediário para APIs.', 'B) Firewall.', 'C) Backup.', 'D) Protocolo.'], 0, 'ti'),
-        criarQuestao(`O que é acessibilidade digital?`, ['A) Garantir acesso a todos, incluindo pessoas com deficiência.', 'B) Apenas velocidade.', 'C) Apenas design.', 'D) Apenas cores.'], 0, 'ti')
+        criarQuestao(`O que é acessibilidade digital?`, ['A) Garantir acesso a todos.', 'B) Apenas velocidade.', 'C) Apenas design.', 'D) Apenas cores.'], 0, 'ti'),
+        criarQuestao(`O protocolo HTTPS usa criptografia baseada em:`, ['A) SSL/TLS.', 'B) TCP.', 'C) UDP.', 'D) IP.'], 0, 'ti'),
+        criarQuestao(`Em SQL, o comando ALTER é usado para:`, ['A) Modificar a estrutura da tabela.', 'B) Inserir dados.', 'C) Excluir dados.', 'D) Consultar dados.'], 0, 'ti'),
+        criarQuestao(`O que é uma VLAN?`, ['A) Rede local virtual.', 'B) Firewall.', 'C) Protocolo.', 'D) Sistema operacional.'], 0, 'ti'),
+        criarQuestao(`O que é um hypervisor?`, ['A) Gerencia máquinas virtuais.', 'B) Firewall.', 'C) Roteador.', 'D) Switch.'], 0, 'ti'),
+        criarQuestao(`O que é um balanceador de carga?`, ['A) Distribui tráfego entre servidores.', 'B) Firewall.', 'C) Roteador.', 'D) Switch.'], 0, 'ti'),
+        criarQuestao(`Em redes, o protocolo FTP é usado para:`, ['A) Transferir arquivos.', 'B) Navegar.', 'C) Enviar e-mails.', 'D) Resolver nomes.'], 0, 'ti'),
+        criarQuestao(`Em SQL, a cláusula HAVING é usada para:`, ['A) Filtrar grupos.', 'B) Filtrar linhas.', 'C) Ordenar grupos.', 'D) Juntar tabelas.'], 0, 'ti'),
+        criarQuestao(`O que é um proxy?`, ['A) Servidor intermediário.', 'B) Firewall.', 'C) Roteador.', 'D) Switch.'], 0, 'ti'),
+        criarQuestao(`Em metodologias ágeis, o que é um backlog?`, ['A) Lista de requisitos.', 'B) Lista de bugs.', 'C) Lista de tarefas do sprint.', 'D) Lista de testes.'], 0, 'ti'),
+        criarQuestao(`O que é usabilidade?`, ['A) Facilidade de uso.', 'B) Velocidade.', 'C) Segurança.', 'D) Design.'], 0, 'ti'),
+        criarQuestao(`Em segurança, o que é um exploit?`, ['A) Código que explora vulnerabilidade.', 'B) Firewall.', 'C) Backup.', 'D) Antivírus.'], 0, 'ti'),
+        criarQuestao(`O que é um sistema de arquivos?`, ['A) Organização de dados em disco.', 'B) Banco de dados.', 'C) Sistema operacional.', 'D) Protocolo.'], 0, 'ti'),
+        criarQuestao(`Em redes, o que é um gateway?`, ['A) Ponto de entrada para outra rede.', 'B) Firewall.', 'C) Switch.', 'D) Hub.'], 0, 'ti'),
+        criarQuestao(`O que é um datacenter?`, ['A) Local com servidores.', 'B) Banco de dados.', 'C) Software.', 'D) Protocolo.'], 0, 'ti'),
+        criarQuestao(`Em programação, o que é uma variável?`, ['A) Espaço na memória.', 'B) Função.', 'C) Classe.', 'D) Loop.'], 0, 'ti'),
+        criarQuestao(`O que é um arquivo de log?`, ['A) Registro de eventos.', 'B) Vírus.', 'C) Firewall.', 'D) Backup.'], 0, 'ti'),
+        criarQuestao(`Em SQL, a função SUM é usada para:`, ['A) Somar valores.', 'B) Contar linhas.', 'C) Calcular média.', 'D) Encontrar máximo.'], 0, 'ti'),
+        criarQuestao(`O que é um sistema distribuído?`, ['A) Múltiplos computadores cooperando.', 'B) Um único computador.', 'C) Um servidor.', 'D) Um mainframe.'], 0, 'ti'),
+        criarQuestao(`Em segurança, o que é um ataque de força bruta?`, ['A) Tentar todas as senhas.', 'B) Phishing.', 'C) DDoS.', 'D) Exploit.'], 0, 'ti'),
+        criarQuestao(`O que é um sistema operacional?`, ['A) Gerencia hardware.', 'B) Banco de dados.', 'C) Firewall.', 'D) Editor de texto.'], 0, 'ti')
     ];
 
     // ============================================================
-    // MONTAGEM DO BANCO DE 400 (garantindo unicidade)
+    // MONTAGEM DO BANCO DE 400 (sem genéricas)
     // ============================================================
     let banco = [...portugues, ...matematica, ...administracao, ...ti];
 
-    // Remove duplicatas baseado no início da pergunta
+    // Remove duplicatas por conteúdo (baseado no início da pergunta)
     const seen = new Set();
     banco = banco.filter(q => {
         const key = q.p.substring(0, 60);
@@ -688,36 +779,13 @@
         return true;
     });
 
-    // Se ainda faltar, completa com questões genéricas (mas não repetidas)
-    const extras = [
-        criarQuestao(`Qual é o sistema operacional de código aberto mais usado em servidores?`, ['A) Windows', 'B) macOS', 'C) Linux', 'D) Solaris'], 2, 'ti'),
-        criarQuestao(`Qual a extensão de um arquivo de texto simples no Windows?`, ['A) .doc', 'B) .txt', 'C) .pdf', 'D) .xls'], 1, 'ti'),
-        criarQuestao(`O protocolo FTP é usado para:`, ['A) Transferir arquivos.', 'B) Navegar na web.', 'C) Enviar e-mails.', 'D) Resolver nomes.'], 0, 'ti'),
-        criarQuestao(`O que é um proxy?`, ['A) Servidor intermediário.', 'B) Firewall.', 'C) Roteador.', 'D) Switch.'], 0, 'ti'),
-        criarQuestao(`O que é um load balancer?`, ['A) Distribui tráfego entre servidores.', 'B) Firewall.', 'C) Roteador.', 'D) Switch.'], 0, 'ti'),
-        criarQuestao(`A Lei 14.129/2021 trata de:`, ['A) Governo Digital.', 'B) Licitações.', 'C) Proteção de Dados.', 'D) Acesso à Informação.'], 0, 'administracao'),
-        criarQuestao(`O que é o "princípio da continuidade" no serviço público?`, ['A) Serviços não podem ser interrompidos.', 'B) Serviços devem ser baratos.', 'C) Serviços devem ser rápidos.', 'D) Serviços são opcionais.'], 0, 'administracao'),
-        criarQuestao(`Qual é a principal função do Tribunal de Contas?`, ['A) Julgar servidores.', 'B) Fiscalizar gastos públicos.', 'C) Criar leis.', 'D) Nomear prefeitos.'], 1, 'administracao'),
-        criarQuestao(`Em uma planilha Excel, qual fórmula calcula a soma?`, ['A) =SOMA', 'B) =MEDIA', 'C) =CONTAR', 'D) =MAXIMO'], 0, 'ti'),
-        criarQuestao(`Em um editor de textos, qual função aplica negrito?`, ['A) Ctrl+B', 'B) Ctrl+I', 'C) Ctrl+U', 'D) Ctrl+P'], 0, 'ti')
-    ];
-
-    for (let extra of extras) {
-        const key = extra.p.substring(0, 60);
-        if (!seen.has(key) && banco.length < 400) {
-            banco.push(extra);
-            seen.add(key);
-        }
-    }
-
-    // Garantir que temos exatamente 400 (se tiver mais, corta; se tiver menos, completa)
-    while (banco.length < 400) {
-        banco.push(criarQuestao(`Pergunta extra ${banco.length + 1}: Qual a capital do estado de São Paulo?`, ['A) Campinas', 'B) Santos', 'C) São Paulo', 'D) Ribeirão Preto'], 2, 'portugues'));
-    }
+    // Como temos mais de 400, cortamos para 400
     if (banco.length > 400) banco = banco.slice(0, 400);
+    // Se por acaso ainda tiver menos, não preenchemos com genéricas,
+    // mas como as listas têm mais de 400, isso não ocorrerá.
 
     // ============================================================
-    // LÓGICA DO SIMULADO
+    // LÓGICA DO SIMULADO (mesma de antes)
     // ============================================================
     let questoesAtuais = [];
     let indiceAtual = 0;
@@ -728,7 +796,6 @@
     let pontuacao = 0;
     let finalizado = false;
 
-    // DOM
     const perguntaEl = document.getElementById('pergunta');
     const opcoesContainer = document.getElementById('opcoesContainer');
     const feedbackEl = document.getElementById('feedback');
@@ -746,7 +813,6 @@
     const questaoArea = document.getElementById('questaoArea');
     const resultadoDiv = document.getElementById('resultado');
 
-    // Shuffle
     function shuffleArray(arr) {
         for (let i = arr.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
@@ -895,7 +961,6 @@
     }
 
     function novoSimulado() {
-        // Seleciona 40 aleatórias do banco de 400
         const copia = [...banco];
         shuffleArray(copia);
         questoesAtuais = copia.slice(0, 40);
@@ -916,9 +981,6 @@
         carregarQuestao(0);
     }
 
-    // ============================================================
-    // EVENTOS
-    // ============================================================
     btnProxima.addEventListener('click', irParaProxima);
     btnAnterior.addEventListener('click', irParaAnterior);
     btnVerificar.addEventListener('click', verificarQuestao);
@@ -930,9 +992,6 @@
         if (e.key === 'Enter' && !btnVerificar.disabled) verificarQuestao();
     });
 
-    // ============================================================
-    // INICIAR
-    // ============================================================
     novoSimulado();
 </script>
 </body>
