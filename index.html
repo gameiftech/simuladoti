@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Simulado 400 – Analista de TI</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%231a5a8a'/%3E%3Ctext x='50' y='68' font-size='50' font-family='Arial' font-weight='bold' fill='white' text-anchor='middle'%3ES%3C/text%3E%3C/svg%3E" type="image/svg+xml">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#1a5a8a">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="container" id="app">
+    <!-- Header -->
+    <div class="header">
+        <h1>📘 <span>Simulado TI</span></h1>
+        <div class="header-actions">
+            <button id="btnHistoryToggle" class="btn-icon" title="Histórico de Simulados">📊</button>
+            <button id="btnThemeToggle" class="btn-icon" title="Alternar Tema Escuro/Claro">🌙</button>
+        </div>
+    </div>
+
+    <!-- Selector de Modo -->
+    <div class="mode-selector">
+        <button id="modeBtnOficial" class="mode-btn active">🎯 Simulado Oficial (Edital)</button>
+        <button id="modeBtnMateria" class="mode-btn">📚 Treino por Matéria</button>
+    </div>
+
+    <!-- Dropdown por Matéria (Oculto no modo Oficial) -->
+    <div id="materiaSelectContainer" style="display: none;">
+        <select id="materiaSelect" class="materia-select">
+            <option value="todas">Todas as Matérias (Aleatório)</option>
+            <option value="portugues">Língua Portuguesa</option>
+            <option value="matematica">Matemática e Raciocínio Lógico</option>
+            <option value="administracao">Administração / Legislação / Gov Digital</option>
+            <option value="ti">Conhecimentos Específicos (TI)</option>
+        </select>
+    </div>
+
+    <!-- Barra de Progresso -->
+    <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+    </div>
+
+    <!-- Estatísticas em Tempo Real -->
+    <div class="info-row">
+        <span><strong id="numAtual">1</strong>/<span id="totalQuestoes">40</span></span>
+        <span>
+            <span class="acertos">✅ <span id="acertos">0</span></span> |
+            <span class="erros">❌ <span id="erros">0</span></span> |
+            <span class="pontos">⭐ <span id="pontuacao">0</span> pts</span> |
+            <span class="timer">⏱️ <span id="timerDisplay">00:00</span></span>
+        </span>
+    </div>
+
+    <!-- Área de Questões -->
+    <div id="questaoArea">
+        <div id="categoriaBadge" class="categoria-badge">Área</div>
+        <div class="pergunta" id="pergunta">Carregando...</div>
+        <div class="opcoes" id="opcoesContainer"></div>
+        <div class="feedback" id="feedback"></div>
+
+        <div class="botoes">
+            <button id="btnAnterior" disabled>◀ Anterior</button>
+            <button id="btnVerificar" class="primario" disabled>Verificar</button>
+            <button id="btnProxima">Próxima ▶</button>
+            <button id="btnFinalizar" class="perigo">Finalizar</button>
+        </div>
+    </div>
+
+    <!-- Tela de Resultado -->
+    <div id="resultado">
+        <h2>🏁 Simulado Concluído!</h2>
+        <div class="nota" id="notaFinal">0%</div>
+        <div class="detalhes">
+            Você acertou <strong id="totalAcertosFinal">0</strong> de <strong id="totalQuestoesFinal">40</strong> questões.
+            <br>
+            Pontuação: <strong id="pontuacaoFinal">0</strong> de <strong id="pontuacaoMaxima">76</strong> pontos.
+        </div>
+        <div class="resumo-box">
+            <span class="verde">✅ Acertos: <span id="resumoAcertos">0</span></span>
+            &nbsp;|&nbsp;
+            <span class="vermelho">❌ Erros: <span id="resumoErros">0</span></span>
+            &nbsp;|&nbsp;
+            <span class="azul">⭐ Pontos: <span id="resumoPontos">0</span></span>
+        </div>
+        <button class="btn-reiniciar" id="btnNovoSimulado">🔄 Novo Simulado</button>
+    </div>
+</div>
+
+<!-- Modal do Histórico de Desempenho -->
+<div id="modalHistorico" class="modal-overlay">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>📊 Histórico de Simulados</h3>
+            <button id="btnFecharHistorico" class="btn-icon">✖</button>
+        </div>
+        <div class="modal-body" id="historicoLista">
+            <!-- Preenchido via localStorage -->
+        </div>
+        <div class="modal-footer">
+            <button id="btnLimparHistorico" class="btn-icon perigo" style="width: auto; border-radius: 20px; padding: 8px 16px;">Limpar Histórico</button>
+        </div>
+    </div>
+</div>
+
+<div class="footer">
+    Desenvolvido por <a href="https://www.linkedin.com/in/deividfcastro/" target="_blank">Deivid Castro</a>
+</div>
+
+<!-- Scripts Modularizados -->
+<script src="js/data/questions.js"></script>
+<script src="js/storage.js"></script>
+<script src="js/app.js"></script>
+
+<!-- Service Worker Registration -->
+<script>
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('./sw.js').catch(err => {
+                console.log('Service Worker registration failed:', err);
+            });
+        });
+    }
+</script>
+
+</body>
+</html>
