@@ -295,10 +295,9 @@
 
 <script>
     // ============================================================
-    // BANCO DE 400 QUESTÕES COM PESOS POR ÁREA
+    // BANCO DE 400 QUESTÕES ÚNICAS (sem duplicatas)
     // ============================================================
     function gerarBancoCompleto() {
-        // Função auxiliar: p=pergunta, o=opções, c=correta (índice), area='portugues'|'matematica'|'administracao'|'ti'
         const q = (p, o, c, area) => {
             const pesos = { portugues: 1, matematica: 2, administracao: 2, ti: 3 };
             return { p, o, c, area, peso: pesos[area] || 1 };
@@ -597,12 +596,36 @@
             q('O que é um cliente-servidor?', ['A) Um modelo onde clientes requisitam serviços de um servidor.', 'B) Um modelo peer-to-peer.', 'C) Um modelo sem servidores.', 'D) Um modelo com apenas servidores.'], 0, 'ti')
         ];
 
-        // Junta tudo e garante pelo menos 400 (completando com extras se necessário)
+        // Junta todas as áreas
         let full = [...portugues, ...matematica, ...adm, ...ti];
-        // Garantir que temos exatamente 400 (se faltar, adicionar questões extras)
+
+        // Remove duplicatas (pela pergunta) – garante unicidade
+        const seen = new Set();
+        full = full.filter(q => {
+            const key = q.p.substring(0, 50); // usa parte da pergunta como chave
+            if (seen.has(key)) return false;
+            seen.add(key);
+            return true;
+        });
+
+        // Se ainda tiver menos de 400, completar com questões variadas (sem repetir)
         while (full.length < 400) {
-            full.push(q('Questão extra: Qual é a capital do Brasil?', ['A) São Paulo', 'B) Rio de Janeiro', 'C) Brasília', 'D) Belo Horizonte'], 2, 'administracao'));
+            const extras = [
+                q('Qual é o maior planeta do sistema solar?', ['A) Terra', 'B) Marte', 'C) Júpiter', 'D) Saturno'], 2, 'ti'),
+                q('Qual é o resultado de 2 + 2?', ['A) 3', 'B) 4', 'C) 5', 'D) 6'], 1, 'matematica'),
+                q('Qual é a cor do céu em um dia ensolarado?', ['A) Verde', 'B) Azul', 'C) Vermelho', 'D) Amarelo'], 1, 'portugues'),
+                q('Qual é a moeda oficial do Brasil?', ['A) Dólar', 'B) Euro', 'C) Real', 'D) Peso'], 2, 'administracao')
+            ];
+            for (let extra of extras) {
+                const key = extra.p.substring(0, 50);
+                if (!seen.has(key)) {
+                    full.push(extra);
+                    seen.add(key);
+                }
+                if (full.length >= 400) break;
+            }
         }
+
         return full;
     }
 
@@ -616,8 +639,7 @@
     let verificadas = [];
     let acertos = 0;
     let erros = 0;
-    let pontuacao = 0;      // soma dos pesos das questões acertadas
-    let totalPesos = 0;     // soma dos pesos de todas as questões (para cálculo do percentual)
+    let pontuacao = 0;
     let finalizado = false;
 
     // DOM
@@ -721,7 +743,7 @@
         verificadas[index] = true;
         if (acertou) {
             acertos++;
-            pontuacao += q.peso;   // soma o peso da questão acertada
+            pontuacao += q.peso;
         } else {
             erros++;
         }
@@ -773,7 +795,6 @@
         questaoArea.style.display = 'none';
         resultadoDiv.style.display = 'block';
 
-        // Calcula o total de pesos possíveis (soma dos pesos de todas as questões)
         let totalPesosPossiveis = 0;
         questoesAtuais.forEach(q => totalPesosPossiveis += q.peso);
 
@@ -792,12 +813,11 @@
     function novoSimulado() {
         const banco = bancoGlobal.length ? bancoGlobal : gerarBancoCompleto();
         bancoGlobal = banco;
-        const selecionadas = [];
+        // Seleciona 40 questões aleatórias sem repetição
         const copia = [...banco];
-        for (let i = 0; i < 40; i++) {
-            const idx = Math.floor(Math.random() * copia.length);
-            selecionadas.push(copia.splice(idx, 1)[0]);
-        }
+        shuffleArray(copia);
+        const selecionadas = copia.slice(0, 40); // pega as 40 primeiras após embaralhar
+
         questoesAtuais = selecionadas;
         indiceAtual = 0;
         respostas = new Array(questoesAtuais.length).fill(null);
