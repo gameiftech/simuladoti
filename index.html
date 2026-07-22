@@ -31,7 +31,6 @@
             border-radius: 32px;
             padding: 20px 18px 30px;
             box-shadow: 0 8px 40px rgba(0,0,0,0.08);
-            transition: all 0.2s;
         }
         /* Cabeçalho estilo app */
         .header {
@@ -55,6 +54,7 @@
             font-weight: 600;
             border-radius: 30px;
             padding: 4px 14px;
+            white-space: nowrap;
         }
         .badge-rand {
             background: #e67e22;
@@ -65,7 +65,7 @@
             padding: 5px 14px;
             white-space: nowrap;
         }
-        /* Barra de progresso (estilo app) */
+        /* Barra de progresso */
         .progress-bar {
             background: #e9eef4;
             border-radius: 20px;
@@ -106,7 +106,7 @@
             min-height: 70px;
         }
 
-        /* Opções (botões grandes para dedo) */
+        /* Opções */
         .opcoes {
             display: flex;
             flex-direction: column;
@@ -199,7 +199,7 @@
             border-left: 6px solid #b13a3a;
         }
 
-        /* Botões grandes (dedo) */
+        /* Botões */
         .botoes {
             display: flex;
             gap: 10px;
@@ -244,7 +244,7 @@
             transform: none !important;
         }
 
-        /* Resultado (estilo app) */
+        /* Resultado */
         #resultado {
             display: none;
             text-align: center;
@@ -294,7 +294,6 @@
             background: #0f4166;
         }
 
-        /* Ajustes mobile */
         @media (max-width: 480px) {
             .container { padding: 16px 14px; border-radius: 24px; }
             .header h1 { font-size: 20px; }
@@ -315,10 +314,10 @@
 <body>
 
 <div class="container" id="app">
-    <!-- Cabeçalho -->
+    <!-- Cabeçalho (recolocado) -->
     <div class="header">
-        <h1>📘 <span>Simulado</span></h1>
-        <span class="badge-rand">🔀 40 aleatórias</span>
+        <h1>📘 <span>Simulado 40 Questões</span></h1>
+        <span class="badge-rand">🔀 Aleatório</span>
     </div>
 
     <!-- Barra de progresso -->
@@ -367,7 +366,6 @@
     // BANCO DE 400 QUESTÕES (gerado programaticamente)
     // ============================================================
     function gerarBancoCompleto() {
-        // Função auxiliar para criar questões com estrutura {p, o, c}
         const q = (p, o, c) => ({ p, o, c });
 
         const portugues = [
@@ -659,7 +657,6 @@
             q('O que é um cliente-servidor?', ['A) Um modelo onde clientes requisitam serviços de um servidor.', 'B) Um modelo peer-to-peer.', 'C) Um modelo sem servidores.', 'D) Um modelo com apenas servidores.'], 0)
         ];
 
-        // Junta tudo e garante pelo menos 400
         let full = [...portugues, ...matematica, ...adm, ...ti];
         while (full.length < 400) {
             full.push(q('Questão extra: Qual é a capital do Brasil?', ['A) São Paulo', 'B) Rio de Janeiro', 'C) Brasília', 'D) Belo Horizonte'], 2));
@@ -679,7 +676,7 @@
     let erros = 0;
     let finalizado = false;
 
-    // DOM references
+    // DOM
     const perguntaEl = document.getElementById('pergunta');
     const opcoesContainer = document.getElementById('opcoesContainer');
     const feedbackEl = document.getElementById('feedback');
@@ -767,6 +764,7 @@
         btnVerificar.disabled = false;
     }
 
+    // Verifica a questão atual e retorna se foi verificada
     function verificarQuestao() {
         const index = indiceAtual;
         if (verificadas[index]) return;
@@ -799,6 +797,10 @@
     }
 
     function irParaProxima() {
+        // Se houver resposta selecionada e não verificada, verifica automaticamente
+        if (!verificadas[indiceAtual] && respostas[indiceAtual] !== null) {
+            verificarQuestao();
+        }
         if (indiceAtual < questoesAtuais.length - 1) {
             indiceAtual++;
             carregarQuestao(indiceAtual);
@@ -831,7 +833,6 @@
     }
 
     function novoSimulado() {
-        // Sorteia 40 questões aleatórias do banco completo
         const banco = bancoGlobal.length ? bancoGlobal : gerarBancoCompleto();
         bancoGlobal = banco;
         const selecionadas = [];
