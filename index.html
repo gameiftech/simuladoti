@@ -11,7 +11,48 @@
 </head>
 <body>
 
-<div class="container" id="app">
+<!-- ============================================
+     TELA INICIAL (SPLASH / BOAS-VINDAS)
+     ============================================ -->
+<div id="splashScreen" class="splash-overlay">
+    <div class="splash-card">
+        <div class="splash-logo">📘</div>
+        <h1 class="splash-title">Simulado TI</h1>
+        <p class="splash-subtitle">Concurso Público – Analista de TI</p>
+
+        <div class="splash-info">
+            <div class="splash-stat">
+                <span class="splash-stat-num">400</span>
+                <span class="splash-stat-label">Questões</span>
+            </div>
+            <div class="splash-divider"></div>
+            <div class="splash-stat">
+                <span class="splash-stat-num">4</span>
+                <span class="splash-stat-label">Matérias</span>
+            </div>
+            <div class="splash-divider"></div>
+            <div class="splash-stat">
+                <span class="splash-stat-num">40</span>
+                <span class="splash-stat-label">Questões/Prova</span>
+            </div>
+        </div>
+
+        <div class="splash-areas">
+            <span class="splash-area-tag">📝 Língua Portuguesa</span>
+            <span class="splash-area-tag">🔢 Matemática</span>
+            <span class="splash-area-tag">⚖️ Legislação</span>
+            <span class="splash-area-tag">💻 TI</span>
+        </div>
+
+        <button id="btnIniciarApp" class="splash-btn">
+            🚀 Iniciar Simulado
+        </button>
+
+        <p class="splash-version">Versão 2.0 · PWA · Funciona offline</p>
+    </div>
+</div>
+
+<div class="container" id="app" style="display:none;">
     <!-- Header -->
     <div class="header">
         <h1>📘 <span>Simulado TI</span></h1>
@@ -101,6 +142,35 @@
         </div>
         <div class="modal-footer">
             <button id="btnLimparHistorico" class="btn-icon perigo" style="width: auto; border-radius: 20px; padding: 8px 16px;">Limpar Histórico</button>
+        </div>
+    </div>
+</div>
+
+<!-- Modal de Confirmação — Finalizar Simulado -->
+<div id="modalFinalizar" class="modal-overlay">
+    <div class="modal-content modal-finalizar">
+        <div class="modal-finalizar-icon">🏁</div>
+        <h3 class="modal-finalizar-titulo">Finalizar Simulado?</h3>
+        <p class="modal-finalizar-sub" id="modalFinalizarSub">Você ainda tem questões não respondidas.</p>
+
+        <div class="modal-finalizar-resumo" id="modalFinalizarResumo">
+            <div class="mf-stat verde">
+                <span class="mf-num" id="mfAcertos">0</span>
+                <span class="mf-label">✅ Acertos</span>
+            </div>
+            <div class="mf-stat vermelho">
+                <span class="mf-num" id="mfErros">0</span>
+                <span class="mf-label">❌ Erros</span>
+            </div>
+            <div class="mf-stat azul">
+                <span class="mf-num" id="mfPendentes">0</span>
+                <span class="mf-label">⏳ Pendentes</span>
+            </div>
+        </div>
+
+        <div class="modal-footer" style="margin-top:20px; justify-content:center; gap:12px;">
+            <button id="btnCancelarFinalizar" class="mf-btn-cancelar">← Continuar</button>
+            <button id="btnConfirmarFinalizar" class="mf-btn-confirmar">Finalizar ✔</button>
         </div>
     </div>
 </div>

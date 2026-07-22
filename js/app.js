@@ -51,11 +51,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const questaoArea = document.getElementById('questaoArea');
     const resultadoDiv = document.getElementById('resultado');
+    const appContainer = document.getElementById('app');
 
     const modalHistorico = document.getElementById('modalHistorico');
     const btnFecharHistorico = document.getElementById('btnFecharHistorico');
     const btnLimparHistorico = document.getElementById('btnLimparHistorico');
     const historicoLista = document.getElementById('historicoLista');
+
+    // Splash & Modal Finalizar
+    const splashScreen = document.getElementById('splashScreen');
+    const btnIniciarApp = document.getElementById('btnIniciarApp');
+    const modalFinalizar = document.getElementById('modalFinalizar');
+    const btnCancelarFinalizar = document.getElementById('btnCancelarFinalizar');
+    const btnConfirmarFinalizar = document.getElementById('btnConfirmarFinalizar');
+    const modalFinalizarSub = document.getElementById('modalFinalizarSub');
+    const mfAcertos = document.getElementById('mfAcertos');
+    const mfErros = document.getElementById('mfErros');
+    const mfPendentes = document.getElementById('mfPendentes');
 
     // ------------------------------------------------------------
     // STORAGE & TEMA
@@ -71,6 +83,24 @@ document.addEventListener('DOMContentLoaded', () => {
     const currentTheme = SimuladoStorage.getTheme();
     SimuladoStorage.setTheme(currentTheme);
     if (btnThemeToggle) btnThemeToggle.textContent = currentTheme === 'dark' ? '☀️' : '🌙';
+
+    // ------------------------------------------------------------
+    // SPLASH SCREEN — esconder ao clicar em Iniciar
+    // ------------------------------------------------------------
+    function fecharSplash() {
+        splashScreen.classList.add('fade-out');
+        splashScreen.addEventListener('transitionend', () => {
+            splashScreen.style.display = 'none';
+            appContainer.style.display = 'block';
+        }, { once: true });
+    }
+
+    if (btnIniciarApp) {
+        btnIniciarApp.addEventListener('click', () => {
+            iniciarNovoSimulado();
+            fecharSplash();
+        });
+    }
 
     // ------------------------------------------------------------
     // BANCO DE QUESTÕES
@@ -339,10 +369,22 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function finalizarSimulado() {
-        const temNaoRespondida = questoesAtuais.some((_, i) => respostas[i] === null);
-        if (temNaoRespondida) {
-            if (!confirm('Ainda há questões sem resposta. Deseja finalizar mesmo assim?')) return;
-        }
+        // Calcular pendentes
+        const pendentes = questoesAtuais.filter((_, i) => respostas[i] === null).length;
+
+        // Preencher modal com resumo rápido
+        mfAcertos.textContent = acertos;
+        mfErros.textContent = erros;
+        mfPendentes.textContent = pendentes;
+        modalFinalizarSub.textContent = pendentes > 0
+            ? `Você ainda tem ${pendentes} quest${pendentes === 1 ? 'ão' : 'ões'} sem resposta.`
+            : 'Você respondeu todas as questões!';
+
+        modalFinalizar.style.display = 'flex';
+    }
+
+    function confirmarFinalizar() {
+        modalFinalizar.style.display = 'none';
 
         finalizado = true;
         pararTimer();
@@ -455,12 +497,22 @@ document.addEventListener('DOMContentLoaded', () => {
     btnFinalizar.addEventListener('click', finalizarSimulado);
     document.getElementById('btnNovoSimulado').addEventListener('click', iniciarNovoSimulado);
 
+    // Modal Finalizar
+    btnCancelarFinalizar.addEventListener('click', () => { modalFinalizar.style.display = 'none'; });
+    btnConfirmarFinalizar.addEventListener('click', confirmarFinalizar);
+    modalFinalizar.addEventListener('click', (e) => {
+        if (e.target === modalFinalizar) modalFinalizar.style.display = 'none';
+    });
+
     document.addEventListener('keydown', (e) => {
         if (e.key === 'ArrowRight' && !btnProxima.disabled) irParaProxima();
         if (e.key === 'ArrowLeft' && !btnAnterior.disabled) irParaAnterior();
         if (e.key === 'Enter' && !btnVerificar.disabled) verificarQuestao();
+        if (e.key === 'Escape') {
+            if (modalFinalizar.style.display === 'flex') modalFinalizar.style.display = 'none';
+            if (modalHistorico.style.display === 'flex') fecharHistorico();
+        }
     });
 
-    // Iniciar automaticamente
-    iniciarNovoSimulado();
+    // O simulado é iniciado pelo botão da splash screen
 });
