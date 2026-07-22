@@ -295,335 +295,581 @@
 
 <script>
     // ============================================================
-    // BANCO DE 400 QUESTÕES ÚNICAS (sem duplicatas)
+    // BANCO DE 400 QUESTÕES ÚNICAS (gerado programaticamente)
     // ============================================================
     function gerarBancoCompleto() {
-        const q = (p, o, c, area) => {
+        // Função auxiliar para criar uma questão
+        const criarQuestao = (pergunta, opcoes, correta, area) => {
             const pesos = { portugues: 1, matematica: 2, administracao: 2, ti: 3 };
-            return { p, o, c, area, peso: pesos[area] || 1 };
+            return {
+                p: pergunta,
+                o: opcoes,
+                c: correta,
+                area: area,
+                peso: pesos[area] || 1
+            };
         };
 
         // ---------- PORTUGUÊS (peso 1) ----------
         const portugues = [
-            q('Leia o texto: "A transformação digital no setor público é um processo irreversível. No entanto, sua efetividade depende não apenas da tecnologia, mas também da capacitação de servidores e da adaptação cultural." O texto defende que:', ['A) A tecnologia é o único fator determinante.', 'B) A transformação digital é um processo reversível.', 'C) A efetividade depende de tecnologia, capacitação e mudança cultural.', 'D) A capacitação de servidores é desnecessária.'], 2, 'portugues'),
-            q('Assinale a alternativa em que a concordância verbal está correta:', ['A) Haviam muitos problemas para resolver.', 'B) Fazem dois anos que trabalho aqui.', 'C) Mais de um analista participou do projeto.', 'D) Os Estados Unidos é um país desenvolvido.'], 2, 'portugues'),
-            q('Em qual alternativa a regência verbal está correta?', ['A) O sistema visa atender os usuários.', 'B) Ele assistiu o filme sobre inovação.', 'C) O relatório implica em mudanças.', 'D) O analista obedece as normas.'], 0, 'portugues'),
-            q('Assinale a opção em que a crase é facultativa:', ['A) Fomos à reunião.', 'B) Entreguei o documento à secretária.', 'C) Voltou à casa dos pais.', 'D) Refiro-me àquela versão.'], 2, 'portugues'),
-            q('Em qual alternativa o termo "mal" é advérbio?', ['A) Ele tem um mal incurável.', 'B) O sistema funciona mal.', 'C) O mal foi identificado.', 'D) Sofreu um mal súbito.'], 1, 'portugues'),
-            q('Assinale a alternativa com colocação pronominal correta:', ['A) Me entregaram o relatório.', 'B) O analista se dedicou ao projeto.', 'C) Não lhe posso informar.', 'D) O sistema, atualize-o.'], 1, 'portugues'),
-            q('Leia: "Os dados, que foram validados, estão disponíveis." A oração destacada é:', ['A) Subordinada adjetiva restritiva.', 'B) Subordinada adjetiva explicativa.', 'C) Coordenada explicativa.', 'D) Subordinada substantiva objetiva.'], 1, 'portugues'),
-            q('Em qual alternativa "por que" está corretamente empregado?', ['A) Não sei por que o sistema falhou.', 'B) Ele explicou o por que da decisão.', 'C) O motivo por que não me responderam.', 'D) Todos sabem por que motivo.'], 0, 'portugues'),
-            q('Assinale a alternativa com erro de ortografia:', ['A) O sistema está em fase de implantação.', 'B) Houve uma excessão na regra.', 'C) A equipe está empenhada.', 'D) O projeto foi concluído.'], 1, 'portugues'),
-            q('Em qual alternativa a palavra "a" é preposição?', ['A) A equipe trabalhou.', 'B) Fomos a Brasília.', 'C) A sistema falhou.', 'D) Aquele relatório é antigo.'], 1, 'portugues'),
-            q('Leia: "Caso o sistema apresente falhas, os analistas serão acionados." A oração destacada expressa:', ['A) Condição', 'B) Concessão', 'C) Causa', 'D) Finalidade'], 0, 'portugues'),
-            q('Assinale a alternativa em que a palavra "sessão" está correta:', ['A) A sessão de cinema foi cancelada.', 'B) A seção de TI foi reformada.', 'C) A sessão de trabalho foi produtiva.', 'D) A seção de documentos foi digitalizada.'], 0, 'portugues'),
-            q('Em qual alternativa há erro de concordância verbal?', ['A) Mais de um analista participou.', 'B) Haviam muitas pendências.', 'C) Fazem três meses que o sistema foi implantado.', 'D) Os Estados Unidos investem em tecnologia.'], 1, 'portugues'),
-            q('Assinale a alternativa em que o termo destacado é adjunto adnominal:', ['A) O **relatório** foi aprovado.', 'B) O sistema **inovador** foi testado.', 'C) **Todos** os dados foram analisados.', 'D) O analista **de TI** apresentou a solução.'], 1, 'portugues'),
-            q('Em qual alternativa a palavra "mas" é uma conjunção adversativa?', ['A) Ele trabalhou bastante, mas não concluiu.', 'B) Mas que belo sistema!', 'C) Ele é competente, mas não é experiente.', 'D) Mas ele chegou tarde.'], 0, 'portugues'),
-            q('Leia o fragmento: "A segurança da informação é fundamental para garantir a confiabilidade dos dados." A palavra "confiabilidade" pode ser substituída por:', ['A) Integridade', 'B) Disponibilidade', 'C) Autenticidade', 'D) Fidedignidade'], 3, 'portugues'),
-            q('Assinale a alternativa em que a pontuação está correta:', ['A) O analista, que é competente, foi promovido.', 'B) O analista que é competente, foi promovido.', 'C) O analista que é competente foi promovido, rapidamente.', 'D) O analista, que é competente foi promovido.'], 0, 'portugues'),
-            q('Em qual alternativa a palavra "cerca" tem o mesmo sentido de "aproximadamente"?', ['A) O fazendeiro construiu uma cerca.', 'B) Cerca de 50 sistemas foram atualizados.', 'C) A equipe cerca o inimigo.', 'D) Ele cerca a questão com cuidado.'], 1, 'portugues'),
-            q('Assinale a alternativa em que a concordância nominal está correta:', ['A) É proibido a entrada.', 'B) Anexo as planilhas.', 'C) É necessária a atualização.', 'D) Bastante pessoas compareceram.'], 2, 'portugues'),
-            q('Em qual alternativa a regência nominal está correta?', ['A) O analista é acessível a todos.', 'B) Ele é ansioso por atualizações.', 'C) O sistema é compatível com as normas.', 'D) Todos estão aptos ao cargo.'], 2, 'portugues'),
-            q('Assinale a alternativa em que o pronome "se" indica reflexividade:', ['A) Vive-se bem com tecnologia.', 'B) O analista se feriu com o equipamento.', 'C) Precisa-se de novos servidores.', 'D) Alugam-se sistemas.'], 1, 'portugues'),
-            q('Leia: "Os dados, os quais foram validados, estão disponíveis." O pronome "os quais" refere-se a:', ['A) Dados', 'B) Validados', 'C) Disponíveis', 'D) Sistema'], 0, 'portugues'),
-            q('Assinale a alternativa em que a forma verbal está correta:', ['A) Ele interviu na discussão.', 'B) Quando ele vir aqui, avise-me.', 'C) Se ele ver o relatório, entenderá.', 'D) Ele não cabe no novo cargo.'], 3, 'portugues'),
-            q('Em qual alternativa a palavra "faz" está empregada corretamente?', ['A) Faz dois anos que trabalho com TI.', 'B) Ele faz computação gráfica.', 'C) O sistema faz atualizações automáticas.', 'D) Todas as alternativas.'], 3, 'portugues'),
-            q('Assinale a alternativa em que a palavra "mau" está empregada corretamente:', ['A) O mau funcionamento do sistema causou problemas.', 'B) O analista está de mau humor.', 'C) O mau uso dos recursos é criticado.', 'D) Todas as alternativas.'], 3, 'portugues'),
-            q('Em qual alternativa a palavra "traz" está correta?', ['A) O sistema traz muitas vantagens.', 'B) Ele traz o relatório hoje.', 'C) O novo software traz inovações.', 'D) Todas as alternativas.'], 3, 'portugues'),
-            q('Leia: "Embora o sistema seja moderno, ele apresenta falhas." A oração destacada expressa:', ['A) Concessão', 'B) Causa', 'C) Condição', 'D) Finalidade'], 0, 'portugues'),
-            q('Assinale a alternativa em que a palavra "sobre" é preposição:', ['A) O relatório sobre o projeto foi entregue.', 'B) Sobre a mesa há documentos.', 'C) O sistema sobre a nuvem.', 'D) A equipe sobre o novo desafio.'], 0, 'portugues'),
-            q('Em qual alternativa a palavra "contra" é preposição?', ['A) Ele votou contra a proposta.', 'B) Contra a parede.', 'C) A equipe lutou contra o prazo.', 'D) Todas as alternativas.'], 3, 'portugues'),
-            q('Assinale a alternativa em que "perante" está corretamente empregado:', ['A) O relatório foi apresentado perante a diretoria.', 'B) Perante a crise, tomamos medidas.', 'C) A equipe se comprometeu perante o cliente.', 'D) Todas as alternativas.'], 3, 'portugues'),
-            q('Leia: "Após a atualização, o sistema ficou mais rápido." O termo "Após" expressa:', ['A) Tempo', 'B) Causa', 'C) Concessão', 'D) Comparação'], 0, 'portugues'),
-            q('Assinale a alternativa em que "porquê" está correto:', ['A) Não sei o porquê do problema.', 'B) Ele explicou o porquê da escolha.', 'C) O porquê ainda não foi descoberto.', 'D) Todas as alternativas.'], 3, 'portugues'),
-            q('Em qual alternativa há erro de concordância nominal?', ['A) Anexo os documentos.', 'B) Seguem anexas as planilhas.', 'C) É proibida a entrada.', 'D) Bastante gente compareceu.'], 0, 'portugues'),
-            q('Assinale a alternativa em que "descendente" está corretamente grafada:', ['A) A árvore genealógica mostra os descendentes.', 'B) O sistema é descendente de uma versão anterior.', 'C) Todos os descendentes foram informados.', 'D) Todas as alternativas.'], 3, 'portugues'),
-            q('Leia: "O sistema será atualizado, conforme previsto no cronograma." A palavra "conforme" expressa:', ['A) Conformidade', 'B) Causa', 'C) Finalidade', 'D) Consequência'], 0, 'portugues'),
-            q('Assinale a alternativa em que "imigrante" está correta:', ['A) O imigrante trouxe suas tecnologias.', 'B) O país recebe muitos imigrantes.', 'C) O imigrante se adaptou à nova cultura.', 'D) Todas as alternativas.'], 3, 'portugues'),
-            q('Em qual alternativa "emergir" está corretamente empregado?', ['A) O sistema emergiu como solução.', 'B) Novas tecnologias emergem a cada dia.', 'C) O projeto emergiu das cinzas.', 'D) Todas as alternativas.'], 3, 'portugues'),
-            q('Assinale a alternativa em que "pressupor" está corretamente empregado:', ['A) O analista pressupôs a falha.', 'B) Pressuponho que o sistema está estável.', 'C) Eles pressupuseram os riscos.', 'D) Todas as alternativas.'], 3, 'portugues'),
-            q('Leia: "Os dados foram analisados, uma vez que a equipe estava preparada." A expressão "uma vez que" expressa:', ['A) Causa', 'B) Tempo', 'C) Condição', 'D) Concessão'], 0, 'portugues'),
-            q('Assinale a alternativa em que a palavra "entre" é preposição:', ['A) Entre os sistemas, escolhi o mais rápido.', 'B) O relatório está entre os documentos.', 'C) Ele ficou entre a espada e a parede.', 'D) Todas as alternativas.'], 3, 'portugues'),
-            q('Em qual alternativa a palavra "sem" é preposição?', ['A) Ficou sem o sistema.', 'B) Sem ele, nada funciona.', 'C) A equipe trabalhou sem descanso.', 'D) Todas as alternativas.'], 3, 'portugues'),
-            q('Assinale a alternativa em que "com" é preposição:', ['A) Trabalhou com a equipe.', 'B) Com o sistema novo, tudo melhorou.', 'C) Contou com o apoio da diretoria.', 'D) Todas as alternativas.'], 3, 'portugues'),
-            q('Leia: "O analista, cujo relatório foi aprovado, é muito competente." O pronome "cujo" estabelece relação de:', ['A) Posse', 'B) Causa', 'C) Consequência', 'D) Comparação'], 0, 'portugues'),
-            q('Assinale a alternativa em que "onde" está corretamente empregado:', ['A) O sistema onde os dados são armazenados.', 'B) O local onde ocorreu a reunião.', 'C) O ambiente onde o sistema opera.', 'D) Todas as alternativas.'], 3, 'portugues'),
-            q('Em qual alternativa "aonde" está correto?', ['A) Aonde você vai?', 'B) Vou aonde o sistema me levar.', 'C) Aonde se dirigiu a equipe?', 'D) Todas as alternativas.'], 3, 'portugues'),
-            q('Assinale a alternativa em que "menos" é advérbio:', ['A) Menos pessoas compareceram.', 'B) Ele tem menos experiência.', 'C) O sistema é menos rápido.', 'D) Todas as alternativas.'], 3, 'portugues'),
-            q('Leia: "A equipe trabalhou muito, de modo que o projeto foi concluído." A expressão "de modo que" expressa:', ['A) Consequência', 'B) Causa', 'C) Finalidade', 'D) Condição'], 0, 'portugues'),
-            q('Assinale a alternativa em que "além" é advérbio:', ['A) Além do sistema, há outros fatores.', 'B) Ele foi além do esperado.', 'C) O projeto está além da meta.', 'D) Todas as alternativas.'], 3, 'portugues'),
-            q('Em qual alternativa "tampouco" está correto?', ['A) Ele não compareceu, tampouco justificou.', 'B) Não foi aprovado, tampouco o sistema.', 'C) O projeto não foi concluído, tampouco iniciado.', 'D) Todas as alternativas.'], 3, 'portugues'),
-            q('Assinale a alternativa em que "salvo" é preposição:', ['A) Salvo o sistema, tudo estava ok.', 'B) Foi salvo pelo sistema.', 'C) O sistema salvou os dados.', 'D) Salvo seja o analista.'], 0, 'portugues'),
-            q('Leia: "O sistema, segundo os analistas, é confiável." A palavra "segundo" expressa:', ['A) Conformidade', 'B) Causa', 'C) Finalidade', 'D) Consequência'], 0, 'portugues'),
-            q('Assinale a alternativa em que "visto" é preposição:', ['A) Visto que o sistema falhou, tomamos medidas.', 'B) O visto foi aprovado.', 'C) Foi visto pela equipe.', 'D) O sistema foi visto.'], 0, 'portugues'),
-            q('Em qual alternativa a palavra "em" é preposição?', ['A) Em busca de soluções.', 'B) O sistema está em teste.', 'C) Em breve, tudo será resolvido.', 'D) Todas as alternativas.'], 3, 'portugues'),
-            q('Assinale a alternativa em que "sob" é preposição:', ['A) Sob a orientação do analista.', 'B) O sistema está sob manutenção.', 'C) Sob pressão, a equipe entregou.', 'D) Todas as alternativas.'], 3, 'portugues'),
-            q('Leia: "O analista foi contratado para desenvolver o sistema." A palavra "para" expressa:', ['A) Finalidade', 'B) Causa', 'C) Condição', 'D) Conformidade'], 0, 'portugues'),
-            q('Assinale a alternativa em que a palavra "por" é preposição:', ['A) Foi contratado por sua competência.', 'B) O sistema foi desenvolvido por analistas.', 'C) Por que você não respondeu?', 'D) Todas as alternativas.'], 3, 'portugues'),
-            q('Em qual alternativa a palavra "de" é preposição?', ['A) O relatório de TI foi entregue.', 'B) Ele depende de tecnologia.', 'C) O sistema é composto de módulos.', 'D) Todas as alternativas.'], 3, 'portugues'),
-            q('Leia: "A equipe, que é muito unida, alcançou os objetivos." A oração destacada é:', ['A) Subordinada adjetiva explicativa.', 'B) Subordinada adjetiva restritiva.', 'C) Coordenada explicativa.', 'D) Subordinada substantiva.'], 0, 'portugues'),
-            q('Assinale a alternativa em que a palavra "arriscar" está corretamente empregada:', ['A) O analista arriscou uma solução inovadora.', 'B) Não se arrisque em decisões precipitadas.', 'C) O projeto arrisca ser cancelado.', 'D) Todas as alternativas.'], 3, 'portugues'),
-            q('Em qual alternativa a palavra "a" é artigo definido?', ['A) A equipe trabalhou bem.', 'B) Vou a São Paulo.', 'C) A sistema está pronto.', 'D) Aquele analista é competente.'], 0, 'portugues')
+            criarQuestao(
+                `Leia o texto: "A transformação digital no setor público é um processo irreversível. No entanto, sua efetividade depende não apenas da tecnologia, mas também da capacitação de servidores e da adaptação cultural." O texto defende que:`,
+                ['A) A tecnologia é o único fator determinante.', 'B) A transformação digital é um processo reversível.', 'C) A efetividade depende de tecnologia, capacitação e mudança cultural.', 'D) A capacitação de servidores é desnecessária.'],
+                2, 'portugues'
+            ),
+            criarQuestao(
+                `Assinale a alternativa em que a concordância verbal está correta:`,
+                ['A) Haviam muitos problemas para resolver.', 'B) Fazem dois anos que trabalho aqui.', 'C) Mais de um analista participou do projeto.', 'D) Os Estados Unidos é um país desenvolvido.'],
+                2, 'portugues'
+            ),
+            criarQuestao(
+                `Em qual alternativa a regência verbal está correta?`,
+                ['A) O sistema visa atender os usuários.', 'B) Ele assistiu o filme sobre inovação.', 'C) O relatório implica em mudanças.', 'D) O analista obedece as normas.'],
+                0, 'portugues'
+            ),
+            criarQuestao(
+                `Assinale a opção em que a crase é facultativa:`,
+                ['A) Fomos à reunião.', 'B) Entreguei o documento à secretária.', 'C) Voltou à casa dos pais.', 'D) Refiro-me àquela versão.'],
+                2, 'portugues'
+            ),
+            criarQuestao(
+                `Em qual alternativa o termo "mal" é advérbio?`,
+                ['A) Ele tem um mal incurável.', 'B) O sistema funciona mal.', 'C) O mal foi identificado.', 'D) Sofreu um mal súbito.'],
+                1, 'portugues'
+            ),
+            criarQuestao(
+                `Assinale a alternativa com colocação pronominal correta:`,
+                ['A) Me entregaram o relatório.', 'B) O analista se dedicou ao projeto.', 'C) Não lhe posso informar.', 'D) O sistema, atualize-o.'],
+                1, 'portugues'
+            ),
+            criarQuestao(
+                `Leia: "Os dados, que foram validados, estão disponíveis." A oração destacada é:`,
+                ['A) Subordinada adjetiva restritiva.', 'B) Subordinada adjetiva explicativa.', 'C) Coordenada explicativa.', 'D) Subordinada substantiva objetiva.'],
+                1, 'portugues'
+            ),
+            criarQuestao(
+                `Em qual alternativa "por que" está corretamente empregado?`,
+                ['A) Não sei por que o sistema falhou.', 'B) Ele explicou o por que da decisão.', 'C) O motivo por que não me responderam.', 'D) Todos sabem por que motivo.'],
+                0, 'portugues'
+            ),
+            criarQuestao(
+                `Assinale a alternativa com erro de ortografia:`,
+                ['A) O sistema está em fase de implantação.', 'B) Houve uma excessão na regra.', 'C) A equipe está empenhada.', 'D) O projeto foi concluído.'],
+                1, 'portugues'
+            ),
+            criarQuestao(
+                `Em qual alternativa a palavra "a" é preposição?`,
+                ['A) A equipe trabalhou.', 'B) Fomos a Brasília.', 'C) A sistema falhou.', 'D) Aquele relatório é antigo.'],
+                1, 'portugues'
+            ),
+            criarQuestao(
+                `Leia: "Caso o sistema apresente falhas, os analistas serão acionados." A oração destacada expressa:`,
+                ['A) Condição', 'B) Concessão', 'C) Causa', 'D) Finalidade'],
+                0, 'portugues'
+            ),
+            criarQuestao(
+                `Assinale a alternativa em que a palavra "sessão" está correta:`,
+                ['A) A sessão de cinema foi cancelada.', 'B) A seção de TI foi reformada.', 'C) A sessão de trabalho foi produtiva.', 'D) A seção de documentos foi digitalizada.'],
+                0, 'portugues'
+            ),
+            criarQuestao(
+                `Em qual alternativa há erro de concordância verbal?`,
+                ['A) Mais de um analista participou.', 'B) Haviam muitas pendências.', 'C) Fazem três meses que o sistema foi implantado.', 'D) Os Estados Unidos investem em tecnologia.'],
+                1, 'portugues'
+            ),
+            criarQuestao(
+                `Assinale a alternativa em que o termo destacado é adjunto adnominal:`,
+                ['A) O **relatório** foi aprovado.', 'B) O sistema **inovador** foi testado.', 'C) **Todos** os dados foram analisados.', 'D) O analista **de TI** apresentou a solução.'],
+                1, 'portugues'
+            ),
+            criarQuestao(
+                `Em qual alternativa a palavra "mas" é uma conjunção adversativa?`,
+                ['A) Ele trabalhou bastante, mas não concluiu.', 'B) Mas que belo sistema!', 'C) Ele é competente, mas não é experiente.', 'D) Mas ele chegou tarde.'],
+                0, 'portugues'
+            ),
+            criarQuestao(
+                `Leia o fragmento: "A segurança da informação é fundamental para garantir a confiabilidade dos dados." A palavra "confiabilidade" pode ser substituída por:`,
+                ['A) Integridade', 'B) Disponibilidade', 'C) Autenticidade', 'D) Fidedignidade'],
+                3, 'portugues'
+            ),
+            criarQuestao(
+                `Assinale a alternativa em que a pontuação está correta:`,
+                ['A) O analista, que é competente, foi promovido.', 'B) O analista que é competente, foi promovido.', 'C) O analista que é competente foi promovido, rapidamente.', 'D) O analista, que é competente foi promovido.'],
+                0, 'portugues'
+            ),
+            criarQuestao(
+                `Em qual alternativa a palavra "cerca" tem o mesmo sentido de "aproximadamente"?`,
+                ['A) O fazendeiro construiu uma cerca.', 'B) Cerca de 50 sistemas foram atualizados.', 'C) A equipe cerca o inimigo.', 'D) Ele cerca a questão com cuidado.'],
+                1, 'portugues'
+            ),
+            criarQuestao(
+                `Assinale a alternativa em que a concordância nominal está correta:`,
+                ['A) É proibido a entrada.', 'B) Anexo as planilhas.', 'C) É necessária a atualização.', 'D) Bastante pessoas compareceram.'],
+                2, 'portugues'
+            ),
+            criarQuestao(
+                `Em qual alternativa a regência nominal está correta?`,
+                ['A) O analista é acessível a todos.', 'B) Ele é ansioso por atualizações.', 'C) O sistema é compatível com as normas.', 'D) Todos estão aptos ao cargo.'],
+                2, 'portugues'
+            ),
+            criarQuestao(
+                `Assinale a alternativa em que o pronome "se" indica reflexividade:`,
+                ['A) Vive-se bem com tecnologia.', 'B) O analista se feriu com o equipamento.', 'C) Precisa-se de novos servidores.', 'D) Alugam-se sistemas.'],
+                1, 'portugues'
+            ),
+            criarQuestao(
+                `Leia: "Os dados, os quais foram validados, estão disponíveis." O pronome "os quais" refere-se a:`,
+                ['A) Dados', 'B) Validados', 'C) Disponíveis', 'D) Sistema'],
+                0, 'portugues'
+            ),
+            criarQuestao(
+                `Assinale a alternativa em que a forma verbal está correta:`,
+                ['A) Ele interviu na discussão.', 'B) Quando ele vir aqui, avise-me.', 'C) Se ele ver o relatório, entenderá.', 'D) Ele não cabe no novo cargo.'],
+                3, 'portugues'
+            ),
+            criarQuestao(
+                `Em qual alternativa a palavra "faz" está empregada corretamente?`,
+                ['A) Faz dois anos que trabalho com TI.', 'B) Ele faz computação gráfica.', 'C) O sistema faz atualizações automáticas.', 'D) Todas as alternativas.'],
+                3, 'portugues'
+            ),
+            criarQuestao(
+                `Assinale a alternativa em que a palavra "mau" está empregada corretamente:`,
+                ['A) O mau funcionamento do sistema causou problemas.', 'B) O analista está de mau humor.', 'C) O mau uso dos recursos é criticado.', 'D) Todas as alternativas.'],
+                3, 'portugues'
+            ),
+            criarQuestao(
+                `Em qual alternativa a palavra "traz" está correta?`,
+                ['A) O sistema traz muitas vantagens.', 'B) Ele traz o relatório hoje.', 'C) O novo software traz inovações.', 'D) Todas as alternativas.'],
+                3, 'portugues'
+            ),
+            criarQuestao(
+                `Leia: "Embora o sistema seja moderno, ele apresenta falhas." A oração destacada expressa:`,
+                ['A) Concessão', 'B) Causa', 'C) Condição', 'D) Finalidade'],
+                0, 'portugues'
+            ),
+            criarQuestao(
+                `Assinale a alternativa em que a palavra "sobre" é preposição:`,
+                ['A) O relatório sobre o projeto foi entregue.', 'B) Sobre a mesa há documentos.', 'C) O sistema sobre a nuvem.', 'D) A equipe sobre o novo desafio.'],
+                0, 'portugues'
+            ),
+            criarQuestao(
+                `Em qual alternativa a palavra "contra" é preposição?`,
+                ['A) Ele votou contra a proposta.', 'B) Contra a parede.', 'C) A equipe lutou contra o prazo.', 'D) Todas as alternativas.'],
+                3, 'portugues'
+            ),
+            criarQuestao(
+                `Assinale a alternativa em que "perante" está corretamente empregado:`,
+                ['A) O relatório foi apresentado perante a diretoria.', 'B) Perante a crise, tomamos medidas.', 'C) A equipe se comprometeu perante o cliente.', 'D) Todas as alternativas.'],
+                3, 'portugues'
+            ),
+            criarQuestao(
+                `Leia: "Após a atualização, o sistema ficou mais rápido." O termo "Após" expressa:`,
+                ['A) Tempo', 'B) Causa', 'C) Concessão', 'D) Comparação'],
+                0, 'portugues'
+            ),
+            criarQuestao(
+                `Assinale a alternativa em que "porquê" está correto:`,
+                ['A) Não sei o porquê do problema.', 'B) Ele explicou o porquê da escolha.', 'C) O porquê ainda não foi descoberto.', 'D) Todas as alternativas.'],
+                3, 'portugues'
+            ),
+            criarQuestao(
+                `Em qual alternativa há erro de concordância nominal?`,
+                ['A) Anexo os documentos.', 'B) Seguem anexas as planilhas.', 'C) É proibida a entrada.', 'D) Bastante gente compareceu.'],
+                0, 'portugues'
+            ),
+            criarQuestao(
+                `Assinale a alternativa em que "descendente" está corretamente grafada:`,
+                ['A) A árvore genealógica mostra os descendentes.', 'B) O sistema é descendente de uma versão anterior.', 'C) Todos os descendentes foram informados.', 'D) Todas as alternativas.'],
+                3, 'portugues'
+            ),
+            criarQuestao(
+                `Leia: "O sistema será atualizado, conforme previsto no cronograma." A palavra "conforme" expressa:`,
+                ['A) Conformidade', 'B) Causa', 'C) Finalidade', 'D) Consequência'],
+                0, 'portugues'
+            ),
+            criarQuestao(
+                `Assinale a alternativa em que "imigrante" está correta:`,
+                ['A) O imigrante trouxe suas tecnologias.', 'B) O país recebe muitos imigrantes.', 'C) O imigrante se adaptou à nova cultura.', 'D) Todas as alternativas.'],
+                3, 'portugues'
+            ),
+            criarQuestao(
+                `Em qual alternativa "emergir" está corretamente empregado?`,
+                ['A) O sistema emergiu como solução.', 'B) Novas tecnologias emergem a cada dia.', 'C) O projeto emergiu das cinzas.', 'D) Todas as alternativas.'],
+                3, 'portugues'
+            ),
+            criarQuestao(
+                `Assinale a alternativa em que "pressupor" está corretamente empregado:`,
+                ['A) O analista pressupôs a falha.', 'B) Pressuponho que o sistema está estável.', 'C) Eles pressupuseram os riscos.', 'D) Todas as alternativas.'],
+                3, 'portugues'
+            ),
+            criarQuestao(
+                `Leia: "Os dados foram analisados, uma vez que a equipe estava preparada." A expressão "uma vez que" expressa:`,
+                ['A) Causa', 'B) Tempo', 'C) Condição', 'D) Concessão'],
+                0, 'portugues'
+            ),
+            criarQuestao(
+                `Assinale a alternativa em que a palavra "entre" é preposição:`,
+                ['A) Entre os sistemas, escolhi o mais rápido.', 'B) O relatório está entre os documentos.', 'C) Ele ficou entre a espada e a parede.', 'D) Todas as alternativas.'],
+                3, 'portugues'
+            ),
+            criarQuestao(
+                `Em qual alternativa a palavra "sem" é preposição?`,
+                ['A) Ficou sem o sistema.', 'B) Sem ele, nada funciona.', 'C) A equipe trabalhou sem descanso.', 'D) Todas as alternativas.'],
+                3, 'portugues'
+            ),
+            criarQuestao(
+                `Assinale a alternativa em que "com" é preposição:`,
+                ['A) Trabalhou com a equipe.', 'B) Com o sistema novo, tudo melhorou.', 'C) Contou com o apoio da diretoria.', 'D) Todas as alternativas.'],
+                3, 'portugues'
+            ),
+            criarQuestao(
+                `Leia: "O analista, cujo relatório foi aprovado, é muito competente." O pronome "cujo" estabelece relação de:`,
+                ['A) Posse', 'B) Causa', 'C) Consequência', 'D) Comparação'],
+                0, 'portugues'
+            ),
+            criarQuestao(
+                `Assinale a alternativa em que "onde" está corretamente empregado:`,
+                ['A) O sistema onde os dados são armazenados.', 'B) O local onde ocorreu a reunião.', 'C) O ambiente onde o sistema opera.', 'D) Todas as alternativas.'],
+                3, 'portugues'
+            ),
+            criarQuestao(
+                `Em qual alternativa "aonde" está correto?`,
+                ['A) Aonde você vai?', 'B) Vou aonde o sistema me levar.', 'C) Aonde se dirigiu a equipe?', 'D) Todas as alternativas.'],
+                3, 'portugues'
+            ),
+            criarQuestao(
+                `Assinale a alternativa em que "menos" é advérbio:`,
+                ['A) Menos pessoas compareceram.', 'B) Ele tem menos experiência.', 'C) O sistema é menos rápido.', 'D) Todas as alternativas.'],
+                3, 'portugues'
+            ),
+            criarQuestao(
+                `Leia: "A equipe trabalhou muito, de modo que o projeto foi concluído." A expressão "de modo que" expressa:`,
+                ['A) Consequência', 'B) Causa', 'C) Finalidade', 'D) Condição'],
+                0, 'portugues'
+            ),
+            criarQuestao(
+                `Assinale a alternativa em que "além" é advérbio:`,
+                ['A) Além do sistema, há outros fatores.', 'B) Ele foi além do esperado.', 'C) O projeto está além da meta.', 'D) Todas as alternativas.'],
+                3, 'portugues'
+            ),
+            criarQuestao(
+                `Em qual alternativa "tampouco" está correto?`,
+                ['A) Ele não compareceu, tampouco justificou.', 'B) Não foi aprovado, tampouco o sistema.', 'C) O projeto não foi concluído, tampouco iniciado.', 'D) Todas as alternativas.'],
+                3, 'portugues'
+            ),
+            criarQuestao(
+                `Assinale a alternativa em que "salvo" é preposição:`,
+                ['A) Salvo o sistema, tudo estava ok.', 'B) Foi salvo pelo sistema.', 'C) O sistema salvou os dados.', 'D) Salvo seja o analista.'],
+                0, 'portugues'
+            ),
+            criarQuestao(
+                `Leia: "O sistema, segundo os analistas, é confiável." A palavra "segundo" expressa:`,
+                ['A) Conformidade', 'B) Causa', 'C) Finalidade', 'D) Consequência'],
+                0, 'portugues'
+            ),
+            criarQuestao(
+                `Assinale a alternativa em que "visto" é preposição:`,
+                ['A) Visto que o sistema falhou, tomamos medidas.', 'B) O visto foi aprovado.', 'C) Foi visto pela equipe.', 'D) O sistema foi visto.'],
+                0, 'portugues'
+            ),
+            criarQuestao(
+                `Em qual alternativa a palavra "em" é preposição?`,
+                ['A) Em busca de soluções.', 'B) O sistema está em teste.', 'C) Em breve, tudo será resolvido.', 'D) Todas as alternativas.'],
+                3, 'portugues'
+            ),
+            criarQuestao(
+                `Assinale a alternativa em que "sob" é preposição:`,
+                ['A) Sob a orientação do analista.', 'B) O sistema está sob manutenção.', 'C) Sob pressão, a equipe entregou.', 'D) Todas as alternativas.'],
+                3, 'portugues'
+            ),
+            criarQuestao(
+                `Leia: "O analista foi contratado para desenvolver o sistema." A palavra "para" expressa:`,
+                ['A) Finalidade', 'B) Causa', 'C) Condição', 'D) Conformidade'],
+                0, 'portugues'
+            ),
+            criarQuestao(
+                `Assinale a alternativa em que a palavra "por" é preposição:`,
+                ['A) Foi contratado por sua competência.', 'B) O sistema foi desenvolvido por analistas.', 'C) Por que você não respondeu?', 'D) Todas as alternativas.'],
+                3, 'portugues'
+            ),
+            criarQuestao(
+                `Em qual alternativa a palavra "de" é preposição?`,
+                ['A) O relatório de TI foi entregue.', 'B) Ele depende de tecnologia.', 'C) O sistema é composto de módulos.', 'D) Todas as alternativas.'],
+                3, 'portugues'
+            ),
+            criarQuestao(
+                `Leia: "A equipe, que é muito unida, alcançou os objetivos." A oração destacada é:`,
+                ['A) Subordinada adjetiva explicativa.', 'B) Subordinada adjetiva restritiva.', 'C) Coordenada explicativa.', 'D) Subordinada substantiva.'],
+                0, 'portugues'
+            ),
+            criarQuestao(
+                `Assinale a alternativa em que a palavra "arriscar" está corretamente empregada:`,
+                ['A) O analista arriscou uma solução inovadora.', 'B) Não se arrisque em decisões precipitadas.', 'C) O projeto arrisca ser cancelado.', 'D) Todas as alternativas.'],
+                3, 'portugues'
+            ),
+            criarQuestao(
+                `Em qual alternativa a palavra "a" é artigo definido?`,
+                ['A) A equipe trabalhou bem.', 'B) Vou a São Paulo.', 'C) A sistema está pronto.', 'D) Aquele analista é competente.'],
+                0, 'portugues'
+            )
         ];
 
         // ---------- MATEMÁTICA (peso 2) ----------
         const matematica = [
-            q('Um analista recebe R$ 4.140,76 e tem um aumento de 12%. Qual será seu novo salário? (Aproxime para duas casas decimais)', ['A) R$ 4.637,65', 'B) R$ 4.737,65', 'C) R$ 4.837,65', 'D) R$ 4.937,65'], 0, 'matematica'),
-            q('Se 4 analistas produzem 24 relatórios em 3 horas, quantos relatórios 6 analistas produzirão em 5 horas?', ['A) 40', 'B) 50', 'C) 60', 'D) 70'], 2, 'matematica'),
-            q('Qual o valor de x na equação: 4x – 9 = 2x + 7?', ['A) 6', 'B) 7', 'C) 8', 'D) 9'], 2, 'matematica'),
-            q('Um capital de R$ 6.000,00 aplicado a juros simples de 3% ao mês, após 5 meses, qual o montante?', ['A) R$ 6.900,00', 'B) R$ 7.000,00', 'C) R$ 7.100,00', 'D) R$ 7.200,00'], 0, 'matematica'),
-            q('Observe a sequência: 3, 8, 15, 24, 35, ... Qual o próximo termo?', ['A) 46', 'B) 48', 'C) 50', 'D) 52'], 1, 'matematica'),
-            q('Uma sala retangular mede 18 m de comprimento e 12 m de largura. Qual a área em m²?', ['A) 180', 'B) 200', 'C) 210', 'D) 216'], 3, 'matematica'),
-            q('Em uma pesquisa, 65% preferem o produto A, 25% o B e o restante o C. Se 800 pessoas foram entrevistadas, quantas preferem C?', ['A) 60', 'B) 70', 'C) 80', 'D) 90'], 2, 'matematica'),
-            q('Um produto que custa R$ 320,00 sofre desconto de 15%. Qual o novo preço?', ['A) R$ 268,00', 'B) R$ 272,00', 'C) R$ 280,00', 'D) R$ 288,00'], 1, 'matematica'),
-            q('Resolva: 6 × (4 + 2) – 8 ÷ 2 = ?', ['A) 30', 'B) 32', 'C) 34', 'D) 36'], 1, 'matematica'),
-            q('Qual o valor de x: 3x/4 = 9?', ['A) 10', 'B) 11', 'C) 12', 'D) 13'], 2, 'matematica'),
-            q('Duas torneiras enchem um tanque em 4h e 6h, respectivamente. Juntas, em quanto tempo o enchem?', ['A) 2,0h', 'B) 2,2h', 'C) 2,4h', 'D) 2,6h'], 2, 'matematica'),
-            q('A média aritmética de 15, 25, 35, 45 e 55 é:', ['A) 30', 'B) 33', 'C) 35', 'D) 40'], 2, 'matematica'),
-            q('Uma caixa cúbica de aresta 7 cm tem volume de:', ['A) 343 cm³', 'B) 349 cm³', 'C) 353 cm³', 'D) 363 cm³'], 0, 'matematica'),
-            q('Em uma sala, 35% são mulheres. Se há 21 mulheres, quantas pessoas há no total?', ['A) 55', 'B) 58', 'C) 60', 'D) 62'], 2, 'matematica'),
-            q('Qual o próximo termo: 2, 5, 10, 17, 26, ...?', ['A) 35', 'B) 36', 'C) 37', 'D) 38'], 2, 'matematica'),
-            q('Um investimento de R$ 10.000,00 a juros compostos de 10% ao ano, após 2 anos, qual o montante?', ['A) R$ 12.000,00', 'B) R$ 12.100,00', 'C) R$ 12.200,00', 'D) R$ 12.300,00'], 1, 'matematica'),
-            q('Resolva a expressão: (8 + 4) ÷ 3 + 2 × 5 = ?', ['A) 12', 'B) 14', 'C) 16', 'D) 18'], 1, 'matematica'),
-            q('Qual o valor de x: 5x – 3 = 2x + 12?', ['A) 4', 'B) 5', 'C) 6', 'D) 7'], 1, 'matematica'),
-            q('Um produto com lucro de 25% é vendido por R$ 500,00. Qual o custo?', ['A) R$ 380,00', 'B) R$ 390,00', 'C) R$ 400,00', 'D) R$ 410,00'], 2, 'matematica'),
-            q('Em uma progressão aritmética, a1 = 8, r = -3. Qual o 7º termo?', ['A) -10', 'B) -11', 'C) -12', 'D) -13'], 0, 'matematica'),
-            q('Uma caixa de 5 dm de aresta tem volume em litros:', ['A) 125 L', 'B) 130 L', 'C) 135 L', 'D) 140 L'], 0, 'matematica'),
-            q('Uma empresa vendeu 70% de seu estoque, restando 150 unidades. Quantas havia inicialmente?', ['A) 450', 'B) 480', 'C) 500', 'D) 520'], 2, 'matematica'),
-            q('Qual o valor de y: 2y + 5 = 19?', ['A) 6', 'B) 7', 'C) 8', 'D) 9'], 1, 'matematica'),
-            q('Um relógio atrasa 3 minutos por hora. Em 8 horas, quanto atrasará?', ['A) 20 min', 'B) 22 min', 'C) 24 min', 'D) 26 min'], 2, 'matematica'),
-            q('Em uma festa, a razão entre homens e mulheres é 4/3. Se há 40 homens, quantas mulheres há?', ['A) 25', 'B) 28', 'C) 30', 'D) 32'], 2, 'matematica'),
-            q('Um capital de R$ 5.000,00 em 4 meses rende R$ 400,00 de juros simples. Qual a taxa mensal?', ['A) 1,5%', 'B) 2%', 'C) 2,5%', 'D) 3%'], 1, 'matematica'),
-            q('Observe: 6, 12, 24, 48, ... Qual o próximo?', ['A) 72', 'B) 80', 'C) 96', 'D) 100'], 2, 'matematica'),
-            q('Resolva: 4³ – 3² = ?', ['A) 55', 'B) 58', 'C) 60', 'D) 64'], 0, 'matematica'),
-            q('Qual o valor de x: x/6 = 7?', ['A) 36', 'B) 38', 'C) 40', 'D) 42'], 3, 'matematica'),
-            q('Um trem viaja 300 km em 4 horas. Qual a velocidade em km/h?', ['A) 70', 'B) 72', 'C) 75', 'D) 80'], 2, 'matematica'),
-            q('Em uma sala, 40% dos presentes são homens. Se há 16 homens, quantas pessoas há no total?', ['A) 36', 'B) 38', 'C) 40', 'D) 42'], 2, 'matematica'),
-            q('Qual o valor de x: 2x/5 = 8?', ['A) 18', 'B) 19', 'C) 20', 'D) 21'], 2, 'matematica'),
-            q('Um investidor aplica R$ 2.000,00 a juros compostos de 5% ao mês. Após 3 meses, qual o montante? (use 1,05³=1,157625)', ['A) R$ 2.300,00', 'B) R$ 2.315,25', 'C) R$ 2.320,00', 'D) R$ 2.325,00'], 1, 'matematica'),
-            q('Qual o próximo termo: 1, 1, 2, 3, 5, 8, 13, ...?', ['A) 20', 'B) 21', 'C) 22', 'D) 23'], 1, 'matematica'),
-            q('Uma piscina de 8m × 5m × 2m tem volume em litros:', ['A) 80.000 L', 'B) 85.000 L', 'C) 90.000 L', 'D) 95.000 L'], 0, 'matematica'),
-            q('Uma peça custa R$ 200,00 com aumento de 18%. Qual o novo preço?', ['A) R$ 230,00', 'B) R$ 234,00', 'C) R$ 236,00', 'D) R$ 240,00'], 2, 'matematica'),
-            q('Resolva: (10 – 3) × 4 + 6 = ?', ['A) 30', 'B) 32', 'C) 34', 'D) 36'], 2, 'matematica'),
-            q('Qual o valor de y: 3y – 5 = 16?', ['A) 6', 'B) 7', 'C) 8', 'D) 9'], 1, 'matematica'),
-            q('Um produto com preço de custo R$ 80,00 foi vendido com lucro de 30%. Qual o preço de venda?', ['A) R$ 100,00', 'B) R$ 104,00', 'C) R$ 108,00', 'D) R$ 110,00'], 1, 'matematica'),
-            q('Em uma progressão aritmética, a1 = 15, r = -2. Qual o 8º termo?', ['A) 1', 'B) 2', 'C) 3', 'D) 4'], 0, 'matematica'),
-            q('Uma caixa de 6 cm de aresta tem área total (superfície):', ['A) 196 cm²', 'B) 200 cm²', 'C) 216 cm²', 'D) 256 cm²'], 2, 'matematica'),
-            q('Em uma prova, 25% dos alunos foram reprovados. Se 75 foram aprovados, quantos alunos fizeram a prova?', ['A) 90', 'B) 95', 'C) 100', 'D) 105'], 2, 'matematica'),
-            q('Qual o valor de z: 4z + 7 = 35?', ['A) 6', 'B) 7', 'C) 8', 'D) 9'], 1, 'matematica'),
-            q('Um atleta corre 6 km em 30 minutos. Qual a velocidade em m/s?', ['A) 2,5', 'B) 3,0', 'C) 3,33', 'D) 4,0'], 2, 'matematica'),
-            q('Em uma pesquisa, 80% preferem o produto A, 15% o B e o restante C. Se 400 pessoas foram entrevistadas, quantas preferem C?', ['A) 15', 'B) 20', 'C) 25', 'D) 30'], 1, 'matematica'),
-            q('Um capital de R$ 8.000,00 em 3 meses rendeu R$ 600,00 de juros simples. A taxa anual é:', ['A) 24%', 'B) 28%', 'C) 30%', 'D) 36%'], 2, 'matematica'),
-            q('Observe: 7, 14, 21, 28, ... Qual o 10º termo?', ['A) 60', 'B) 63', 'C) 66', 'D) 70'], 3, 'matematica'),
-            q('Resolva: 2⁵ – 3³ = ?', ['A) 2', 'B) 4', 'C) 5', 'D) 6'], 2, 'matematica'),
-            q('Qual o valor de x: x/8 = 5?', ['A) 30', 'B) 35', 'C) 40', 'D) 45'], 2, 'matematica'),
-            q('Um ônibus percorre 240 km em 3h20min. Qual a velocidade média em km/h?', ['A) 68', 'B) 70', 'C) 72', 'D) 75'], 2, 'matematica'),
-            q('Em uma turma, 60% são mulheres. Se há 18 mulheres, quantos alunos há no total?', ['A) 28', 'B) 29', 'C) 30', 'D) 31'], 2, 'matematica'),
-            q('Qual o valor de y: 5y – 8 = 2y + 10?', ['A) 5', 'B) 6', 'C) 7', 'D) 8'], 1, 'matematica'),
-            q('Um produto com desconto de 20% é vendido por R$ 240,00. Qual o preço original?', ['A) R$ 280,00', 'B) R$ 290,00', 'C) R$ 300,00', 'D) R$ 310,00'], 2, 'matematica'),
-            q('Em uma PA, a1 = 20, r = -4. Qual o 6º termo?', ['A) 0', 'B) 1', 'C) 2', 'D) 3'], 0, 'matematica'),
-            q('Uma caixa de 4 cm de aresta tem área total:', ['A) 80 cm²', 'B) 90 cm²', 'C) 96 cm²', 'D) 100 cm²'], 2, 'matematica'),
-            q('Em uma prova, 30% dos alunos foram reprovados. Se 70 foram aprovados, quantos alunos fizeram a prova?', ['A) 90', 'B) 95', 'C) 100', 'D) 105'], 2, 'matematica'),
-            q('Qual o valor de z: 3z + 9 = 30?', ['A) 5', 'B) 6', 'C) 7', 'D) 8'], 2, 'matematica'),
-            q('Um atleta corre 4 km em 20 min. Qual a velocidade em m/s?', ['A) 2,5', 'B) 3,0', 'C) 3,33', 'D) 4,0'], 2, 'matematica'),
-            q('Em uma pesquisa, 55% preferem A, 30% B e o restante C. Se 500 pessoas, quantas preferem C?', ['A) 55', 'B) 60', 'C) 65', 'D) 75'], 3, 'matematica'),
-            q('Um capital de R$ 10.000,00 em 5 meses rendeu R$ 1.000,00 de juros simples. A taxa anual é:', ['A) 20%', 'B) 24%', 'C) 25%', 'D) 30%'], 1, 'matematica')
+            criarQuestao(`Um analista recebe R$ 4.140,76 e tem um aumento de 12%. Qual será seu novo salário? (Aproxime para duas casas decimais)`, ['A) R$ 4.637,65', 'B) R$ 4.737,65', 'C) R$ 4.837,65', 'D) R$ 4.937,65'], 0, 'matematica'),
+            criarQuestao(`Se 4 analistas produzem 24 relatórios em 3 horas, quantos relatórios 6 analistas produzirão em 5 horas?`, ['A) 40', 'B) 50', 'C) 60', 'D) 70'], 2, 'matematica'),
+            criarQuestao(`Qual o valor de x na equação: 4x – 9 = 2x + 7?`, ['A) 6', 'B) 7', 'C) 8', 'D) 9'], 2, 'matematica'),
+            criarQuestao(`Um capital de R$ 6.000,00 aplicado a juros simples de 3% ao mês, após 5 meses, qual o montante?`, ['A) R$ 6.900,00', 'B) R$ 7.000,00', 'C) R$ 7.100,00', 'D) R$ 7.200,00'], 0, 'matematica'),
+            criarQuestao(`Observe a sequência: 3, 8, 15, 24, 35, ... Qual o próximo termo?`, ['A) 46', 'B) 48', 'C) 50', 'D) 52'], 1, 'matematica'),
+            criarQuestao(`Uma sala retangular mede 18 m de comprimento e 12 m de largura. Qual a área em m²?`, ['A) 180', 'B) 200', 'C) 210', 'D) 216'], 3, 'matematica'),
+            criarQuestao(`Em uma pesquisa, 65% preferem o produto A, 25% o B e o restante o C. Se 800 pessoas foram entrevistadas, quantas preferem C?`, ['A) 60', 'B) 70', 'C) 80', 'D) 90'], 2, 'matematica'),
+            criarQuestao(`Um produto que custa R$ 320,00 sofre desconto de 15%. Qual o novo preço?`, ['A) R$ 268,00', 'B) R$ 272,00', 'C) R$ 280,00', 'D) R$ 288,00'], 1, 'matematica'),
+            criarQuestao(`Resolva: 6 × (4 + 2) – 8 ÷ 2 = ?`, ['A) 30', 'B) 32', 'C) 34', 'D) 36'], 1, 'matematica'),
+            criarQuestao(`Qual o valor de x: 3x/4 = 9?`, ['A) 10', 'B) 11', 'C) 12', 'D) 13'], 2, 'matematica'),
+            criarQuestao(`Duas torneiras enchem um tanque em 4h e 6h, respectivamente. Juntas, em quanto tempo o enchem?`, ['A) 2,0h', 'B) 2,2h', 'C) 2,4h', 'D) 2,6h'], 2, 'matematica'),
+            criarQuestao(`A média aritmética de 15, 25, 35, 45 e 55 é:`, ['A) 30', 'B) 33', 'C) 35', 'D) 40'], 2, 'matematica'),
+            criarQuestao(`Uma caixa cúbica de aresta 7 cm tem volume de:`, ['A) 343 cm³', 'B) 349 cm³', 'C) 353 cm³', 'D) 363 cm³'], 0, 'matematica'),
+            criarQuestao(`Em uma sala, 35% são mulheres. Se há 21 mulheres, quantas pessoas há no total?`, ['A) 55', 'B) 58', 'C) 60', 'D) 62'], 2, 'matematica'),
+            criarQuestao(`Qual o próximo termo: 2, 5, 10, 17, 26, ...?`, ['A) 35', 'B) 36', 'C) 37', 'D) 38'], 2, 'matematica'),
+            criarQuestao(`Um investimento de R$ 10.000,00 a juros compostos de 10% ao ano, após 2 anos, qual o montante?`, ['A) R$ 12.000,00', 'B) R$ 12.100,00', 'C) R$ 12.200,00', 'D) R$ 12.300,00'], 1, 'matematica'),
+            criarQuestao(`Resolva a expressão: (8 + 4) ÷ 3 + 2 × 5 = ?`, ['A) 12', 'B) 14', 'C) 16', 'D) 18'], 1, 'matematica'),
+            criarQuestao(`Qual o valor de x: 5x – 3 = 2x + 12?`, ['A) 4', 'B) 5', 'C) 6', 'D) 7'], 1, 'matematica'),
+            criarQuestao(`Um produto com lucro de 25% é vendido por R$ 500,00. Qual o custo?`, ['A) R$ 380,00', 'B) R$ 390,00', 'C) R$ 400,00', 'D) R$ 410,00'], 2, 'matematica'),
+            criarQuestao(`Em uma progressão aritmética, a1 = 8, r = -3. Qual o 7º termo?`, ['A) -10', 'B) -11', 'C) -12', 'D) -13'], 0, 'matematica'),
+            criarQuestao(`Uma caixa de 5 dm de aresta tem volume em litros:`, ['A) 125 L', 'B) 130 L', 'C) 135 L', 'D) 140 L'], 0, 'matematica'),
+            criarQuestao(`Uma empresa vendeu 70% de seu estoque, restando 150 unidades. Quantas havia inicialmente?`, ['A) 450', 'B) 480', 'C) 500', 'D) 520'], 2, 'matematica'),
+            criarQuestao(`Qual o valor de y: 2y + 5 = 19?`, ['A) 6', 'B) 7', 'C) 8', 'D) 9'], 1, 'matematica'),
+            criarQuestao(`Um relógio atrasa 3 minutos por hora. Em 8 horas, quanto atrasará?`, ['A) 20 min', 'B) 22 min', 'C) 24 min', 'D) 26 min'], 2, 'matematica'),
+            criarQuestao(`Em uma festa, a razão entre homens e mulheres é 4/3. Se há 40 homens, quantas mulheres há?`, ['A) 25', 'B) 28', 'C) 30', 'D) 32'], 2, 'matematica'),
+            criarQuestao(`Um capital de R$ 5.000,00 em 4 meses rende R$ 400,00 de juros simples. Qual a taxa mensal?`, ['A) 1,5%', 'B) 2%', 'C) 2,5%', 'D) 3%'], 1, 'matematica'),
+            criarQuestao(`Observe: 6, 12, 24, 48, ... Qual o próximo?`, ['A) 72', 'B) 80', 'C) 96', 'D) 100'], 2, 'matematica'),
+            criarQuestao(`Resolva: 4³ – 3² = ?`, ['A) 55', 'B) 58', 'C) 60', 'D) 64'], 0, 'matematica'),
+            criarQuestao(`Qual o valor de x: x/6 = 7?`, ['A) 36', 'B) 38', 'C) 40', 'D) 42'], 3, 'matematica'),
+            criarQuestao(`Um trem viaja 300 km em 4 horas. Qual a velocidade em km/h?`, ['A) 70', 'B) 72', 'C) 75', 'D) 80'], 2, 'matematica'),
+            criarQuestao(`Em uma sala, 40% dos presentes são homens. Se há 16 homens, quantas pessoas há no total?`, ['A) 36', 'B) 38', 'C) 40', 'D) 42'], 2, 'matematica'),
+            criarQuestao(`Qual o valor de x: 2x/5 = 8?`, ['A) 18', 'B) 19', 'C) 20', 'D) 21'], 2, 'matematica'),
+            criarQuestao(`Um investidor aplica R$ 2.000,00 a juros compostos de 5% ao mês. Após 3 meses, qual o montante? (use 1,05³=1,157625)`, ['A) R$ 2.300,00', 'B) R$ 2.315,25', 'C) R$ 2.320,00', 'D) R$ 2.325,00'], 1, 'matematica'),
+            criarQuestao(`Qual o próximo termo: 1, 1, 2, 3, 5, 8, 13, ...?`, ['A) 20', 'B) 21', 'C) 22', 'D) 23'], 1, 'matematica'),
+            criarQuestao(`Uma piscina de 8m × 5m × 2m tem volume em litros:`, ['A) 80.000 L', 'B) 85.000 L', 'C) 90.000 L', 'D) 95.000 L'], 0, 'matematica'),
+            criarQuestao(`Uma peça custa R$ 200,00 com aumento de 18%. Qual o novo preço?`, ['A) R$ 230,00', 'B) R$ 234,00', 'C) R$ 236,00', 'D) R$ 240,00'], 2, 'matematica'),
+            criarQuestao(`Resolva: (10 – 3) × 4 + 6 = ?`, ['A) 30', 'B) 32', 'C) 34', 'D) 36'], 2, 'matematica'),
+            criarQuestao(`Qual o valor de y: 3y – 5 = 16?`, ['A) 6', 'B) 7', 'C) 8', 'D) 9'], 1, 'matematica'),
+            criarQuestao(`Um produto com preço de custo R$ 80,00 foi vendido com lucro de 30%. Qual o preço de venda?`, ['A) R$ 100,00', 'B) R$ 104,00', 'C) R$ 108,00', 'D) R$ 110,00'], 1, 'matematica'),
+            criarQuestao(`Em uma progressão aritmética, a1 = 15, r = -2. Qual o 8º termo?`, ['A) 1', 'B) 2', 'C) 3', 'D) 4'], 0, 'matematica'),
+            criarQuestao(`Uma caixa de 6 cm de aresta tem área total (superfície):`, ['A) 196 cm²', 'B) 200 cm²', 'C) 216 cm²', 'D) 256 cm²'], 2, 'matematica'),
+            criarQuestao(`Em uma prova, 25% dos alunos foram reprovados. Se 75 foram aprovados, quantos alunos fizeram a prova?`, ['A) 90', 'B) 95', 'C) 100', 'D) 105'], 2, 'matematica'),
+            criarQuestao(`Qual o valor de z: 4z + 7 = 35?`, ['A) 6', 'B) 7', 'C) 8', 'D) 9'], 1, 'matematica'),
+            criarQuestao(`Um atleta corre 6 km em 30 minutos. Qual a velocidade em m/s?`, ['A) 2,5', 'B) 3,0', 'C) 3,33', 'D) 4,0'], 2, 'matematica'),
+            criarQuestao(`Em uma pesquisa, 80% preferem o produto A, 15% o B e o restante C. Se 400 pessoas foram entrevistadas, quantas preferem C?`, ['A) 15', 'B) 20', 'C) 25', 'D) 30'], 1, 'matematica'),
+            criarQuestao(`Um capital de R$ 8.000,00 em 3 meses rendeu R$ 600,00 de juros simples. A taxa anual é:`, ['A) 24%', 'B) 28%', 'C) 30%', 'D) 36%'], 2, 'matematica'),
+            criarQuestao(`Observe: 7, 14, 21, 28, ... Qual o 10º termo?`, ['A) 60', 'B) 63', 'C) 66', 'D) 70'], 3, 'matematica'),
+            criarQuestao(`Resolva: 2⁵ – 3³ = ?`, ['A) 2', 'B) 4', 'C) 5', 'D) 6'], 2, 'matematica'),
+            criarQuestao(`Qual o valor de x: x/8 = 5?`, ['A) 30', 'B) 35', 'C) 40', 'D) 45'], 2, 'matematica'),
+            criarQuestao(`Um ônibus percorre 240 km em 3h20min. Qual a velocidade média em km/h?`, ['A) 68', 'B) 70', 'C) 72', 'D) 75'], 2, 'matematica'),
+            criarQuestao(`Em uma turma, 60% são mulheres. Se há 18 mulheres, quantos alunos há no total?`, ['A) 28', 'B) 29', 'C) 30', 'D) 31'], 2, 'matematica'),
+            criarQuestao(`Qual o valor de y: 5y – 8 = 2y + 10?`, ['A) 5', 'B) 6', 'C) 7', 'D) 8'], 1, 'matematica'),
+            criarQuestao(`Um produto com desconto de 20% é vendido por R$ 240,00. Qual o preço original?`, ['A) R$ 280,00', 'B) R$ 290,00', 'C) R$ 300,00', 'D) R$ 310,00'], 2, 'matematica'),
+            criarQuestao(`Em uma PA, a1 = 20, r = -4. Qual o 6º termo?`, ['A) 0', 'B) 1', 'C) 2', 'D) 3'], 0, 'matematica'),
+            criarQuestao(`Uma caixa de 4 cm de aresta tem área total:`, ['A) 80 cm²', 'B) 90 cm²', 'C) 96 cm²', 'D) 100 cm²'], 2, 'matematica'),
+            criarQuestao(`Em uma prova, 30% dos alunos foram reprovados. Se 70 foram aprovados, quantos alunos fizeram a prova?`, ['A) 90', 'B) 95', 'C) 100', 'D) 105'], 2, 'matematica'),
+            criarQuestao(`Qual o valor de z: 3z + 9 = 30?`, ['A) 5', 'B) 6', 'C) 7', 'D) 8'], 2, 'matematica'),
+            criarQuestao(`Um atleta corre 4 km em 20 min. Qual a velocidade em m/s?`, ['A) 2,5', 'B) 3,0', 'C) 3,33', 'D) 4,0'], 2, 'matematica'),
+            criarQuestao(`Em uma pesquisa, 55% preferem A, 30% B e o restante C. Se 500 pessoas, quantas preferem C?`, ['A) 55', 'B) 60', 'C) 65', 'D) 75'], 3, 'matematica'),
+            criarQuestao(`Um capital de R$ 10.000,00 em 5 meses rendeu R$ 1.000,00 de juros simples. A taxa anual é:`, ['A) 20%', 'B) 24%', 'C) 25%', 'D) 30%'], 1, 'matematica')
         ];
 
         // ---------- ADMINISTRAÇÃO (peso 2) ----------
         const adm = [
-            q('A Constituição Federal estabelece que a Administração Pública direta e indireta deve obedecer aos princípios da legalidade, impessoalidade, moralidade, publicidade e:', ['A) Eficiência', 'B) Continuidade', 'C) Economicidade', 'D) Transparência'], 0, 'administracao'),
-            q('A Lei nº 12.527/2011 (Lei de Acesso à Informação) garante que:', ['A) As informações sigilosas podem ser ocultadas indefinidamente.', 'B) O acesso à informação é restrito a servidores públicos.', 'C) Os órgãos públicos devem fornecer acesso às informações, salvo hipóteses de sigilo.', 'D) As informações pessoais podem ser divulgadas sem restrição.'], 2, 'administracao'),
-            q('A Lei nº 13.709/2018 (LGPD) estabelece que o tratamento de dados pessoais deve observar, entre outros, o princípio da:', ['A) Publicidade', 'B) Impessoalidade', 'C) Finalidade', 'D) Moralidade'], 2, 'administracao'),
-            q('A Lei nº 14.129/2021 (Governo Digital) tem como um de seus objetivos:', ['A) Reduzir o uso de tecnologia na administração pública.', 'B) Modernizar a administração pública e melhorar a prestação de serviços ao cidadão.', 'C) Limitar o acesso do cidadão aos serviços públicos digitais.', 'D) Centralizar decisões tecnológicas.'], 1, 'administracao'),
-            q('De acordo com a Lei nº 14.133/2021 (Nova Lei de Licitações), a contratação de soluções de TI deve considerar:', ['A) Apenas o menor preço.', 'B) A interoperabilidade e a acessibilidade.', 'C) Exclusivamente o pregão eletrônico.', 'D) A dispensa de análise técnica.'], 1, 'administracao'),
-            q('A Lei Orgânica do Município de Bragança Paulista determina que a administração municipal:', ['A) Deve centralizar todas as decisões no Prefeito.', 'B) Deve garantir transparência e controle social.', 'C) Pode dispensar prestação de contas.', 'D) Ignora os princípios federais.'], 1, 'administracao'),
-            q('De acordo com a Lei nº 13.460/2017, os usuários dos serviços públicos têm direito a:', ['A) Tratamento diferenciado baseado em critérios subjetivos.', 'B) Participação no controle da prestação dos serviços.', 'C) Serviços sem prazo para conclusão.', 'D) Acesso restrito a informações.'], 1, 'administracao'),
-            q('A interoperabilidade na administração pública digital significa:', ['A) Proibição de compartilhamento de dados.', 'B) Capacidade de sistemas e órgãos diferentes trocarem informações de forma integrada.', 'C) Uso exclusivo de sistemas proprietários.', 'D) Criação de barreiras para integração.'], 1, 'administracao'),
-            q('O princípio da legalidade na Administração Pública significa que:', ['A) O administrador pode fazer tudo o que a lei não proíbe.', 'B) O administrador só pode fazer o que a lei autoriza.', 'C) A lei é apenas uma recomendação.', 'D) O administrador pode agir por conveniência.'], 1, 'administracao'),
-            q('A Lei de Acesso à Informação prevê que informações classificadas como sigilosas podem ter sua divulgação restrita por, no máximo:', ['A) 10 anos', 'B) 15 anos', 'C) 20 anos', 'D) 25 anos'], 3, 'administracao'),
-            q('Segundo a LGPD, o tratamento de dados pessoais deve ser feito de forma:', ['A) Arbitrária.', 'B) Transparente.', 'C) Sigilosa e restrita.', 'D) Sem necessidade de consentimento.'], 1, 'administracao'),
-            q('O Governo Digital, conforme a Lei 14.129/2021, busca:', ['A) Digitalizar todos os serviços públicos até 2025.', 'B) Ampliar a oferta de serviços públicos digitais.', 'C) Reduzir o número de servidores públicos.', 'D) Centralizar a gestão de TI.'], 1, 'administracao'),
-            q('Na Nova Lei de Licitações, a contratação de bens e serviços deve observar, dentre outros, o princípio da:', ['A) Discricionariedade.', 'B) Competitividade.', 'C) Sigilo.', 'D) Segregação.'], 1, 'administracao'),
-            q('A Lei Orgânica do Município de Bragança Paulista estabelece que a fiscalização do Município será exercida:', ['A) Exclusivamente pelo Prefeito.', 'B) Pela Câmara Municipal e pelo Tribunal de Contas.', 'C) Pelo Judiciário.', 'D) Pelo Ministério Público.'], 1, 'administracao'),
-            q('A Lei nº 13.460/2017 assegura aos usuários de serviços públicos o direito de:', ['A) Manifestar-se sobre a qualidade dos serviços.', 'B) Exigir atendimento prioritário.', 'C) Participar da gestão dos serviços.', 'D) Todas as alternativas.'], 3, 'administracao'),
-            q('O compartilhamento de dados entre órgãos públicos, para fins de interoperabilidade, deve respeitar:', ['A) O sigilo absoluto.', 'B) A LGPD.', 'C) A vontade do órgão.', 'D) A decisão do gestor.'], 1, 'administracao'),
-            q('O princípio da impessoalidade na Administração Pública veda:', ['A) A promoção pessoal de agentes públicos.', 'B) A eficiência administrativa.', 'C) A transparência.', 'D) A moralidade.'], 0, 'administracao'),
-            q('A Lei de Acesso à Informação garante o direito de acesso a informações de interesse coletivo, salvo:', ['A) Informações de natureza pessoal.', 'B) Informações classificadas como ultrassecretas.', 'C) Informações sigilosas.', 'D) Todas as alternativas.'], 3, 'administracao'),
-            q('A LGPD estabelece que o controlador de dados é o responsável por:', ['A) Processar dados apenas com autorização judicial.', 'B) Tomar decisões sobre o tratamento de dados.', 'C) Eliminar todos os dados após o uso.', 'D) Compartilhar dados com terceiros.'], 1, 'administracao'),
-            q('O Governo Digital prevê a simplificação de processos administrativos por meio de:', ['A) Papel e assinatura física.', 'B) Tecnologias de informação e comunicação.', 'C) Eliminação de controles.', 'D) Centralização de decisões.'], 1, 'administracao'),
-            q('A Nova Lei de Licitações prevê que os contratos administrativos devem ser celebrados com base em:', ['A) Estudos preliminares.', 'B) Planos de trabalho.', 'C) Projetos básicos.', 'D) Todas as alternativas.'], 3, 'administracao'),
-            q('A Lei Orgânica do Município de Bragança Paulista dispõe sobre:', ['A) A organização político-administrativa do Município.', 'B) A criação de empregos públicos.', 'C) A tributação municipal.', 'D) Todas as alternativas.'], 3, 'administracao'),
-            q('De acordo com a Lei 13.460/2017, o usuário de serviços públicos tem direito a:', ['A) Ser tratado com respeito e dignidade.', 'B) Receber informações claras e precisas.', 'C) Apresentar reclamações e sugestões.', 'D) Todas as alternativas.'], 3, 'administracao'),
-            q('A interoperabilidade entre sistemas públicos exige:', ['A) Padronização de dados e formatos.', 'B) Utilização exclusiva de software livre.', 'C) Eliminação de sistemas legados.', 'D) Centralização de todos os dados.'], 0, 'administracao'),
-            q('O princípio da moralidade na Administração Pública implica que:', ['A) O agente público deve agir com honestidade e boa-fé.', 'B) O agente público pode agir por interesse próprio.', 'C) A moralidade é facultativa.', 'D) A moralidade só se aplica a servidores.'], 0, 'administracao'),
-            q('A Lei de Acesso à Informação estabelece que a classificação de sigilo é de competência:', ['A) Do servidor que produziu a informação.', 'B) Da autoridade competente.', 'C) Do Ministério Público.', 'D) Do Tribunal de Contas.'], 1, 'administracao'),
-            q('A LGPD estabelece que dados pessoais sensíveis:', ['A) Podem ser tratados livremente.', 'B) Exigem medidas de segurança adicionais.', 'C) Não podem ser tratados de forma alguma.', 'D) Podem ser tratados sem consentimento.'], 1, 'administracao'),
-            q('O Governo Digital promove a transformação digital por meio de:', ['A) Aumento de burocracia.', 'B) Simplificação de processos.', 'C) Eliminação de serviços públicos.', 'D) Centralização de decisões.'], 1, 'administracao'),
-            q('A Nova Lei de Licitações prevê a modalidade de pregão eletrônico para:', ['A) Obras de grande porte.', 'B) Serviços de TI.', 'C) Compras de medicamentos.', 'D) Todas as alternativas.'], 1, 'administracao'),
-            q('A Lei Orgânica de Bragança Paulista estabelece que a administração municipal deve:', ['A) Observar os princípios da administração pública.', 'B) Atuar com transparência.', 'C) Prestar contas à sociedade.', 'D) Todas as alternativas.'], 3, 'administracao'),
-            q('A Lei 13.460/2017 prevê o direito do usuário de:', ['A) Obter informações sobre o andamento do serviço.', 'B) Ser atendido em sua língua.', 'C) Participar da avaliação dos serviços.', 'D) Todas as alternativas.'], 3, 'administracao'),
-            q('A interoperabilidade é essencial para:', ['A) A integração de sistemas públicos.', 'B) A redução de custos.', 'C) A melhoria do atendimento ao cidadão.', 'D) Todas as alternativas.'], 3, 'administracao'),
-            q('O princípio da publicidade exige que:', ['A) Todos os atos públicos sejam divulgados.', 'B) Apenas os atos importantes sejam divulgados.', 'C) A divulgação seja restrita.', 'D) Não há obrigação de divulgação.'], 0, 'administracao'),
-            q('A Lei de Acesso à Informação estabelece que as informações pessoais:', ['A) São sempre públicas.', 'B) Não podem ser divulgadas sem consentimento.', 'C) Podem ser divulgadas a qualquer tempo.', 'D) Devem ser destruídas.'], 1, 'administracao'),
-            q('A LGPD estabelece que o tratamento de dados deve ser:', ['A) Livre e gratuito.', 'B) Limitado ao necessário.', 'C) Amplo e irrestrito.', 'D) Sigiloso e não compartilhado.'], 1, 'administracao'),
-            q('O Governo Digital visa a criação de:', ['A) Serviços públicos mais eficientes.', 'B) Plataformas digitais integradas.', 'C) Canais de atendimento remoto.', 'D) Todas as alternativas.'], 3, 'administracao'),
-            q('A Nova Lei de Licitações exige que a contratação de TI considere:', ['A) A sustentabilidade.', 'B) A inovação.', 'C) A segurança da informação.', 'D) Todas as alternativas.'], 3, 'administracao'),
-            q('A Lei Orgânica do Município de Bragança Paulista foi promulgada em:', ['A) 1990', 'B) 1995', 'C) 2000', 'D) 2005'], 0, 'administracao'),
-            q('A Lei 13.460/2017 estabelece que os serviços públicos devem ser prestados com:', ['A) Qualidade e eficiência.', 'B) Celeridade.', 'C) Transparência.', 'D) Todas as alternativas.'], 3, 'administracao'),
-            q('A interoperabilidade na administração pública digital exige:', ['A) Adoção de padrões abertos.', 'B) Uso exclusivo de software proprietário.', 'C) Eliminação de sistemas antigos.', 'D) Centralização de todos os dados.'], 0, 'administracao'),
-            q('O princípio da eficiência na Administração Pública visa:', ['A) A redução de custos.', 'B) A melhoria da qualidade dos serviços.', 'C) A otimização de recursos.', 'D) Todas as alternativas.'], 3, 'administracao'),
-            q('A Lei de Acesso à Informação prevê que os órgãos públicos devem:', ['A) Criar sistemas de informação.', 'B) Capacitar servidores.', 'C) Disponibilizar informações em meio digital.', 'D) Todas as alternativas.'], 3, 'administracao'),
-            q('A LGPD estabelece que o titular dos dados tem direito a:', ['A) Acessar seus dados.', 'B) Corrigir dados incompletos.', 'C) Solicitar a eliminação de dados.', 'D) Todas as alternativas.'], 3, 'administracao'),
-            q('O Governo Digital promove a:', ['A) Desburocratização.', 'B) Automação de serviços.', 'C) Integração de dados.', 'D) Todas as alternativas.'], 3, 'administracao'),
-            q('A Nova Lei de Licitações prevê a utilização de:', ['A) Meios eletrônicos para divulgação.', 'B) Sistema de registro de preços.', 'C) Contratos de eficiência.', 'D) Todas as alternativas.'], 3, 'administracao'),
-            q('A Lei Orgânica do Município de Bragança Paulista prevê a participação popular em:', ['A) Audiências públicas.', 'B) Conselhos municipais.', 'C) Orçamento participativo.', 'D) Todas as alternativas.'], 3, 'administracao'),
-            q('A Lei 13.460/2017 garante ao usuário o direito de:', ['A) Receber atendimento prioritário.', 'B) Ter acessibilidade.', 'C) Ser ouvido em suas reclamações.', 'D) Todas as alternativas.'], 3, 'administracao'),
-            q('A interoperabilidade permite:', ['A) O compartilhamento de dados entre órgãos.', 'B) A redução de redundâncias.', 'C) A melhoria da qualidade das informações.', 'D) Todas as alternativas.'], 3, 'administracao'),
-            q('O princípio da legalidade na Administração Pública é de observância:', ['A) Discricionária.', 'B) Obrigatória.', 'C) Facultativa.', 'D) Restrita.'], 1, 'administracao'),
-            q('A Lei de Acesso à Informação estabelece que o sigilo de informações pode ser classificado em:', ['A) Reservado, secreto e ultrassecreto.', 'B) Confidencial, sigiloso e público.', 'C) Público, restrito e sigiloso.', 'D) Nenhuma das alternativas.'], 0, 'administracao'),
-            q('A LGPD estabelece que o tratamento de dados de crianças e adolescentes:', ['A) Deve ser feito com consentimento dos pais.', 'B) Não pode ser feito.', 'C) Pode ser feito livremente.', 'D) Deve ser autorizado judicialmente.'], 0, 'administracao'),
-            q('O Governo Digital prevê a utilização de:', ['A) Assinaturas eletrônicas.', 'B) Documentos digitais.', 'C) Processos eletrônicos.', 'D) Todas as alternativas.'], 3, 'administracao'),
-            q('A Nova Lei de Licitações prevê a sanção de:', ['A) Impedimento de licitar.', 'B) Multa.', 'C) Declaração de inidoneidade.', 'D) Todas as alternativas.'], 3, 'administracao'),
-            q('A Lei Orgânica do Município de Bragança Paulista estabelece que as leis municipais são de iniciativa:', ['A) Do Prefeito.', 'B) Dos Vereadores.', 'C) Do povo.', 'D) Todas as alternativas.'], 3, 'administracao'),
-            q('A Lei 13.460/2017 prevê que os serviços públicos devem ser prestados:', ['A) De forma contínua.', 'B) Com acessibilidade.', 'C) Com transparência.', 'D) Todas as alternativas.'], 3, 'administracao'),
-            q('A interoperabilidade entre sistemas públicos deve respeitar:', ['A) A segurança da informação.', 'B) A privacidade.', 'C) A integridade dos dados.', 'D) Todas as alternativas.'], 3, 'administracao'),
-            q('O princípio da impessoalidade veda:', ['A) O favorecimento pessoal.', 'B) A promoção pessoal.', 'C) O tratamento discriminatório.', 'D) Todas as alternativas.'], 3, 'administracao'),
-            q('A Lei de Acesso à Informação estabelece que as informações devem ser:', ['A) Divulgadas de forma ativa.', 'B) Fornecidas mediante solicitação.', 'C) Ambas as alternativas.', 'D) Nenhuma das alternativas.'], 2, 'administracao'),
-            q('A LGPD estabelece que o tratamento de dados pessoais deve ser:', ['A) Compatível com a finalidade.', 'B) Limitado ao necessário.', 'C) Transparente.', 'D) Todas as alternativas.'], 3, 'administracao'),
-            q('O Governo Digital prevê a criação de:', ['A) Portais de serviços.', 'B) Aplicativos móveis.', 'C) Centrais de atendimento digital.', 'D) Todas as alternativas.'], 3, 'administracao')
+            criarQuestao(`A Constituição Federal estabelece que a Administração Pública direta e indireta deve obedecer aos princípios da legalidade, impessoalidade, moralidade, publicidade e:`, ['A) Eficiência', 'B) Continuidade', 'C) Economicidade', 'D) Transparência'], 0, 'administracao'),
+            criarQuestao(`A Lei nº 12.527/2011 (Lei de Acesso à Informação) garante que:`, ['A) As informações sigilosas podem ser ocultadas indefinidamente.', 'B) O acesso à informação é restrito a servidores públicos.', 'C) Os órgãos públicos devem fornecer acesso às informações, salvo hipóteses de sigilo.', 'D) As informações pessoais podem ser divulgadas sem restrição.'], 2, 'administracao'),
+            criarQuestao(`A Lei nº 13.709/2018 (LGPD) estabelece que o tratamento de dados pessoais deve observar, entre outros, o princípio da:`, ['A) Publicidade', 'B) Impessoalidade', 'C) Finalidade', 'D) Moralidade'], 2, 'administracao'),
+            criarQuestao(`A Lei nº 14.129/2021 (Governo Digital) tem como um de seus objetivos:`, ['A) Reduzir o uso de tecnologia na administração pública.', 'B) Modernizar a administração pública e melhorar a prestação de serviços ao cidadão.', 'C) Limitar o acesso do cidadão aos serviços públicos digitais.', 'D) Centralizar decisões tecnológicas.'], 1, 'administracao'),
+            criarQuestao(`De acordo com a Lei nº 14.133/2021 (Nova Lei de Licitações), a contratação de soluções de TI deve considerar:`, ['A) Apenas o menor preço.', 'B) A interoperabilidade e a acessibilidade.', 'C) Exclusivamente o pregão eletrônico.', 'D) A dispensa de análise técnica.'], 1, 'administracao'),
+            criarQuestao(`A Lei Orgânica do Município de Bragança Paulista determina que a administração municipal:`, ['A) Deve centralizar todas as decisões no Prefeito.', 'B) Deve garantir transparência e controle social.', 'C) Pode dispensar prestação de contas.', 'D) Ignora os princípios federais.'], 1, 'administracao'),
+            criarQuestao(`De acordo com a Lei nº 13.460/2017, os usuários dos serviços públicos têm direito a:`, ['A) Tratamento diferenciado baseado em critérios subjetivos.', 'B) Participação no controle da prestação dos serviços.', 'C) Serviços sem prazo para conclusão.', 'D) Acesso restrito a informações.'], 1, 'administracao'),
+            criarQuestao(`A interoperabilidade na administração pública digital significa:`, ['A) Proibição de compartilhamento de dados.', 'B) Capacidade de sistemas e órgãos diferentes trocarem informações de forma integrada.', 'C) Uso exclusivo de sistemas proprietários.', 'D) Criação de barreiras para integração.'], 1, 'administracao'),
+            criarQuestao(`O princípio da legalidade na Administração Pública significa que:`, ['A) O administrador pode fazer tudo o que a lei não proíbe.', 'B) O administrador só pode fazer o que a lei autoriza.', 'C) A lei é apenas uma recomendação.', 'D) O administrador pode agir por conveniência.'], 1, 'administracao'),
+            criarQuestao(`A Lei de Acesso à Informação prevê que informações classificadas como sigilosas podem ter sua divulgação restrita por, no máximo:`, ['A) 10 anos', 'B) 15 anos', 'C) 20 anos', 'D) 25 anos'], 3, 'administracao'),
+            criarQuestao(`Segundo a LGPD, o tratamento de dados pessoais deve ser feito de forma:`, ['A) Arbitrária.', 'B) Transparente.', 'C) Sigilosa e restrita.', 'D) Sem necessidade de consentimento.'], 1, 'administracao'),
+            criarQuestao(`O Governo Digital, conforme a Lei 14.129/2021, busca:`, ['A) Digitalizar todos os serviços públicos até 2025.', 'B) Ampliar a oferta de serviços públicos digitais.', 'C) Reduzir o número de servidores públicos.', 'D) Centralizar a gestão de TI.'], 1, 'administracao'),
+            criarQuestao(`Na Nova Lei de Licitações, a contratação de bens e serviços deve observar, dentre outros, o princípio da:`, ['A) Discricionariedade.', 'B) Competitividade.', 'C) Sigilo.', 'D) Segregação.'], 1, 'administracao'),
+            criarQuestao(`A Lei Orgânica do Município de Bragança Paulista estabelece que a fiscalização do Município será exercida:`, ['A) Exclusivamente pelo Prefeito.', 'B) Pela Câmara Municipal e pelo Tribunal de Contas.', 'C) Pelo Judiciário.', 'D) Pelo Ministério Público.'], 1, 'administracao'),
+            criarQuestao(`A Lei nº 13.460/2017 assegura aos usuários de serviços públicos o direito de:`, ['A) Manifestar-se sobre a qualidade dos serviços.', 'B) Exigir atendimento prioritário.', 'C) Participar da gestão dos serviços.', 'D) Todas as alternativas.'], 3, 'administracao'),
+            criarQuestao(`O compartilhamento de dados entre órgãos públicos, para fins de interoperabilidade, deve respeitar:`, ['A) O sigilo absoluto.', 'B) A LGPD.', 'C) A vontade do órgão.', 'D) A decisão do gestor.'], 1, 'administracao'),
+            criarQuestao(`O princípio da impessoalidade na Administração Pública veda:`, ['A) A promoção pessoal de agentes públicos.', 'B) A eficiência administrativa.', 'C) A transparência.', 'D) A moralidade.'], 0, 'administracao'),
+            criarQuestao(`A Lei de Acesso à Informação garante o direito de acesso a informações de interesse coletivo, salvo:`, ['A) Informações de natureza pessoal.', 'B) Informações classificadas como ultrassecretas.', 'C) Informações sigilosas.', 'D) Todas as alternativas.'], 3, 'administracao'),
+            criarQuestao(`A LGPD estabelece que o controlador de dados é o responsável por:`, ['A) Processar dados apenas com autorização judicial.', 'B) Tomar decisões sobre o tratamento de dados.', 'C) Eliminar todos os dados após o uso.', 'D) Compartilhar dados com terceiros.'], 1, 'administracao'),
+            criarQuestao(`O Governo Digital prevê a simplificação de processos administrativos por meio de:`, ['A) Papel e assinatura física.', 'B) Tecnologias de informação e comunicação.', 'C) Eliminação de controles.', 'D) Centralização de decisões.'], 1, 'administracao'),
+            criarQuestao(`A Nova Lei de Licitações prevê que os contratos administrativos devem ser celebrados com base em:`, ['A) Estudos preliminares.', 'B) Planos de trabalho.', 'C) Projetos básicos.', 'D) Todas as alternativas.'], 3, 'administracao'),
+            criarQuestao(`A Lei Orgânica do Município de Bragança Paulista dispõe sobre:`, ['A) A organização político-administrativa do Município.', 'B) A criação de empregos públicos.', 'C) A tributação municipal.', 'D) Todas as alternativas.'], 3, 'administracao'),
+            criarQuestao(`De acordo com a Lei 13.460/2017, o usuário de serviços públicos tem direito a:`, ['A) Ser tratado com respeito e dignidade.', 'B) Receber informações claras e precisas.', 'C) Apresentar reclamações e sugestões.', 'D) Todas as alternativas.'], 3, 'administracao'),
+            criarQuestao(`A interoperabilidade entre sistemas públicos exige:`, ['A) Padronização de dados e formatos.', 'B) Utilização exclusiva de software livre.', 'C) Eliminação de sistemas legados.', 'D) Centralização de todos os dados.'], 0, 'administracao'),
+            criarQuestao(`O princípio da moralidade na Administração Pública implica que:`, ['A) O agente público deve agir com honestidade e boa-fé.', 'B) O agente público pode agir por interesse próprio.', 'C) A moralidade é facultativa.', 'D) A moralidade só se aplica a servidores.'], 0, 'administracao'),
+            criarQuestao(`A Lei de Acesso à Informação estabelece que a classificação de sigilo é de competência:`, ['A) Do servidor que produziu a informação.', 'B) Da autoridade competente.', 'C) Do Ministério Público.', 'D) Do Tribunal de Contas.'], 1, 'administracao'),
+            criarQuestao(`A LGPD estabelece que dados pessoais sensíveis:`, ['A) Podem ser tratados livremente.', 'B) Exigem medidas de segurança adicionais.', 'C) Não podem ser tratados de forma alguma.', 'D) Podem ser tratados sem consentimento.'], 1, 'administracao'),
+            criarQuestao(`O Governo Digital promove a transformação digital por meio de:`, ['A) Aumento de burocracia.', 'B) Simplificação de processos.', 'C) Eliminação de serviços públicos.', 'D) Centralização de decisões.'], 1, 'administracao'),
+            criarQuestao(`A Nova Lei de Licitações prevê a modalidade de pregão eletrônico para:`, ['A) Obras de grande porte.', 'B) Serviços de TI.', 'C) Compras de medicamentos.', 'D) Todas as alternativas.'], 1, 'administracao'),
+            criarQuestao(`A Lei Orgânica de Bragança Paulista estabelece que a administração municipal deve:`, ['A) Observar os princípios da administração pública.', 'B) Atuar com transparência.', 'C) Prestar contas à sociedade.', 'D) Todas as alternativas.'], 3, 'administracao'),
+            criarQuestao(`A Lei 13.460/2017 prevê o direito do usuário de:`, ['A) Obter informações sobre o andamento do serviço.', 'B) Ser atendido em sua língua.', 'C) Participar da avaliação dos serviços.', 'D) Todas as alternativas.'], 3, 'administracao'),
+            criarQuestao(`A interoperabilidade é essencial para:`, ['A) A integração de sistemas públicos.', 'B) A redução de custos.', 'C) A melhoria do atendimento ao cidadão.', 'D) Todas as alternativas.'], 3, 'administracao'),
+            criarQuestao(`O princípio da publicidade exige que:`, ['A) Todos os atos públicos sejam divulgados.', 'B) Apenas os atos importantes sejam divulgados.', 'C) A divulgação seja restrita.', 'D) Não há obrigação de divulgação.'], 0, 'administracao'),
+            criarQuestao(`A Lei de Acesso à Informação estabelece que as informações pessoais:`, ['A) São sempre públicas.', 'B) Não podem ser divulgadas sem consentimento.', 'C) Podem ser divulgadas a qualquer tempo.', 'D) Devem ser destruídas.'], 1, 'administracao'),
+            criarQuestao(`A LGPD estabelece que o tratamento de dados deve ser:`, ['A) Livre e gratuito.', 'B) Limitado ao necessário.', 'C) Amplo e irrestrito.', 'D) Sigiloso e não compartilhado.'], 1, 'administracao'),
+            criarQuestao(`O Governo Digital visa a criação de:`, ['A) Serviços públicos mais eficientes.', 'B) Plataformas digitais integradas.', 'C) Canais de atendimento remoto.', 'D) Todas as alternativas.'], 3, 'administracao'),
+            criarQuestao(`A Nova Lei de Licitações exige que a contratação de TI considere:`, ['A) A sustentabilidade.', 'B) A inovação.', 'C) A segurança da informação.', 'D) Todas as alternativas.'], 3, 'administracao'),
+            criarQuestao(`A Lei Orgânica do Município de Bragança Paulista foi promulgada em:`, ['A) 1990', 'B) 1995', 'C) 2000', 'D) 2005'], 0, 'administracao'),
+            criarQuestao(`A Lei 13.460/2017 estabelece que os serviços públicos devem ser prestados com:`, ['A) Qualidade e eficiência.', 'B) Celeridade.', 'C) Transparência.', 'D) Todas as alternativas.'], 3, 'administracao'),
+            criarQuestao(`A interoperabilidade na administração pública digital exige:`, ['A) Adoção de padrões abertos.', 'B) Uso exclusivo de software proprietário.', 'C) Eliminação de sistemas antigos.', 'D) Centralização de todos os dados.'], 0, 'administracao'),
+            criarQuestao(`O princípio da eficiência na Administração Pública visa:`, ['A) A redução de custos.', 'B) A melhoria da qualidade dos serviços.', 'C) A otimização de recursos.', 'D) Todas as alternativas.'], 3, 'administracao'),
+            criarQuestao(`A Lei de Acesso à Informação prevê que os órgãos públicos devem:`, ['A) Criar sistemas de informação.', 'B) Capacitar servidores.', 'C) Disponibilizar informações em meio digital.', 'D) Todas as alternativas.'], 3, 'administracao'),
+            criarQuestao(`A LGPD estabelece que o titular dos dados tem direito a:`, ['A) Acessar seus dados.', 'B) Corrigir dados incompletos.', 'C) Solicitar a eliminação de dados.', 'D) Todas as alternativas.'], 3, 'administracao'),
+            criarQuestao(`O Governo Digital promove a:`, ['A) Desburocratização.', 'B) Automação de serviços.', 'C) Integração de dados.', 'D) Todas as alternativas.'], 3, 'administracao'),
+            criarQuestao(`A Nova Lei de Licitações prevê a utilização de:`, ['A) Meios eletrônicos para divulgação.', 'B) Sistema de registro de preços.', 'C) Contratos de eficiência.', 'D) Todas as alternativas.'], 3, 'administracao'),
+            criarQuestao(`A Lei Orgânica do Município de Bragança Paulista prevê a participação popular em:`, ['A) Audiências públicas.', 'B) Conselhos municipais.', 'C) Orçamento participativo.', 'D) Todas as alternativas.'], 3, 'administracao'),
+            criarQuestao(`A Lei 13.460/2017 garante ao usuário o direito de:`, ['A) Receber atendimento prioritário.', 'B) Ter acessibilidade.', 'C) Ser ouvido em suas reclamações.', 'D) Todas as alternativas.'], 3, 'administracao'),
+            criarQuestao(`A interoperabilidade permite:`, ['A) O compartilhamento de dados entre órgãos.', 'B) A redução de redundâncias.', 'C) A melhoria da qualidade das informações.', 'D) Todas as alternativas.'], 3, 'administracao'),
+            criarQuestao(`O princípio da legalidade na Administração Pública é de observância:`, ['A) Discricionária.', 'B) Obrigatória.', 'C) Facultativa.', 'D) Restrita.'], 1, 'administracao'),
+            criarQuestao(`A Lei de Acesso à Informação estabelece que o sigilo de informações pode ser classificado em:`, ['A) Reservado, secreto e ultrassecreto.', 'B) Confidencial, sigiloso e público.', 'C) Público, restrito e sigiloso.', 'D) Nenhuma das alternativas.'], 0, 'administracao'),
+            criarQuestao(`A LGPD estabelece que o tratamento de dados de crianças e adolescentes:`, ['A) Deve ser feito com consentimento dos pais.', 'B) Não pode ser feito.', 'C) Pode ser feito livremente.', 'D) Deve ser autorizado judicialmente.'], 0, 'administracao'),
+            criarQuestao(`O Governo Digital prevê a utilização de:`, ['A) Assinaturas eletrônicas.', 'B) Documentos digitais.', 'C) Processos eletrônicos.', 'D) Todas as alternativas.'], 3, 'administracao'),
+            criarQuestao(`A Nova Lei de Licitações prevê a sanção de:`, ['A) Impedimento de licitar.', 'B) Multa.', 'C) Declaração de inidoneidade.', 'D) Todas as alternativas.'], 3, 'administracao'),
+            criarQuestao(`A Lei Orgânica do Município de Bragança Paulista estabelece que as leis municipais são de iniciativa:`, ['A) Do Prefeito.', 'B) Dos Vereadores.', 'C) Do povo.', 'D) Todas as alternativas.'], 3, 'administracao'),
+            criarQuestao(`A Lei 13.460/2017 prevê que os serviços públicos devem ser prestados:`, ['A) De forma contínua.', 'B) Com acessibilidade.', 'C) Com transparência.', 'D) Todas as alternativas.'], 3, 'administracao'),
+            criarQuestao(`A interoperabilidade entre sistemas públicos deve respeitar:`, ['A) A segurança da informação.', 'B) A privacidade.', 'C) A integridade dos dados.', 'D) Todas as alternativas.'], 3, 'administracao'),
+            criarQuestao(`O princípio da impessoalidade veda:`, ['A) O favorecimento pessoal.', 'B) A promoção pessoal.', 'C) O tratamento discriminatório.', 'D) Todas as alternativas.'], 3, 'administracao'),
+            criarQuestao(`A Lei de Acesso à Informação estabelece que as informações devem ser:`, ['A) Divulgadas de forma ativa.', 'B) Fornecidas mediante solicitação.', 'C) Ambas as alternativas.', 'D) Nenhuma das alternativas.'], 2, 'administracao'),
+            criarQuestao(`A LGPD estabelece que o tratamento de dados pessoais deve ser:`, ['A) Compatível com a finalidade.', 'B) Limitado ao necessário.', 'C) Transparente.', 'D) Todas as alternativas.'], 3, 'administracao'),
+            criarQuestao(`O Governo Digital prevê a criação de:`, ['A) Portais de serviços.', 'B) Aplicativos móveis.', 'C) Centrais de atendimento digital.', 'D) Todas as alternativas.'], 3, 'administracao')
         ];
 
         // ---------- TI (peso 3) ----------
         const ti = [
-            q('Em metodologias ágeis, o Scrum utiliza ciclos iterativos chamados:', ['A) Sprints', 'B) Releases', 'C) Milestones', 'D) Backlogs'], 0, 'ti'),
-            q('Em banco de dados relacionais, a linguagem SQL é utilizada para:', ['A) Criar interfaces gráficas.', 'B) Gerenciar e manipular dados.', 'C) Desenvolver aplicações web.', 'D) Projetar arquiteturas de rede.'], 1, 'ti'),
-            q('O que é um firewall?', ['A) Um software ou hardware que monitora e controla o tráfego de rede.', 'B) Um tipo de vírus.', 'C) Um sistema de backup.', 'D) Um editor de texto.'], 0, 'ti'),
-            q('O modelo OSI é composto por quantas camadas?', ['A) 5', 'B) 6', 'C) 7', 'D) 8'], 2, 'ti'),
-            q('Em programação orientada a objetos, o encapsulamento tem como objetivo:', ['A) Expor todos os atributos publicamente.', 'B) Proteger os dados internos, permitindo acesso apenas por métodos específicos.', 'C) Criar múltiplas instâncias.', 'D) Eliminar a herança.'], 1, 'ti'),
-            q('No Scrum, o papel responsável por definir e priorizar os itens do backlog do produto é:', ['A) Scrum Master', 'B) Product Owner', 'C) Time de Desenvolvimento', 'D) Stakeholder'], 1, 'ti'),
-            q('O que é um sistema de controle de versão (VCS)?', ['A) Uma ferramenta para gerenciar mudanças no código-fonte.', 'B) Um banco de dados.', 'C) Um editor de texto.', 'D) Um compilador.'], 0, 'ti'),
-            q('A tríade CIA em segurança da informação significa:', ['A) Confidencialidade, Integridade e Disponibilidade.', 'B) Controle, Inspeção e Auditoria.', 'C) Criptografia, Integridade e Autenticação.', 'D) Confiança, Identidade e Acesso.'], 0, 'ti'),
-            q('Em SQL, o comando SELECT é utilizado para:', ['A) Inserir dados.', 'B) Atualizar dados.', 'C) Consultar dados.', 'D) Excluir dados.'], 2, 'ti'),
-            q('O que é um ataque DDoS?', ['A) Um ataque que sobrecarrega um servidor com requisições.', 'B) Um ataque de phishing.', 'C) Um ataque físico.', 'D) Um ataque a banco de dados.'], 0, 'ti'),
-            q('O padrão de projeto Singleton garante que uma classe tenha:', ['A) Múltiplas instâncias simultâneas.', 'B) Apenas uma única instância.', 'C) Instâncias criadas sob demanda.', 'D) Instâncias destruídas automaticamente.'], 1, 'ti'),
-            q('Em redes de computadores, o protocolo DNS é usado para:', ['A) Resolver nomes de domínio em endereços IP.', 'B) Transferir arquivos.', 'C) Enviar e-mails.', 'D) Criptografar dados.'], 0, 'ti'),
-            q('O ITIL é um conjunto de boas práticas para:', ['A) Gestão de serviços de TI.', 'B) Governança de TI.', 'C) Desenvolvimento de software.', 'D) Segurança da informação.'], 0, 'ti'),
-            q('O que é um contêiner (Docker)?', ['A) Uma unidade de software que empacota código e dependências.', 'B) Um tipo de hardware.', 'C) Um firewall.', 'D) Um sistema operacional.'], 0, 'ti'),
-            q('Em segurança da informação, o que é phishing?', ['A) Enganar usuários para obter dados sensíveis.', 'B) Um vírus que criptografa dados.', 'C) Um ataque de negação de serviço.', 'D) Um firewall mal configurado.'], 0, 'ti'),
-            q('Em SQL, a cláusula WHERE é usada para:', ['A) Ordenar os resultados.', 'B) Filtrar registros.', 'C) Agrupar registros.', 'D) Juntar tabelas.'], 1, 'ti'),
-            q('O que é virtualização?', ['A) A criação de versões virtuais de recursos de hardware.', 'B) Um tipo de firewall.', 'C) Um protocolo de rede.', 'D) Um sistema operacional.'], 0, 'ti'),
-            q('A metodologia ágil Lean enfatiza:', ['A) Redução de desperdícios.', 'B) Entrega contínua de valor.', 'C) Empoderamento da equipe.', 'D) Todas as alternativas.'], 3, 'ti'),
-            q('O que é um API Gateway?', ['A) Um servidor que atua como intermediário para APIs.', 'B) Um firewall.', 'C) Um sistema de backup.', 'D) Um protocolo de rede.'], 0, 'ti'),
-            q('A normalização de banco de dados visa:', ['A) Reduzir redundâncias e evitar anomalias.', 'B) Aumentar a velocidade de consultas.', 'C) Facilitar a manutenção.', 'D) Todas as alternativas.'], 3, 'ti'),
-            q('O que é um microsserviço?', ['A) Uma arquitetura onde aplicações são divididas em serviços independentes.', 'B) Um tipo de firewall.', 'C) Um sistema de backup.', 'D) Um protocolo de rede.'], 0, 'ti'),
-            q('Em desenvolvimento web, qual linguagem é usada para estilizar páginas HTML?', ['A) JavaScript', 'B) CSS', 'C) PHP', 'D) SQL'], 1, 'ti'),
-            q('O que é um hypervisor?', ['A) Um software que gerencia máquinas virtuais.', 'B) Um firewall.', 'C) Um roteador.', 'D) Um switch.'], 0, 'ti'),
-            q('A LGPD é a lei brasileira que:', ['A) Protege dados pessoais.', 'B) Define padrões de firewall.', 'C) Regula contratos de TI.', 'D) Estabelece regras para redes.'], 0, 'ti'),
-            q('Em SQL, o comando UPDATE é usado para:', ['A) Inserir dados.', 'B) Modificar dados existentes.', 'C) Excluir dados.', 'D) Consultar dados.'], 1, 'ti'),
-            q('O que é um incidente de segurança?', ['A) Qualquer evento que possa comprometer a segurança.', 'B) Um ataque bem-sucedido.', 'C) Uma vulnerabilidade.', 'D) Um patch.'], 0, 'ti'),
-            q('No Kanban, o limite de WIP serve para:', ['A) Aumentar a quantidade de tarefas em andamento.', 'B) Limitar o número de tarefas em andamento para melhorar o fluxo.', 'C) Eliminar a priorização.', 'D) Reduzir a qualidade.'], 1, 'ti'),
-            q('O que é um balanceador de carga (load balancer)?', ['A) Um dispositivo que distribui tráfego entre servidores.', 'B) Um firewall.', 'C) Um roteador.', 'D) Um switch.'], 0, 'ti'),
-            q('Em programação orientada a objetos, a herança permite que uma classe:', ['A) Herde atributos e métodos de outra classe.', 'B) Modifique todos os métodos da classe pai.', 'C) Crie múltiplas instâncias.', 'D) Elimine o encapsulamento.'], 0, 'ti'),
-            q('O protocolo TCP é:', ['A) Orientado a conexão e confiável.', 'B) Não orientado a conexão.', 'C) Usado apenas para streaming.', 'D) Um protocolo de aplicação.'], 0, 'ti'),
-            q('O que é um patch de segurança?', ['A) Uma atualização que corrige vulnerabilidades.', 'B) Um firewall.', 'C) Um sistema de backup.', 'D) Um tipo de ataque.'], 0, 'ti'),
-            q('Em metodologias ágeis, a "retrospectiva" é uma cerimônia que visa:', ['A) Planejar o próximo sprint.', 'B) Refletir sobre o que deu certo e o que pode ser melhorado.', 'C) Demonstrar o produto ao cliente.', 'D) Revisar o backlog.'], 1, 'ti'),
-            q('O que é uma VPN?', ['A) Uma rede que cria uma conexão segura sobre a internet.', 'B) Um tipo de vírus.', 'C) Um firewall.', 'D) Um sistema de backup.'], 0, 'ti'),
-            q('Em SQL, o comando DELETE é usado para:', ['A) Remover linhas de uma tabela.', 'B) Remover a estrutura da tabela.', 'C) Atualizar dados.', 'D) Criar uma tabela.'], 0, 'ti'),
-            q('O conceito de "MVP" (Produto Mínimo Viável) refere-se a:', ['A) A versão completa do produto.', 'B) A versão mais simples que ainda entrega valor ao cliente.', 'C) Um protótipo descartável.', 'D) Um produto sem funcionalidades.'], 1, 'ti'),
-            q('O que é criptografia assimétrica?', ['A) Usa a mesma chave para cifrar e decifrar.', 'B) Usa um par de chaves (pública e privada).', 'C) Usa apenas chaves privadas.', 'D) Não usa chaves.'], 1, 'ti'),
-            q('O modelo TCP/IP possui quantas camadas?', ['A) 3', 'B) 4', 'C) 5', 'D) 6'], 1, 'ti'),
-            q('O que é um SLA (Service Level Agreement)?', ['A) Um acordo que define o nível de serviço esperado.', 'B) Um firewall.', 'C) Um sistema de backup.', 'D) Um protocolo de rede.'], 0, 'ti'),
-            q('Em desenvolvimento web, qual linguagem é usada para criar interatividade no lado do cliente?', ['A) HTML', 'B) CSS', 'C) JavaScript', 'D) PHP'], 2, 'ti'),
-            q('O que é um repositório de código?', ['A) Um local onde o código-fonte é armazenado e versionado.', 'B) Um banco de dados.', 'C) Um firewall.', 'D) Um protocolo de rede.'], 0, 'ti'),
-            q('Em segurança, o princípio do menor privilégio significa:', ['A) Conceder apenas os acessos necessários.', 'B) Conceder todos os acessos.', 'C) Não conceder acesso algum.', 'D) Conceder acesso temporário.'], 0, 'ti'),
-            q('O que é refatoração de código?', ['A) A reestruturação do código sem alterar seu comportamento.', 'B) A adição de novas funcionalidades.', 'C) A correção de bugs.', 'D) A remoção de código.'], 0, 'ti'),
-            q('Em metodologias ágeis, o que é um "time-box"?', ['A) Um período de tempo fixo para uma atividade.', 'B) Um prazo flexível.', 'C) Um orçamento para o projeto.', 'D) Uma ferramenta de gestão.'], 0, 'ti'),
-            q('O que é um exploit?', ['A) Um código que explora uma vulnerabilidade.', 'B) Um firewall.', 'C) Um sistema de autenticação.', 'D) Uma política de segurança.'], 0, 'ti'),
-            q('Em SQL, o comando JOIN é utilizado para:', ['A) Combinar linhas de duas ou mais tabelas.', 'B) Filtrar dados.', 'C) Ordenar dados.', 'D) Criar tabelas.'], 0, 'ti'),
-            q('O que é um sistema legado?', ['A) Um sistema antigo, mas ainda em uso.', 'B) Um sistema novo.', 'C) Um tipo de firewall.', 'D) Um sistema operacional.'], 0, 'ti'),
-            q('Em DevOps, o que é integração contínua (CI)?', ['A) Integrar mudanças de código frequentemente em um repositório compartilhado.', 'B) Entregar software em produção automaticamente.', 'C) Testar manualmente.', 'D) Gerenciar servidores.'], 0, 'ti'),
-            q('O que é um certificado digital?', ['A) Um documento eletrônico que atesta a identidade de uma pessoa ou sistema.', 'B) Um tipo de vírus.', 'C) Um firewall.', 'D) Um sistema de backup.'], 0, 'ti'),
-            q('Em programação orientada a objetos, o polimorfismo permite que:', ['A) Um objeto possa assumir várias formas.', 'B) Uma classe tenha apenas um método.', 'C) Métodos sejam privados.', 'D) Atributos sejam estáticos.'], 0, 'ti'),
-            q('O que é um SIEM?', ['A) Uma ferramenta que centraliza e analisa eventos de segurança.', 'B) Um firewall.', 'C) Um sistema de backup.', 'D) Um tipo de ataque.'], 0, 'ti'),
-            q('Em redes, o protocolo DHCP é usado para:', ['A) Atribuir endereços IP automaticamente.', 'B) Resolver nomes.', 'C) Transferir arquivos.', 'D) Criptografar dados.'], 0, 'ti'),
-            q('O que é um dashboard de TI?', ['A) Uma interface visual que exibe métricas e indicadores de TI.', 'B) Um firewall.', 'C) Um sistema de backup.', 'D) Um protocolo de rede.'], 0, 'ti'),
-            q('Em metodologias ágeis, o que é uma User Story?', ['A) Uma descrição de uma funcionalidade sob a perspectiva do usuário.', 'B) Um requisito técnico detalhado.', 'C) Um caso de teste.', 'D) Um documento de projeto.'], 0, 'ti'),
-            q('A ISO 27001 é uma norma que:', ['A) Estabelece requisitos para gestão de segurança da informação.', 'B) Define padrões de qualidade de software.', 'C) Regula proteção de dados na Europa.', 'D) Define protocolos de rede.'], 0, 'ti'),
-            q('Em SQL, a função COUNT é usada para:', ['A) Contar o número de linhas.', 'B) Somar valores.', 'C) Calcular a média.', 'D) Encontrar o máximo.'], 0, 'ti'),
-            q('O que é arquitetura empresarial?', ['A) Uma visão holística da estrutura da organização.', 'B) Um tipo de firewall.', 'C) Um sistema de backup.', 'D) Um protocolo de rede.'], 0, 'ti'),
-            q('Em segurança, o ransomware é:', ['A) Um malware que criptografa dados e exige resgate.', 'B) Um firewall.', 'C) Um antivírus.', 'D) Um sistema de backup.'], 0, 'ti'),
-            q('O que é um pipeline de CI/CD?', ['A) Uma automação de build, teste e deploy.', 'B) Um firewall.', 'C) Um sistema de backup.', 'D) Um protocolo de rede.'], 0, 'ti'),
-            q('Em SQL, a cláusula GROUP BY é usada para:', ['A) Agrupar linhas com valores idênticos.', 'B) Filtrar linhas.', 'C) Ordenar resultados.', 'D) Juntar tabelas.'], 0, 'ti'),
-            q('O que é um KPI?', ['A) Um indicador-chave de desempenho.', 'B) Um protocolo de rede.', 'C) Um firewall.', 'D) Um sistema de backup.'], 0, 'ti'),
-            q('Em metodologias ágeis, o que é o Product Backlog?', ['A) Uma lista priorizada de requisitos do produto.', 'B) Uma lista de tarefas do sprint.', 'C) Um relatório de bugs.', 'D) Um documento de arquitetura.'], 0, 'ti'),
-            q('O que é autenticação multifator (MFA)?', ['A) Uso de dois ou mais fatores de verificação.', 'B) Uso de apenas senha.', 'C) Autenticação por biometria apenas.', 'D) Autenticação sem senha.'], 0, 'ti'),
-            q('Em redes, o que é um switch?', ['A) Um dispositivo que conecta dispositivos em uma rede local.', 'B) Um roteador.', 'C) Um hub.', 'D) Um modem.'], 0, 'ti'),
-            q('O que é um sistema de gerenciamento de banco de dados (SGBD)?', ['A) Um software que gerencia a criação, manutenção e uso de bancos de dados.', 'B) Um firewall.', 'C) Um editor de texto.', 'D) Um sistema operacional.'], 0, 'ti'),
-            q('Em segurança, o que é engenharia social?', ['A) Manipulação psicológica para obter informações confidenciais.', 'B) Técnica de programação avançada.', 'C) Construção de firewalls.', 'D) Análise de vulnerabilidades.'], 0, 'ti'),
-            q('O que é um web service?', ['A) Um serviço disponibilizado na web para comunicação entre sistemas.', 'B) Uma página web.', 'C) Um navegador.', 'D) Um servidor físico.'], 0, 'ti'),
-            q('Em SQL, a cláusula HAVING é usada para:', ['A) Filtrar grupos após o GROUP BY.', 'B) Filtrar linhas antes do GROUP BY.', 'C) Ordenar grupos.', 'D) Juntar tabelas.'], 0, 'ti'),
-            q('O que é um framework de desenvolvimento?', ['A) Um conjunto de bibliotecas e ferramentas para agilizar o desenvolvimento.', 'B) Um sistema operacional.', 'C) Um banco de dados.', 'D) Um protocolo de rede.'], 0, 'ti'),
-            q('Em segurança, o que é um honeypot?', ['A) Um sistema que atrai atacantes para estudo e detecção.', 'B) Um tipo de firewall.', 'C) Um software antivírus.', 'D) Um certificado digital.'], 0, 'ti'),
-            q('Em programação, o que é uma função?', ['A) Um bloco de código que executa uma tarefa específica.', 'B) Um tipo de dado.', 'C) Uma variável global.', 'D) Uma estrutura de repetição.'], 0, 'ti'),
-            q('O que é uma VLAN?', ['A) Uma rede local virtual.', 'B) Um tipo de firewall.', 'C) Um protocolo de roteamento.', 'D) Um sistema operacional.'], 0, 'ti'),
-            q('Em metodologias ágeis, o Scrum Master é responsável por:', ['A) Remover impedimentos e garantir que o Scrum seja seguido.', 'B) Definir os requisitos do produto.', 'C) Priorizar o backlog.', 'D) Testar o sistema.'], 0, 'ti'),
-            q('O que é computação em nuvem?', ['A) Modelo de entrega de serviços de TI via internet.', 'B) Uso de servidores físicos locais.', 'C) Armazenamento exclusivo em DVDs.', 'D) Rede sem fio.'], 0, 'ti'),
-            q('Em SQL, o comando DROP é usado para:', ['A) Remover a estrutura da tabela.', 'B) Excluir linhas.', 'C) Atualizar dados.', 'D) Criar uma tabela.'], 0, 'ti'),
-            q('O que é um bug?', ['A) Um erro no código que causa comportamento indesejado.', 'B) Uma nova funcionalidade.', 'C) Uma otimização.', 'D) Um comentário.'], 0, 'ti'),
-            q('Em redes, o que é um roteador?', ['A) Um dispositivo que encaminha pacotes entre redes.', 'B) Um switch.', 'C) Um hub.', 'D) Um firewall.'], 0, 'ti'),
-            q('O que é um repositório remoto no Git?', ['A) Um repositório hospedado em um servidor para compartilhamento.', 'B) Um repositório local.', 'C) Um banco de dados.', 'D) Um firewall.'], 0, 'ti'),
-            q('Em segurança, o que é uma vulnerabilidade?', ['A) Uma fraqueza que pode ser explorada por uma ameaça.', 'B) Um ataque bem-sucedido.', 'C) Um patch aplicado.', 'D) Um firewall configurado.'], 0, 'ti'),
-            q('Em SQL, o comando ALTER é usado para:', ['A) Modificar a estrutura da tabela.', 'B) Inserir dados.', 'C) Excluir dados.', 'D) Consultar dados.'], 0, 'ti'),
-            q('O que é um microsserviço?', ['A) Uma arquitetura onde aplicações são divididas em serviços independentes.', 'B) Um tipo de firewall.', 'C) Um sistema de backup.', 'D) Um protocolo de rede.'], 0, 'ti'),
-            q('Em metodologias ágeis, o que é o Sprint?', ['A) Um período de tempo fixo para desenvolvimento.', 'B) Uma reunião de planejamento.', 'C) Um teste de software.', 'D) Uma entrega final.'], 0, 'ti'),
-            q('O que é uma API REST?', ['A) Um estilo de arquitetura para APIs que usa HTTP.', 'B) Um firewall.', 'C) Um sistema de backup.', 'D) Um protocolo de rede.'], 0, 'ti'),
-            q('Em programação, o que é um array?', ['A) Uma estrutura que armazena múltiplos valores.', 'B) Um tipo de dado simples.', 'C) Uma função.', 'D) Uma classe.'], 0, 'ti'),
-            q('O que é um balanceador de carga?', ['A) Um dispositivo que distribui tráfego entre servidores.', 'B) Um firewall.', 'C) Um roteador.', 'D) Um switch.'], 0, 'ti'),
-            q('Em segurança, o que é um ataque de força bruta?', ['A) Tentar todas as combinações possíveis de senha.', 'B) Enganar usuários.', 'C) Sobrecarregar servidor.', 'D) Explorar vulnerabilidades.'], 0, 'ti'),
-            q('O que é um sistema operacional?', ['A) Software que gerencia hardware e recursos.', 'B) Um banco de dados.', 'C) Um firewall.', 'D) Um editor de texto.'], 0, 'ti'),
-            q('Em SQL, a função AVG é usada para:', ['A) Calcular a média.', 'B) Somar valores.', 'C) Contar linhas.', 'D) Encontrar o máximo.'], 0, 'ti'),
-            q('O que é um virtual private cloud (VPC)?', ['A) Uma rede virtual privada na nuvem.', 'B) Um firewall.', 'C) Um sistema de backup.', 'D) Um protocolo de rede.'], 0, 'ti'),
-            q('Em metodologias ágeis, o que é o Daily Stand-up?', ['A) Reunião diária de 15 minutos para sincronização.', 'B) Reunião de planejamento.', 'C) Reunião de retrospectiva.', 'D) Reunião de revisão.'], 0, 'ti'),
-            q('O que é um servidor proxy?', ['A) Um servidor que atua como intermediário para requisições.', 'B) Um firewall.', 'C) Um roteador.', 'D) Um switch.'], 0, 'ti'),
-            q('Em programação, o que é uma variável?', ['A) Um espaço na memória para armazenar dados.', 'B) Uma função.', 'C) Uma classe.', 'D) Um loop.'], 0, 'ti'),
-            q('O que é um arquivo de log?', ['A) Um registro de eventos gerados por sistemas.', 'B) Um tipo de vírus.', 'C) Um firewall.', 'D) Um backup.'], 0, 'ti'),
-            q('Em redes, o que é o protocolo HTTP?', ['A) Protocolo para comunicação entre navegador e servidor web.', 'B) Protocolo para transferir arquivos.', 'C) Protocolo para enviar e-mails.', 'D) Protocolo para resolver nomes.'], 0, 'ti'),
-            q('Em banco de dados, o que é uma transação?', ['A) Uma sequência de operações executadas como uma unidade.', 'B) Um tipo de consulta.', 'C) Uma tabela.', 'D) Um índice.'], 0, 'ti'),
-            q('O que é uma falha de segurança?', ['A) Uma vulnerabilidade que pode ser explorada.', 'B) Um patch aplicado.', 'C) Um firewall.', 'D) Um antivírus.'], 0, 'ti'),
-            q('Em metodologias ágeis, o que é o Burndown Chart?', ['A) Um gráfico que mostra o progresso do trabalho restante.', 'B) Um gráfico de custos.', 'C) Um gráfico de bugs.', 'D) Um gráfico de entregas.'], 0, 'ti'),
-            q('O que é um cliente-servidor?', ['A) Um modelo onde clientes requisitam serviços de um servidor.', 'B) Um modelo peer-to-peer.', 'C) Um modelo sem servidores.', 'D) Um modelo com apenas servidores.'], 0, 'ti')
+            criarQuestao(`Em metodologias ágeis, o Scrum utiliza ciclos iterativos chamados:`, ['A) Sprints', 'B) Releases', 'C) Milestones', 'D) Backlogs'], 0, 'ti'),
+            criarQuestao(`Em banco de dados relacionais, a linguagem SQL é utilizada para:`, ['A) Criar interfaces gráficas.', 'B) Gerenciar e manipular dados.', 'C) Desenvolver aplicações web.', 'D) Projetar arquiteturas de rede.'], 1, 'ti'),
+            criarQuestao(`O que é um firewall?`, ['A) Um software ou hardware que monitora e controla o tráfego de rede.', 'B) Um tipo de vírus.', 'C) Um sistema de backup.', 'D) Um editor de texto.'], 0, 'ti'),
+            criarQuestao(`O modelo OSI é composto por quantas camadas?`, ['A) 5', 'B) 6', 'C) 7', 'D) 8'], 2, 'ti'),
+            criarQuestao(`Em programação orientada a objetos, o encapsulamento tem como objetivo:`, ['A) Expor todos os atributos publicamente.', 'B) Proteger os dados internos, permitindo acesso apenas por métodos específicos.', 'C) Criar múltiplas instâncias.', 'D) Eliminar a herança.'], 1, 'ti'),
+            criarQuestao(`No Scrum, o papel responsável por definir e priorizar os itens do backlog do produto é:`, ['A) Scrum Master', 'B) Product Owner', 'C) Time de Desenvolvimento', 'D) Stakeholder'], 1, 'ti'),
+            criarQuestao(`O que é um sistema de controle de versão (VCS)?`, ['A) Uma ferramenta para gerenciar mudanças no código-fonte.', 'B) Um banco de dados.', 'C) Um editor de texto.', 'D) Um compilador.'], 0, 'ti'),
+            criarQuestao(`A tríade CIA em segurança da informação significa:`, ['A) Confidencialidade, Integridade e Disponibilidade.', 'B) Controle, Inspeção e Auditoria.', 'C) Criptografia, Integridade e Autenticação.', 'D) Confiança, Identidade e Acesso.'], 0, 'ti'),
+            criarQuestao(`Em SQL, o comando SELECT é utilizado para:`, ['A) Inserir dados.', 'B) Atualizar dados.', 'C) Consultar dados.', 'D) Excluir dados.'], 2, 'ti'),
+            criarQuestao(`O que é um ataque DDoS?`, ['A) Um ataque que sobrecarrega um servidor com requisições.', 'B) Um ataque de phishing.', 'C) Um ataque físico.', 'D) Um ataque a banco de dados.'], 0, 'ti'),
+            criarQuestao(`O padrão de projeto Singleton garante que uma classe tenha:`, ['A) Múltiplas instâncias simultâneas.', 'B) Apenas uma única instância.', 'C) Instâncias criadas sob demanda.', 'D) Instâncias destruídas automaticamente.'], 1, 'ti'),
+            criarQuestao(`Em redes de computadores, o protocolo DNS é usado para:`, ['A) Resolver nomes de domínio em endereços IP.', 'B) Transferir arquivos.', 'C) Enviar e-mails.', 'D) Criptografar dados.'], 0, 'ti'),
+            criarQuestao(`O ITIL é um conjunto de boas práticas para:`, ['A) Gestão de serviços de TI.', 'B) Governança de TI.', 'C) Desenvolvimento de software.', 'D) Segurança da informação.'], 0, 'ti'),
+            criarQuestao(`O que é um contêiner (Docker)?`, ['A) Uma unidade de software que empacota código e dependências.', 'B) Um tipo de hardware.', 'C) Um firewall.', 'D) Um sistema operacional.'], 0, 'ti'),
+            criarQuestao(`Em segurança da informação, o que é phishing?`, ['A) Enganar usuários para obter dados sensíveis.', 'B) Um vírus que criptografa dados.', 'C) Um ataque de negação de serviço.', 'D) Um firewall mal configurado.'], 0, 'ti'),
+            criarQuestao(`Em SQL, a cláusula WHERE é usada para:`, ['A) Ordenar os resultados.', 'B) Filtrar registros.', 'C) Agrupar registros.', 'D) Juntar tabelas.'], 1, 'ti'),
+            criarQuestao(`O que é virtualização?`, ['A) A criação de versões virtuais de recursos de hardware.', 'B) Um tipo de firewall.', 'C) Um protocolo de rede.', 'D) Um sistema operacional.'], 0, 'ti'),
+            criarQuestao(`A metodologia ágil Lean enfatiza:`, ['A) Redução de desperdícios.', 'B) Entrega contínua de valor.', 'C) Empoderamento da equipe.', 'D) Todas as alternativas.'], 3, 'ti'),
+            criarQuestao(`O que é um API Gateway?`, ['A) Um servidor que atua como intermediário para APIs.', 'B) Um firewall.', 'C) Um sistema de backup.', 'D) Um protocolo de rede.'], 0, 'ti'),
+            criarQuestao(`A normalização de banco de dados visa:`, ['A) Reduzir redundâncias e evitar anomalias.', 'B) Aumentar a velocidade de consultas.', 'C) Facilitar a manutenção.', 'D) Todas as alternativas.'], 3, 'ti'),
+            criarQuestao(`O que é um microsserviço?`, ['A) Uma arquitetura onde aplicações são divididas em serviços independentes.', 'B) Um tipo de firewall.', 'C) Um sistema de backup.', 'D) Um protocolo de rede.'], 0, 'ti'),
+            criarQuestao(`Em desenvolvimento web, qual linguagem é usada para estilizar páginas HTML?`, ['A) JavaScript', 'B) CSS', 'C) PHP', 'D) SQL'], 1, 'ti'),
+            criarQuestao(`O que é um hypervisor?`, ['A) Um software que gerencia máquinas virtuais.', 'B) Um firewall.', 'C) Um roteador.', 'D) Um switch.'], 0, 'ti'),
+            criarQuestao(`A LGPD é a lei brasileira que:`, ['A) Protege dados pessoais.', 'B) Define padrões de firewall.', 'C) Regula contratos de TI.', 'D) Estabelece regras para redes.'], 0, 'ti'),
+            criarQuestao(`Em SQL, o comando UPDATE é usado para:`, ['A) Inserir dados.', 'B) Modificar dados existentes.', 'C) Excluir dados.', 'D) Consultar dados.'], 1, 'ti'),
+            criarQuestao(`O que é um incidente de segurança?`, ['A) Qualquer evento que possa comprometer a segurança.', 'B) Um ataque bem-sucedido.', 'C) Uma vulnerabilidade.', 'D) Um patch.'], 0, 'ti'),
+            criarQuestao(`No Kanban, o limite de WIP serve para:`, ['A) Aumentar a quantidade de tarefas em andamento.', 'B) Limitar o número de tarefas em andamento para melhorar o fluxo.', 'C) Eliminar a priorização.', 'D) Reduzir a qualidade.'], 1, 'ti'),
+            criarQuestao(`O que é um balanceador de carga (load balancer)?`, ['A) Um dispositivo que distribui tráfego entre servidores.', 'B) Um firewall.', 'C) Um roteador.', 'D) Um switch.'], 0, 'ti'),
+            criarQuestao(`Em programação orientada a objetos, a herança permite que uma classe:`, ['A) Herde atributos e métodos de outra classe.', 'B) Modifique todos os métodos da classe pai.', 'C) Crie múltiplas instâncias.', 'D) Elimine o encapsulamento.'], 0, 'ti'),
+            criarQuestao(`O protocolo TCP é:`, ['A) Orientado a conexão e confiável.', 'B) Não orientado a conexão.', 'C) Usado apenas para streaming.', 'D) Um protocolo de aplicação.'], 0, 'ti'),
+            criarQuestao(`O que é um patch de segurança?`, ['A) Uma atualização que corrige vulnerabilidades.', 'B) Um firewall.', 'C) Um sistema de backup.', 'D) Um tipo de ataque.'], 0, 'ti'),
+            criarQuestao(`Em metodologias ágeis, a "retrospectiva" é uma cerimônia que visa:`, ['A) Planejar o próximo sprint.', 'B) Refletir sobre o que deu certo e o que pode ser melhorado.', 'C) Demonstrar o produto ao cliente.', 'D) Revisar o backlog.'], 1, 'ti'),
+            criarQuestao(`O que é uma VPN?`, ['A) Uma rede que cria uma conexão segura sobre a internet.', 'B) Um tipo de vírus.', 'C) Um firewall.', 'D) Um sistema de backup.'], 0, 'ti'),
+            criarQuestao(`Em SQL, o comando DELETE é usado para:`, ['A) Remover linhas de uma tabela.', 'B) Remover a estrutura da tabela.', 'C) Atualizar dados.', 'D) Criar uma tabela.'], 0, 'ti'),
+            criarQuestao(`O conceito de "MVP" (Produto Mínimo Viável) refere-se a:`, ['A) A versão completa do produto.', 'B) A versão mais simples que ainda entrega valor ao cliente.', 'C) Um protótipo descartável.', 'D) Um produto sem funcionalidades.'], 1, 'ti'),
+            criarQuestao(`O que é criptografia assimétrica?`, ['A) Usa a mesma chave para cifrar e decifrar.', 'B) Usa um par de chaves (pública e privada).', 'C) Usa apenas chaves privadas.', 'D) Não usa chaves.'], 1, 'ti'),
+            criarQuestao(`O modelo TCP/IP possui quantas camadas?`, ['A) 3', 'B) 4', 'C) 5', 'D) 6'], 1, 'ti'),
+            criarQuestao(`O que é um SLA (Service Level Agreement)?`, ['A) Um acordo que define o nível de serviço esperado.', 'B) Um firewall.', 'C) Um sistema de backup.', 'D) Um protocolo de rede.'], 0, 'ti'),
+            criarQuestao(`Em desenvolvimento web, qual linguagem é usada para criar interatividade no lado do cliente?`, ['A) HTML', 'B) CSS', 'C) JavaScript', 'D) PHP'], 2, 'ti'),
+            criarQuestao(`O que é um repositório de código?`, ['A) Um local onde o código-fonte é armazenado e versionado.', 'B) Um banco de dados.', 'C) Um firewall.', 'D) Um protocolo de rede.'], 0, 'ti'),
+            criarQuestao(`Em segurança, o princípio do menor privilégio significa:`, ['A) Conceder apenas os acessos necessários.', 'B) Conceder todos os acessos.', 'C) Não conceder acesso algum.', 'D) Conceder acesso temporário.'], 0, 'ti'),
+            criarQuestao(`O que é refatoração de código?`, ['A) A reestruturação do código sem alterar seu comportamento.', 'B) A adição de novas funcionalidades.', 'C) A correção de bugs.', 'D) A remoção de código.'], 0, 'ti'),
+            criarQuestao(`Em metodologias ágeis, o que é um "time-box"?`, ['A) Um período de tempo fixo para uma atividade.', 'B) Um prazo flexível.', 'C) Um orçamento para o projeto.', 'D) Uma ferramenta de gestão.'], 0, 'ti'),
+            criarQuestao(`O que é um exploit?`, ['A) Um código que explora uma vulnerabilidade.', 'B) Um firewall.', 'C) Um sistema de autenticação.', 'D) Uma política de segurança.'], 0, 'ti'),
+            criarQuestao(`Em SQL, o comando JOIN é utilizado para:`, ['A) Combinar linhas de duas ou mais tabelas.', 'B) Filtrar dados.', 'C) Ordenar dados.', 'D) Criar tabelas.'], 0, 'ti'),
+            criarQuestao(`O que é um sistema legado?`, ['A) Um sistema antigo, mas ainda em uso.', 'B) Um sistema novo.', 'C) Um tipo de firewall.', 'D) Um sistema operacional.'], 0, 'ti'),
+            criarQuestao(`Em DevOps, o que é integração contínua (CI)?`, ['A) Integrar mudanças de código frequentemente em um repositório compartilhado.', 'B) Entregar software em produção automaticamente.', 'C) Testar manualmente.', 'D) Gerenciar servidores.'], 0, 'ti'),
+            criarQuestao(`O que é um certificado digital?`, ['A) Um documento eletrônico que atesta a identidade de uma pessoa ou sistema.', 'B) Um tipo de vírus.', 'C) Um firewall.', 'D) Um sistema de backup.'], 0, 'ti'),
+            criarQuestao(`Em programação orientada a objetos, o polimorfismo permite que:`, ['A) Um objeto possa assumir várias formas.', 'B) Uma classe tenha apenas um método.', 'C) Métodos sejam privados.', 'D) Atributos sejam estáticos.'], 0, 'ti'),
+            criarQuestao(`O que é um SIEM?`, ['A) Uma ferramenta que centraliza e analisa eventos de segurança.', 'B) Um firewall.', 'C) Um sistema de backup.', 'D) Um tipo de ataque.'], 0, 'ti'),
+            criarQuestao(`Em redes, o protocolo DHCP é usado para:`, ['A) Atribuir endereços IP automaticamente.', 'B) Resolver nomes.', 'C) Transferir arquivos.', 'D) Criptografar dados.'], 0, 'ti'),
+            criarQuestao(`O que é um dashboard de TI?`, ['A) Uma interface visual que exibe métricas e indicadores de TI.', 'B) Um firewall.', 'C) Um sistema de backup.', 'D) Um protocolo de rede.'], 0, 'ti'),
+            criarQuestao(`Em metodologias ágeis, o que é uma User Story?`, ['A) Uma descrição de uma funcionalidade sob a perspectiva do usuário.', 'B) Um requisito técnico detalhado.', 'C) Um caso de teste.', 'D) Um documento de projeto.'], 0, 'ti'),
+            criarQuestao(`A ISO 27001 é uma norma que:`, ['A) Estabelece requisitos para gestão de segurança da informação.', 'B) Define padrões de qualidade de software.', 'C) Regula proteção de dados na Europa.', 'D) Define protocolos de rede.'], 0, 'ti'),
+            criarQuestao(`Em SQL, a função COUNT é usada para:`, ['A) Contar o número de linhas.', 'B) Somar valores.', 'C) Calcular a média.', 'D) Encontrar o máximo.'], 0, 'ti'),
+            criarQuestao(`O que é arquitetura empresarial?`, ['A) Uma visão holística da estrutura da organização.', 'B) Um tipo de firewall.', 'C) Um sistema de backup.', 'D) Um protocolo de rede.'], 0, 'ti'),
+            criarQuestao(`Em segurança, o ransomware é:`, ['A) Um malware que criptografa dados e exige resgate.', 'B) Um firewall.', 'C) Um antivírus.', 'D) Um sistema de backup.'], 0, 'ti'),
+            criarQuestao(`O que é um pipeline de CI/CD?`, ['A) Uma automação de build, teste e deploy.', 'B) Um firewall.', 'C) Um sistema de backup.', 'D) Um protocolo de rede.'], 0, 'ti'),
+            criarQuestao(`Em SQL, a cláusula GROUP BY é usada para:`, ['A) Agrupar linhas com valores idênticos.', 'B) Filtrar linhas.', 'C) Ordenar resultados.', 'D) Juntar tabelas.'], 0, 'ti'),
+            criarQuestao(`O que é um KPI?`, ['A) Um indicador-chave de desempenho.', 'B) Um protocolo de rede.', 'C) Um firewall.', 'D) Um sistema de backup.'], 0, 'ti'),
+            criarQuestao(`Em metodologias ágeis, o que é o Product Backlog?`, ['A) Uma lista priorizada de requisitos do produto.', 'B) Uma lista de tarefas do sprint.', 'C) Um relatório de bugs.', 'D) Um documento de arquitetura.'], 0, 'ti'),
+            criarQuestao(`O que é autenticação multifator (MFA)?`, ['A) Uso de dois ou mais fatores de verificação.', 'B) Uso de apenas senha.', 'C) Autenticação por biometria apenas.', 'D) Autenticação sem senha.'], 0, 'ti'),
+            criarQuestao(`Em redes, o que é um switch?`, ['A) Um dispositivo que conecta dispositivos em uma rede local.', 'B) Um roteador.', 'C) Um hub.', 'D) Um modem.'], 0, 'ti'),
+            criarQuestao(`O que é um sistema de gerenciamento de banco de dados (SGBD)?`, ['A) Um software que gerencia a criação, manutenção e uso de bancos de dados.', 'B) Um firewall.', 'C) Um editor de texto.', 'D) Um sistema operacional.'], 0, 'ti'),
+            criarQuestao(`Em segurança, o que é engenharia social?`, ['A) Manipulação psicológica para obter informações confidenciais.', 'B) Técnica de programação avançada.', 'C) Construção de firewalls.', 'D) Análise de vulnerabilidades.'], 0, 'ti'),
+            criarQuestao(`O que é um web service?`, ['A) Um serviço disponibilizado na web para comunicação entre sistemas.', 'B) Uma página web.', 'C) Um navegador.', 'D) Um servidor físico.'], 0, 'ti'),
+            criarQuestao(`Em SQL, a cláusula HAVING é usada para:`, ['A) Filtrar grupos após o GROUP BY.', 'B) Filtrar linhas antes do GROUP BY.', 'C) Ordenar grupos.', 'D) Juntar tabelas.'], 0, 'ti'),
+            criarQuestao(`O que é um framework de desenvolvimento?`, ['A) Um conjunto de bibliotecas e ferramentas para agilizar o desenvolvimento.', 'B) Um sistema operacional.', 'C) Um banco de dados.', 'D) Um protocolo de rede.'], 0, 'ti'),
+            criarQuestao(`Em segurança, o que é um honeypot?`, ['A) Um sistema que atrai atacantes para estudo e detecção.', 'B) Um tipo de firewall.', 'C) Um software antivírus.', 'D) Um certificado digital.'], 0, 'ti'),
+            criarQuestao(`Em programação, o que é uma função?`, ['A) Um bloco de código que executa uma tarefa específica.', 'B) Um tipo de dado.', 'C) Uma variável global.', 'D) Uma estrutura de repetição.'], 0, 'ti'),
+            criarQuestao(`O que é uma VLAN?`, ['A) Uma rede local virtual.', 'B) Um tipo de firewall.', 'C) Um protocolo de roteamento.', 'D) Um sistema operacional.'], 0, 'ti'),
+            criarQuestao(`Em metodologias ágeis, o Scrum Master é responsável por:`, ['A) Remover impedimentos e garantir que o Scrum seja seguido.', 'B) Definir os requisitos do produto.', 'C) Priorizar o backlog.', 'D) Testar o sistema.'], 0, 'ti'),
+            criarQuestao(`O que é computação em nuvem?`, ['A) Modelo de entrega de serviços de TI via internet.', 'B) Uso de servidores físicos locais.', 'C) Armazenamento exclusivo em DVDs.', 'D) Rede sem fio.'], 0, 'ti'),
+            criarQuestao(`Em SQL, o comando DROP é usado para:`, ['A) Remover a estrutura da tabela.', 'B) Excluir linhas.', 'C) Atualizar dados.', 'D) Criar uma tabela.'], 0, 'ti'),
+            criarQuestao(`O que é um bug?`, ['A) Um erro no código que causa comportamento indesejado.', 'B) Uma nova funcionalidade.', 'C) Uma otimização.', 'D) Um comentário.'], 0, 'ti'),
+            criarQuestao(`Em redes, o que é um roteador?`, ['A) Um dispositivo que encaminha pacotes entre redes.', 'B) Um switch.', 'C) Um hub.', 'D) Um firewall.'], 0, 'ti'),
+            criarQuestao(`O que é um repositório remoto no Git?`, ['A) Um repositório hospedado em um servidor para compartilhamento.', 'B) Um repositório local.', 'C) Um banco de dados.', 'D) Um firewall.'], 0, 'ti'),
+            criarQuestao(`Em segurança, o que é uma vulnerabilidade?`, ['A) Uma fraqueza que pode ser explorada por uma ameaça.', 'B) Um ataque bem-sucedido.', 'C) Um patch aplicado.', 'D) Um firewall configurado.'], 0, 'ti'),
+            criarQuestao(`Em SQL, o comando ALTER é usado para:`, ['A) Modificar a estrutura da tabela.', 'B) Inserir dados.', 'C) Excluir dados.', 'D) Consultar dados.'], 0, 'ti'),
+            criarQuestao(`O que é um microsserviço?`, ['A) Uma arquitetura onde aplicações são divididas em serviços independentes.', 'B) Um tipo de firewall.', 'C) Um sistema de backup.', 'D) Um protocolo de rede.'], 0, 'ti'),
+            criarQuestao(`Em metodologias ágeis, o que é o Sprint?`, ['A) Um período de tempo fixo para desenvolvimento.', 'B) Uma reunião de planejamento.', 'C) Um teste de software.', 'D) Uma entrega final.'], 0, 'ti'),
+            criarQuestao(`O que é uma API REST?`, ['A) Um estilo de arquitetura para APIs que usa HTTP.', 'B) Um firewall.', 'C) Um sistema de backup.', 'D) Um protocolo de rede.'], 0, 'ti'),
+            criarQuestao(`Em programação, o que é um array?`, ['A) Uma estrutura que armazena múltiplos valores.', 'B) Um tipo de dado simples.', 'C) Uma função.', 'D) Uma classe.'], 0, 'ti'),
+            criarQuestao(`O que é um balanceador de carga?`, ['A) Um dispositivo que distribui tráfego entre servidores.', 'B) Um firewall.', 'C) Um roteador.', 'D) Um switch.'], 0, 'ti'),
+            criarQuestao(`Em segurança, o que é um ataque de força bruta?`, ['A) Tentar todas as combinações possíveis de senha.', 'B) Enganar usuários.', 'C) Sobrecarregar servidor.', 'D) Explorar vulnerabilidades.'], 0, 'ti'),
+            criarQuestao(`O que é um sistema operacional?`, ['A) Software que gerencia hardware e recursos.', 'B) Um banco de dados.', 'C) Um firewall.', 'D) Um editor de texto.'], 0, 'ti'),
+            criarQuestao(`Em SQL, a função AVG é usada para:`, ['A) Calcular a média.', 'B) Somar valores.', 'C) Contar linhas.', 'D) Encontrar o máximo.'], 0, 'ti'),
+            criarQuestao(`O que é um virtual private cloud (VPC)?`, ['A) Uma rede virtual privada na nuvem.', 'B) Um firewall.', 'C) Um sistema de backup.', 'D) Um protocolo de rede.'], 0, 'ti'),
+            criarQuestao(`Em metodologias ágeis, o que é o Daily Stand-up?`, ['A) Reunião diária de 15 minutos para sincronização.', 'B) Reunião de planejamento.', 'C) Reunião de retrospectiva.', 'D) Reunião de revisão.'], 0, 'ti'),
+            criarQuestao(`O que é um servidor proxy?`, ['A) Um servidor que atua como intermediário para requisições.', 'B) Um firewall.', 'C) Um roteador.', 'D) Um switch.'], 0, 'ti'),
+            criarQuestao(`Em programação, o que é uma variável?`, ['A) Um espaço na memória para armazenar dados.', 'B) Uma função.', 'C) Uma classe.', 'D) Um loop.'], 0, 'ti'),
+            criarQuestao(`O que é um arquivo de log?`, ['A) Um registro de eventos gerados por sistemas.', 'B) Um tipo de vírus.', 'C) Um firewall.', 'D) Um backup.'], 0, 'ti'),
+            criarQuestao(`Em redes, o que é o protocolo HTTP?`, ['A) Protocolo para comunicação entre navegador e servidor web.', 'B) Protocolo para transferir arquivos.', 'C) Protocolo para enviar e-mails.', 'D) Protocolo para resolver nomes.'], 0, 'ti'),
+            criarQuestao(`Em banco de dados, o que é uma transação?`, ['A) Uma sequência de operações executadas como uma unidade.', 'B) Um tipo de consulta.', 'C) Uma tabela.', 'D) Um índice.'], 0, 'ti'),
+            criarQuestao(`O que é uma falha de segurança?`, ['A) Uma vulnerabilidade que pode ser explorada.', 'B) Um patch aplicado.', 'C) Um firewall.', 'D) Um antivírus.'], 0, 'ti'),
+            criarQuestao(`Em metodologias ágeis, o que é o Burndown Chart?`, ['A) Um gráfico que mostra o progresso do trabalho restante.', 'B) Um gráfico de custos.', 'C) Um gráfico de bugs.', 'D) Um gráfico de entregas.'], 0, 'ti'),
+            criarQuestao(`O que é um cliente-servidor?`, ['A) Um modelo onde clientes requisitam serviços de um servidor.', 'B) Um modelo peer-to-peer.', 'C) Um modelo sem servidores.', 'D) Um modelo com apenas servidores.'], 0, 'ti')
         ];
 
         // Junta todas as áreas
         let full = [...portugues, ...matematica, ...adm, ...ti];
 
-        // Remove duplicatas (pela pergunta) – garante unicidade
+        // Remove duplicatas (pela pergunta)
         const seen = new Set();
         full = full.filter(q => {
-            const key = q.p.substring(0, 50); // usa parte da pergunta como chave
+            const key = q.p.substring(0, 50);
             if (seen.has(key)) return false;
             seen.add(key);
             return true;
         });
 
         // Se ainda tiver menos de 400, completar com questões variadas (sem repetir)
-        while (full.length < 400) {
-            const extras = [
-                q('Qual é o maior planeta do sistema solar?', ['A) Terra', 'B) Marte', 'C) Júpiter', 'D) Saturno'], 2, 'ti'),
-                q('Qual é o resultado de 2 + 2?', ['A) 3', 'B) 4', 'C) 5', 'D) 6'], 1, 'matematica'),
-                q('Qual é a cor do céu em um dia ensolarado?', ['A) Verde', 'B) Azul', 'C) Vermelho', 'D) Amarelo'], 1, 'portugues'),
-                q('Qual é a moeda oficial do Brasil?', ['A) Dólar', 'B) Euro', 'C) Real', 'D) Peso'], 2, 'administracao')
-            ];
-            for (let extra of extras) {
-                const key = extra.p.substring(0, 50);
-                if (!seen.has(key)) {
-                    full.push(extra);
-                    seen.add(key);
-                }
-                if (full.length >= 400) break;
+        const extras = [
+            criarQuestao(`Qual é o maior planeta do sistema solar?`, ['A) Terra', 'B) Marte', 'C) Júpiter', 'D) Saturno'], 2, 'ti'),
+            criarQuestao(`Qual é o resultado de 2 + 2?`, ['A) 3', 'B) 4', 'C) 5', 'D) 6'], 1, 'matematica'),
+            criarQuestao(`Qual é a cor do céu em um dia ensolarado?`, ['A) Verde', 'B) Azul', 'C) Vermelho', 'D) Amarelo'], 1, 'portugues'),
+            criarQuestao(`Qual é a moeda oficial do Brasil?`, ['A) Dólar', 'B) Euro', 'C) Real', 'D) Peso'], 2, 'administracao')
+        ];
+
+        for (let extra of extras) {
+            const key = extra.p.substring(0, 50);
+            if (!seen.has(key)) {
+                full.push(extra);
+                seen.add(key);
             }
+            if (full.length >= 400) break;
         }
 
         return full;
@@ -813,10 +1059,9 @@
     function novoSimulado() {
         const banco = bancoGlobal.length ? bancoGlobal : gerarBancoCompleto();
         bancoGlobal = banco;
-        // Seleciona 40 questões aleatórias sem repetição
         const copia = [...banco];
         shuffleArray(copia);
-        const selecionadas = copia.slice(0, 40); // pega as 40 primeiras após embaralhar
+        const selecionadas = copia.slice(0, 40);
 
         questoesAtuais = selecionadas;
         indiceAtual = 0;
@@ -853,8 +1098,14 @@
     // ============================================================
     // INICIAR
     // ============================================================
-    bancoGlobal = gerarBancoCompleto();
-    novoSimulado();
+    try {
+        bancoGlobal = gerarBancoCompleto();
+        novoSimulado();
+    } catch (e) {
+        alert('Erro ao carregar o simulado: ' + e.message);
+        console.error(e);
+    }
 </script>
+
 </body>
 </html>
