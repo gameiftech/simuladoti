@@ -497,6 +497,18 @@ document.addEventListener('DOMContentLoaded', () => {
     btnFinalizar.addEventListener('click', finalizarSimulado);
     document.getElementById('btnNovoSimulado').addEventListener('click', iniciarNovoSimulado);
 
+    // Botão Sair — volta para a tela inicial (splash)
+    const btnSair = document.getElementById('btnSair');
+    if (btnSair) {
+        btnSair.addEventListener('click', () => {
+            pararTimer();
+            // Esconder app e mostrar splash novamente
+            appContainer.style.display = 'none';
+            splashScreen.classList.remove('fade-out');
+            splashScreen.style.display = 'flex';
+        });
+    }
+
     // Modal Finalizar
     btnCancelarFinalizar.addEventListener('click', () => { modalFinalizar.style.display = 'none'; });
     btnConfirmarFinalizar.addEventListener('click', confirmarFinalizar);

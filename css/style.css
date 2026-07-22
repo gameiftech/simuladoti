@@ -446,8 +446,15 @@ body {
 .resumo-box .vermelho { color: var(--danger); font-weight: 700; }
 .resumo-box .azul { color: var(--brand-primary); font-weight: 700; }
 
-.btn-reiniciar {
+.resultado-botoes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
     margin-top: 20px;
+}
+
+.btn-reiniciar {
     background: var(--brand-primary);
     color: white;
     padding: 15px 36px;
@@ -459,12 +466,52 @@ body {
     touch-action: manipulation;
     width: 100%;
     max-width: 280px;
+    transition: transform 0.15s ease, background 0.15s ease;
 }
 
-.btn-reiniciar:active {
-    transform: scale(0.96);
-    background: var(--brand-dark);
+.btn-reiniciar:hover { background: var(--brand-dark); transform: translateY(-1px); }
+.btn-reiniciar:active { transform: scale(0.96); background: var(--brand-dark); }
+
+.btn-sair {
+    background: transparent;
+    color: var(--text-secondary);
+    padding: 10px 24px;
+    border: 2px solid var(--border-color);
+    border-radius: 40px;
+    font-weight: 600;
+    font-size: 15px;
+    cursor: pointer;
+    touch-action: manipulation;
+    width: 100%;
+    max-width: 280px;
+    transition: transform 0.15s ease, border-color 0.15s ease, color 0.15s ease;
 }
+
+.btn-sair:hover {
+    border-color: var(--brand-primary);
+    color: var(--brand-primary);
+    transform: translateY(-1px);
+}
+
+.btn-sair:active { transform: scale(0.96); }
+
+/* Footer dentro do container */
+#app .footer {
+    margin-top: 20px;
+    padding-top: 14px;
+    border-top: 1px solid var(--footer-border);
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
+#app .footer a {
+    color: var(--brand-primary);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+#app .footer a:hover { text-decoration: underline; }
 
 /* Modal History */
 .modal-overlay {
